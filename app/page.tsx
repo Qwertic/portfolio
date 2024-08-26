@@ -17,8 +17,10 @@ export default function Home() {
       <div className="h-[60vh] relative w-full overflow-hidden flex flex-col items-center justify-center rounded-lg">
         <div className="absolute inset-0 w-full h-full  z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
         <HeroBoxes />
-        <p className="text-white text-2xl z-20">Hello 👋 it&apos;s me</p>
-        <h1 className={cn("text-8xl text-white relative z-20")}>Qwertic</h1>
+        <p className="text-foreground text-2xl z-20">Hello 👋 it&apos;s me</p>
+        <h1 className={cn("text-8xl text-foreground relative z-20")}>
+          Qwertic
+        </h1>
         <FlipWords
           words={[
             "Fullstack Developer",
