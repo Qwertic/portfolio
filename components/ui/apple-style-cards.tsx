@@ -1,4 +1,5 @@
 "use client";
+
 import React, {
   useEffect,
   useRef,
@@ -14,6 +15,7 @@ import { useOutsideClick } from "@/lib/hooks/use-outside-click";
 import { Button } from "@/components/ui/button";
 import Skills from "./skills";
 import { TypographyLarge, TypographyMuted } from "./typography";
+import { isBrowser } from "framer-motion";
 
 interface CarouselProps {
   items: JSX.Element[];
@@ -86,7 +88,9 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
   };
 
   const isMobile = () => {
-    return window && window.innerWidth < 768;
+    if (isBrowser) {
+      return window && window.innerWidth < 768;
+    }
   };
 
   return (
@@ -181,7 +185,7 @@ export const Card = ({
 }) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const { onCardClose, currentIndex } = useContext(CarouselContext);
+  const { onCardClose } = useContext(CarouselContext);
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -196,7 +200,10 @@ export const Card = ({
       document.body.style.overflow = "auto";
     }
 
-    window.addEventListener("keydown", onKeyDown);
+    if (isBrowser) {
+      window.addEventListener("keydown", onKeyDown);
+    }
+
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [open]);
 
