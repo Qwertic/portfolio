@@ -5,10 +5,11 @@
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
 import Link from "next/link";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useState, useEffect } from "react"; // Add useState and useEffect
+import { isBrowser } from "framer-motion";
 
 const links = [
   {
@@ -28,7 +29,11 @@ const links = [
     link: "#",
   },
 ];
-const path = window.location.pathname;
+let path = "";
+
+if (isBrowser) {
+  path = window.location.pathname;
+}
 
 export default function Navbar() {
   const [activeLink, setActiveLink] = useState("");

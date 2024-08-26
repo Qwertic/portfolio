@@ -3,7 +3,6 @@ import {
   TypographyP,
   TypographyLead,
   TypographyLarge,
-  TypographySmall,
   TypographyInlineCode,
 } from "@/components/ui/typography";
 import Skills from "@/components/ui/skills";

@@ -1,17 +1,9 @@
 "use client";
-import Image from "next/image";
+
 import React from "react";
 import { Carousel, Card } from "@/components/ui/apple-style-cards";
 
-import {
-  TypographyH1,
-  TypographyP,
-  TypographyLead,
-  TypographyLarge,
-  TypographySmall,
-  TypographyInlineCode,
-} from "@/components/ui/typography";
-import Skills from "@/components/ui/skills";
+import { TypographyH1, TypographyLead } from "@/components/ui/typography";
 
 import CallbellDescription from "@/app/works/callbellDescription.mdx";
 import LeWagonDescription from "@/app/works/leWagonDescription.mdx";
