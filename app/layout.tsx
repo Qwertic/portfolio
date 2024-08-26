@@ -13,6 +13,43 @@ const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
 export const metadata: Metadata = {
   title: "Qwertic's Portfolio",
   description: "Full Stack Developer, AI Enthusiast",
+  referrer: "origin-when-cross-origin",
+  creator: "Qwertic",
+  category: "technology",
+  robots: {
+    index: false,
+    follow: true,
+    nocache: true,
+    googleBot: {
+      index: true,
+      follow: false,
+      noimageindex: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  keywords: [
+    "RoR",
+    "Ruby on Rails",
+    "Fullstack Developer",
+    "Full Stack Developer",
+    "Software Developer",
+    "Coder",
+    "Programming",
+    "Svillupatore web",
+    "Freelance Developer",
+    "AI Developer",
+    "Portfolio",
+    "Remote Job",
+    "NextJs Developer",
+    "Rails Developer",
+    "Coder",
+    "React Developer",
+    "LLM integrations",
+    "Full remote Developer",
+    "API development",
+  ],
 };
 
 export default function RootLayout({
@@ -22,6 +59,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+      </head>
       <body className={cn("font-sans antialiased", fontSans.variable)}>
         <Navbar />
         <main className="flex w-full mt-16 p-8 flex-wrap justify-between">
