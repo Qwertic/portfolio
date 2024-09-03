@@ -222,7 +222,7 @@ export const Card = ({
     <>
       <AnimatePresence>
         {open && (
-          <div className="fixed inset-0 h-screen z-50 overflow-auto">
+          <div className="fixed inset-0 h-screen z-[9999] overflow-auto">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -235,17 +235,26 @@ export const Card = ({
               exit={{ opacity: 0 }}
               ref={containerRef}
               layoutId={layout ? `card-${card.title}` : undefined}
-              className="max-w-5xl bg-gray-900/80 border border-border mx-auto h-fit z-[60] my-10 p-4 md:p-10 rounded-3xl font-sans relative"
+              className="max-w-5xl bg-gray-900/80 border border-border mx-auto h-fit z-[10000] my-10 p-4 md:p-10 rounded-3xl font-sans relative"
             >
-              <Button variant="outline" size="icon" onClick={handleClose}>
-                <Image
-                  src={"/x-small.svg"}
-                  alt="x icon"
-                  className="h-6 w-6"
-                  width={6}
-                  height={6}
-                />
-              </Button>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                ref={containerRef}
+                layoutId={layout ? `card-${card.title}` : undefined}
+                className="relative flex justify-end"
+              >
+                <Button variant="outline" size="icon" onClick={handleClose}>
+                  <Image
+                    src={"/x-small.svg"}
+                    alt="x icon"
+                    className="h-6 w-6"
+                    width={6}
+                    height={6}
+                  />
+                </Button>
+              </motion.div>
               <motion.p
                 layoutId={layout ? `category-${card.title}` : undefined}
               >
@@ -275,7 +284,7 @@ export const Card = ({
       <motion.button
         layoutId={layout ? `card-${card.title}` : undefined}
         onClick={handleOpen}
-        className="rounded-3xl bg-gray-100 dark:bg-neutral-900 h-80 w-56 md:h-[40rem] md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10"
+        className="rounded-3xl h-80 w-56 md:h-[40rem] md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10"
       >
         <div className="absolute h-full top-0 inset-x-0 bg-gradient-to-b from-black/50 via-transparent to-transparent z-30 pointer-events-none" />
         <div className="relative z-40 p-8">
