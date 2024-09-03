@@ -48,8 +48,10 @@ const DropdownNavigation = ({
   activeLink: string;
   setActiveLink: (link: string) => void;
 }) => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <DropdownMenu>
+    <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="icon">
           <Image
@@ -67,14 +69,19 @@ const DropdownNavigation = ({
             <Link
               href={link.link}
               className={activeLink === link.link ? "font-bold" : ""}
-              onClick={() => setActiveLink(link.link)}
+              onClick={() => {
+                setActiveLink(link.link);
+                setOpen(false);
+              }}
             >
               {link.label}
             </Link>
           </DropdownMenuItem>
         ))}
         <DropdownMenuItem>
-          <Button className="w-full">Download CV</Button>
+          <Button className="w-full" onClick={() => setOpen(false)}>
+            Download CV
+          </Button>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
