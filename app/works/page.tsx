@@ -8,6 +8,7 @@ import { TypographyH1, TypographyLead } from "@/components/ui/typography";
 import CallbellDescription from "@/app/works/callbellDescription.mdx";
 import LeWagonDescription from "@/app/works/leWagonDescription.mdx";
 import JustmeDescription from "@/app/works/justmeDescription.mdx";
+import FreelanceDescription from "@/app/works/freelanceDescription.mdx";
 
 const works = [
   {
@@ -41,9 +42,7 @@ const works = [
     to: "01/05/2020",
     content: (
       <article className="prose prose-headings:mt-8 prose-headings:font-semibold prose-h1:text-5xl prose-h2:text-4xl prose-h3:text-3xl prose-h4:text-2xl prose-h5:text-xl prose-h6:text-lg prose-headings:text-foreground text-foreground prose-strong:text-teal-500">
-        {
-          "Short Freelancing experience after the bootcamp, small works that allowed me to get my hands into some simple tasks"
-        }
+        {<FreelanceDescription />}
       </article>
     ),
     technologies: ["HTML", "CSS", "JavaScript", "Heroku", "Git"],
