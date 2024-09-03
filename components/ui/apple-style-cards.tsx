@@ -99,20 +99,20 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
     >
       <div className="relative w-full">
         <div
-          className="flex w-full overflow-x-scroll overscroll-x-auto py-10 md:py-20 scroll-smooth [scrollbar-width:none]"
+          className="flex w-full overflow-x-scroll overscroll-x-auto py-4 sm:py-10 md:py-20 scroll-smooth [scrollbar-width:none]"
           ref={carouselRef}
           onScroll={checkScrollability}
         >
           <div
             className={cn(
-              "absolute right-0  z-[1000] h-auto  w-[5%] overflow-hidden bg-gradient-to-l"
+              "absolute right-0 z-[1000] h-auto w-[5%] overflow-hidden bg-gradient-to-l"
             )}
           ></div>
 
           <div
             className={cn(
-              "flex flex-row justify-start gap-4 pl-4",
-              "max-w-7xl mx-auto" // remove max-w-4xl if you want the carousel to span the full width of its container
+              "flex flex-row justify-start gap-2 sm:gap-4 pl-2 sm:pl-4",
+              "max-w-full sm:max-w-7xl mx-auto"
             )}
           >
             {items.map((item, index) => (
@@ -132,14 +132,14 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
                   },
                 }}
                 key={"card" + index}
-                className="last:pr-[5%] md:last:pr-[33%]  rounded-3xl"
+                className="last:pr-[5%] sm:last:pr-[20%] md:last:pr-[33%] rounded-3xl"
               >
                 {item}
               </motion.div>
             ))}
           </div>
         </div>
-        <div className="flex justify-end gap-2 mr-10">
+        <div className="flex justify-end gap-2 mr-4 sm:mr-10">
           <Button
             variant="outline"
             size="icon"
@@ -149,7 +149,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
             <Image
               src={"/chevron-left.svg"}
               alt="chevron left icon"
-              className="h-6 w-6"
+              className="h-4 w-4 sm:h-6 sm:w-6"
               width={6}
               height={6}
             />
@@ -163,7 +163,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
             <Image
               src={"/chevron-right.svg"}
               alt="chevron right icon"
-              className="h-6 w-6"
+              className="h-4 w-4 sm:h-6 sm:w-6"
               width={6}
               height={6}
             />
@@ -235,7 +235,7 @@ export const Card = ({
               exit={{ opacity: 0 }}
               ref={containerRef}
               layoutId={layout ? `card-${card.title}` : undefined}
-              className="max-w-5xl bg-gray-900/80 border border-border mx-auto h-fit z-[10000] my-10 p-4 md:p-10 rounded-3xl font-sans relative"
+              className="max-w-full sm:max-w-5xl bg-gray-900/80 border border-border mx-auto h-fit z-[10000] my-4 sm:my-10 p-4 sm:p-6 md:p-10 rounded-3xl font-sans relative"
             >
               <motion.div
                 initial={{ opacity: 0 }}
@@ -284,19 +284,19 @@ export const Card = ({
       <motion.button
         layoutId={layout ? `card-${card.title}` : undefined}
         onClick={handleOpen}
-        className="rounded-3xl h-80 w-56 md:h-[40rem] md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10"
+        className="rounded-3xl h-64 w-48 sm:h-80 sm:w-56 md:h-[40rem] md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10"
       >
         <div className="absolute h-full top-0 inset-x-0 bg-gradient-to-b from-black/50 via-transparent to-transparent z-30 pointer-events-none" />
-        <div className="relative z-40 p-8">
+        <div className="relative z-40 p-4 sm:p-6 md:p-8">
           <motion.p
             layoutId={layout ? `category-${card.title}` : undefined}
-            className="text-white text-sm md:text-base font-medium font-sans text-left"
+            className="text-white text-xs sm:text-sm md:text-base font-medium font-sans text-left"
           >
             {card.title}
           </motion.p>
           <motion.p
             layoutId={layout ? `title-${card.company}}` : undefined}
-            className="text-white text-xl md:text-3xl font-semibold max-w-xs text-left [text-wrap:balance] font-sans mt-2"
+            className="text-white text-base sm:text-xl md:text-3xl font-semibold max-w-xs text-left [text-wrap:balance] font-sans mt-1 sm:mt-2"
           >
             {card.company}
           </motion.p>
