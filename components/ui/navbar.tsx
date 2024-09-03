@@ -10,6 +10,12 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useState, useEffect } from "react"; // Add useState and useEffect
 import { isBrowser } from "framer-motion";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const links = [
   {
@@ -35,6 +41,46 @@ if (isBrowser) {
   path = window.location.pathname;
 }
 
+const DropdownNavigation = ({
+  activeLink,
+  setActiveLink,
+}: {
+  activeLink: string;
+  setActiveLink: (link: string) => void;
+}) => {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" size="icon">
+          <Image
+            src={"/menu.svg"}
+            alt="Menu icon"
+            className="h-6 w-6"
+            width={24}
+            height={24}
+          />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        {links.map((link) => (
+          <DropdownMenuItem key={link.link}>
+            <Link
+              href={link.link}
+              className={activeLink === link.link ? "font-bold" : ""}
+              onClick={() => setActiveLink(link.link)}
+            >
+              {link.label}
+            </Link>
+          </DropdownMenuItem>
+        ))}
+        <DropdownMenuItem>
+          <Button className="w-full">Download CV</Button>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
+
 export default function Navbar() {
   const [activeLink, setActiveLink] = useState("");
 
@@ -53,10 +99,9 @@ export default function Navbar() {
           <Image src="/logo-2.svg" alt="Qwertic" width={20} height={20} />
           Qwertic
         </Link>
-        <nav className="flex items-center gap-4 md:gap-6">
+        <nav className="hidden md:flex items-center gap-6">
           {links.map((link) => (
             <div key={link.link} className="relative">
-              {" "}
               <Link
                 href={link.link}
                 className={
@@ -76,6 +121,12 @@ export default function Navbar() {
           ))}
           <Button>Download CV</Button>
         </nav>
+        <div className="md:hidden">
+          <DropdownNavigation
+            activeLink={activeLink}
+            setActiveLink={setActiveLink}
+          />
+        </div>
       </div>
     </header>
   );
