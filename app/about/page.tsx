@@ -44,7 +44,7 @@ export default function About() {
                 </TypographyInlineCode>{" "}
                 {`and some other technologies. I'm not afraid of getting my hands dirty with tech, languages, or frameworks that I don't know. Always eager to learn new things!`}{" "}
               </TypographyP>
-              <TypographyP className="mt-2 text-sm sm:text-base lg:text-lg">{`Don't know what's next for me but I'm open to the endless opportunities out there. My interests range from tech to nature, philosophy, music, theatre, body expression, meditation, spirituality, travelling, culture, society and self growth. `}</TypographyP>
+              <TypographyP className="mt-2 text-sm sm:text-base lg:text-lg">{`Don't know what's next for me but I'm open to the endless opportunities out there.`}</TypographyP>
             </div>
             <div className="mt-6 sm:mt-8 lg:mt-10">
               <TypographyLarge>{`Interests`}</TypographyLarge>
