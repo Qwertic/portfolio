@@ -33,10 +33,10 @@ export default function Footer() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="fixed bottom-0 z-50 w-full py-4 text-center backdrop-blur-sm"
+          className="fixed bottom-0 z-50 w-full py-2 sm:py-4 text-center backdrop-blur-sm"
         >
           <div className="container mx-auto">
-            <p className="text-sm">
+            <p className="text-xs sm:text-sm">
               {new Date().getFullYear()} Made with ❤️ and AI 🤖 by{" "}
               <Link
                 href="https://github.com/qwertic"
