@@ -32,7 +32,7 @@ const links = [
   },
   {
     label: "Notes",
-    link: "#",
+    link: "/notes",
   },
 ];
 let path = "";
