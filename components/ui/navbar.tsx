@@ -103,7 +103,7 @@ export default function Navbar() {
           className="text-lg font-bold flex items-center gap-2"
           prefetch={false}
         >
-          <Image src="/logo-2.svg" alt="Qwertic" width={20} height={20} />
+          <Image src="/logo.png" alt="Qwertic" width={52} height={52} />
           Qwertic
         </Link>
         <nav className="hidden md:flex items-center gap-6">
@@ -113,7 +113,7 @@ export default function Navbar() {
                 href={link.link}
                 className={
                   activeLink === link.link
-                    ? "text-sm font-medium text-foreground hover:text-gray-200"
+                    ? "text-sm font-bold text-foreground hover:text-gray-200"
                     : "text-sm font-medium text-muted-foreground transition-colors hover:text-gray-200"
                 }
                 onClick={() => setActiveLink(link.link)}
@@ -122,10 +122,14 @@ export default function Navbar() {
                 {link.label}
               </Link>
               {activeLink === link.link && (
-                <div className="absolute top-6 left-0 right-0 bottom-0 h-1 bg-gray-200" />
+                <>
+                  <div className="top-6 left-0 right-0 bottom-0 h-1 bg-gray-800 rounded-full" />
+                  <div className="absolute top-6 z-10 left-0 right-0 bottom-0 h-1 bg-gray-200 rounded-full" />
+                </>
               )}
             </div>
           ))}
+
           <Button>Download CV</Button>
         </nav>
         <div className="md:hidden">
