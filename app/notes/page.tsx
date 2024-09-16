@@ -47,7 +47,7 @@ export default async function Notes() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
             {notes.map((note) => (
               <Link key={note.slug} href={`/notes/${note.slug}`}>
-                <Card className="h-full transition-all duration-300 hover:shadow-md hover:shadow-border hover:-translate-y-1">
+                <Card className="h-full flex justify-between flex-col transition-all duration-300 hover:shadow-md hover:shadow-border hover:-translate-y-1">
                   <CardHeader className="p-0">
                     <Image
                       src={note.img}
@@ -60,11 +60,11 @@ export default async function Notes() {
                   <CardContent className="p-4">
                     <h3 className="text-xl font-semibold">{note.title}</h3>
                     <TypographyMuted>{note.description}</TypographyMuted>
-                    <div className="flex justify-between items-baseline mt-4">
-                      <Badge variant="outline">{note.category}</Badge>
-                      <p className="text-xs text-gray-500 mb-2">{note.date}</p>
-                    </div>
                   </CardContent>
+                  <CardFooter className="flex justify-between items-baseline mt-4">
+                    <Badge variant="outline">{note.category}</Badge>
+                    <p className="text-xs text-gray-500 mb-2">{note.date}</p>
+                  </CardFooter>
                 </Card>
               </Link>
             ))}
