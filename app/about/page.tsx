@@ -16,7 +16,7 @@ export default function About() {
       <div className="w-full overflow-y-auto p-4 sm:p-6 lg:p-8">
         <div className="max-w-3xl mx-auto">
           <TypographyH1 className="text-3xl sm:text-4xl lg:text-5xl">
-            {"I'm Regi (a.k.a Qwertic)"}
+            {"Hello, I'm Regi (aka Qwertic)"}
           </TypographyH1>
           <div className="mt-4 sm:mt-6 lg:mt-8">
             <TypographyLead className="text-lg sm:text-xl lg:text-2xl">
@@ -25,10 +25,12 @@ export default function About() {
             <div className="mt-6 sm:mt-8 lg:mt-10">
               <TypographyLarge className="mb-4 sm:mb-5 lg:mb-6">{`Tech Skills`}</TypographyLarge>
               <Skills />
-              <TypographyLarge className="mt-6 sm:mt-8 lg:mt-10">{`About me`}</TypographyLarge>
-              <TypographyP className="mt-2 text-sm sm:text-base lg:text-lg">{`Born in Albania, raised between Greece and Italy, grown as a curious, polyglot, creative, generalist, poliedric, accountable individual. I made a major pivot in 2020 when I decided to attend a coding bootcamp (LeWagon) in Milan, Italy, which brought me into the fantastic and fascinating world of programming!`}</TypographyP>
+              <TypographyLarge className="mt-6 sm:mt-8 lg:mt-10">{`My Journey`}</TypographyLarge>
               <TypographyP className="mt-2 text-sm sm:text-base lg:text-lg">
-                {`I started the hard way, learning by myself, but then things got better. I found a mentor and the learning curve went up 📈 thankfully, many thanks to Gianluca 🙏 CTO at `}
+                {`Life, to me, is a tapestry of experiences. Born in Albania, raised between Greece and Italy, I've grown into a curious, polyglot, creative, and multifaceted individual. In 2020, I took a leap into the fascinating world of programming by attending a coding bootcamp (LeWagon) in Milan, Italy. It was a pivotal moment that opened up a new path in my life.`}
+              </TypographyP>
+              <TypographyP className="mt-2 text-sm sm:text-base lg:text-lg">
+                {`My learning journey started the hard way, but things got better when I found a mentor. Many thanks to Gianluca 🙏, CTO at `}
                 <Link
                   rel="noreferrer noopener"
                   target="_blank"
@@ -36,35 +38,35 @@ export default function About() {
                 >
                   Callbell
                 </Link>
+                {`, who helped accelerate my growth in this field.`}
               </TypographyP>
               <TypographyP className="mt-2 text-sm sm:text-base lg:text-lg">
-                {`I'm comfortable working with`}{" "}
+                {`I'm comfortable working with `}
                 <TypographyInlineCode>
                   Ruby on Rails, React, Postgres
-                </TypographyInlineCode>{" "}
-                {`and some other technologies. I'm not afraid of getting my hands dirty with tech, languages, or frameworks that I don't know. Always eager to learn new things!`}{" "}
+                </TypographyInlineCode>
+                {`, and I'm always eager to learn new technologies. The beauty of this journey lies in its unpredictability, and I'm excited about the endless possibilities ahead.`}
               </TypographyP>
-              <TypographyP className="mt-2 text-sm sm:text-base lg:text-lg">{`Don't know what's next for me but I'm open to the endless opportunities out there.`}</TypographyP>
             </div>
             <div className="mt-6 sm:mt-8 lg:mt-10">
-              <TypographyLarge>{`Interests`}</TypographyLarge>
-              <TypographyP className="mt-2 text-sm sm:text-base lg:text-lg">{`I'm naturally attracted to arts, such as music, theatre, and dance, in different forms and shapes. I'm drawn to humanities, anthropology, tribalism, society, philosophy, and more. I'm a big fan of the body and mind, and I practice meditation.
-                I enjoy immersing myself in nature and different cultures.
-                `}</TypographyP>
-            </div>
-            <div className="mt-6 sm:mt-8 lg:mt-10">
-              <TypographyLarge>{`Beyond Work`}</TypographyLarge>
+              <TypographyLarge>{`Beyond the Code`}</TypographyLarge>
               <TypographyP className="mt-2 text-sm sm:text-base lg:text-lg">
-                {`Beyond my technical skills and hobbies, I deeply value continuous learning,
-                    meaningful connections, and making a positive impact. I'm passionate about
-                    fostering inclusive communities, promoting sustainability, and leveraging
-                    technology to solve real-world problems. These values drive my personal and
-                    professional endeavors, shaping my approach to both work and life. I also
-                    value free time and self-growth. Growth is not just for the future, but
-                    for the present. We grow by learning new things, experiencing new things and
-                    helping each other to not only survive, but also thrive. We grow in different
-                    ways, professionally and personally, spiritually and mentally, physically and
-                    emotionally. `}
+                {`I'm naturally drawn to the arts - music, theatre, and dance in their various forms. The humanities fascinate me, from anthropology and philosophy to the intricacies of society and tribalism. I'm a firm believer in the mind-body connection and practice meditation regularly.`}
+              </TypographyP>
+              <TypographyP className="mt-2 text-sm sm:text-base lg:text-lg">
+                {`Nature and diverse cultures captivate me, offering endless opportunities for learning and growth. I believe there are so many lives we can live within one lifetime, so many paths to explore. This realization drives me to share my journey and experiences.`}
+              </TypographyP>
+            </div>
+            <div className="mt-6 sm:mt-8 lg:mt-10">
+              <TypographyLarge>{`Personal Growth and Expression`}</TypographyLarge>
+              <TypographyP className="mt-2 text-sm sm:text-base lg:text-lg">
+                {`As someone on the neurodivergent spectrum, expressing my thoughts and feelings hasn't always been easy. Writing has become my most effective tool for articulating and processing my inner world. This website is a step towards vulnerability and sharing my authentic self.`}
+              </TypographyP>
+              <TypographyP className="mt-2 text-sm sm:text-base lg:text-lg">
+                {`I deeply value continuous learning, meaningful connections, and making a positive impact. My goal is to foster inclusive communities, promote sustainability, and leverage technology to solve real-world problems. These values drive both my personal and professional endeavors.`}
+              </TypographyP>
+              <TypographyP className="mt-2 text-sm sm:text-base lg:text-lg">
+                {`Remember, growth isn't just for the future - it's for the present. We grow by learning, experiencing, and helping each other not just survive, but thrive. Whether it's professionally, personally, spiritually, or emotionally, I'm committed to this journey of growth and self-expression.`}
               </TypographyP>
             </div>
           </div>

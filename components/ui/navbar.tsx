@@ -103,7 +103,13 @@ export default function Navbar() {
           className="text-lg font-bold flex items-center gap-2"
           prefetch={false}
         >
-          <Image src="/logo.png" alt="Qwertic" width={52} height={52} />
+          <Image
+            className="rounded-full border border-gray-800"
+            src="/logo.png"
+            alt="Qwertic"
+            width={32}
+            height={32}
+          />
           Qwertic
         </Link>
         <nav className="hidden md:flex items-center gap-6">
