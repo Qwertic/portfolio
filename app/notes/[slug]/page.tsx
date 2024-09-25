@@ -5,6 +5,7 @@ import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Image from "next/image";
 import Link from "next/link";
+import { Metadata } from "next";
 
 import {
   TypographyH1,
@@ -23,6 +24,34 @@ export async function generateStaticParams() {
     .map((file) => ({
       slug: file.replace(".mdx", ""),
     }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const notesDirectory = path.join(process.cwd(), "app/notes");
+  const filePath = path.join(notesDirectory, `${params.slug}.mdx`);
+  const fileContents = fs.readFileSync(filePath, "utf8");
+  const { data } = matter(fileContents);
+
+  return {
+    title: data.title,
+    description: data.description,
+    keywords: data.keywords,
+    openGraph: {
+      title: data.title,
+      description: data.description,
+      images: [{ url: data.img }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: data.title,
+      description: data.description,
+      images: [data.img],
+    },
+  };
 }
 
 export default function NotePage({ params }: { params: { slug: string } }) {

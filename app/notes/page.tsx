@@ -36,7 +36,8 @@ export default async function Notes() {
         description: data.description,
       };
     })
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+    .reverse();
 
   return (
     <div className="w-full overflow-y-auto p-4 sm:p-8">
