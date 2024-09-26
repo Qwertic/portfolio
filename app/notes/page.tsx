@@ -16,6 +16,7 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
+import { sortDateStringsDescending } from "@/lib/utils";
 
 export default async function Notes() {
   const notesDirectory = path.join(process.cwd(), "app/notes");
@@ -27,6 +28,7 @@ export default async function Notes() {
       const filePath = path.join(notesDirectory, file);
       const fileContents = fs.readFileSync(filePath, "utf8");
       const { data } = matter(fileContents);
+
       return {
         slug: file.replace(".mdx", ""),
         title: data.title,
@@ -36,8 +38,7 @@ export default async function Notes() {
         description: data.description,
       };
     })
-    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-    .reverse();
+    .sort((a, b) => sortDateStringsDescending(a.date, b.date));
 
   return (
     <div className="w-full overflow-y-auto p-4 sm:p-8">

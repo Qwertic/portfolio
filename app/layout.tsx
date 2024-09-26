@@ -7,6 +7,7 @@ import Navbar from "@/components/ui/navbar";
 import Footer from "@/components/ui/footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
+import { Toaster } from "@/components/ui/sonner";
 
 const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
   description: "Full Stack Developer, AI Enthusiast",
   referrer: "origin-when-cross-origin",
   creator: "Qwertic",
+  metadataBase: new URL("https://qwertic.dev"),
   category: "technology",
   robots: {
     index: false,
@@ -86,6 +88,7 @@ export default function RootLayout({
         <Footer />
         <SpeedInsights />
         <Analytics />
+        <Toaster />
       </body>
     </html>
   );

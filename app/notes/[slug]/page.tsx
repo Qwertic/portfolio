@@ -6,6 +6,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
+import { ShareNote } from "@/components/ui/ShareNote";
 
 import {
   TypographyH1,
@@ -40,6 +41,7 @@ export async function generateMetadata({
     title: data.title,
     description: data.description,
     keywords: data.keywords,
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || ""),
     openGraph: {
       title: data.title,
       description: data.description,
@@ -54,11 +56,17 @@ export async function generateMetadata({
   };
 }
 
-export default function NotePage({ params }: { params: { slug: string } }) {
+export default async function NotePage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const notesDirectory = path.join(process.cwd(), "app/notes");
   const filePath = path.join(notesDirectory, `${params.slug}.mdx`);
   const fileContents = fs.readFileSync(filePath, "utf8");
   const { content, data } = matter(fileContents);
+
+  const noteUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/notes/${params.slug}`;
 
   return (
     <div className="flex flex-col gap-4 pb-8 mx-auto max-w-3xl">
@@ -86,7 +94,10 @@ export default function NotePage({ params }: { params: { slug: string } }) {
       )}
       <TypographyMuted>{data.date}</TypographyMuted>
       <TypographyH1>{data.title}</TypographyH1>
-      <TypographyLead>{data.description}</TypographyLead>
+      <div className="flex items-center justify-between">
+        <TypographyLead>{data.description}</TypographyLead>
+        <ShareNote noteTitle={data.title} noteUrl={noteUrl} />
+      </div>
       <div className="mb-4">
         <Badge variant="outline">{data.category}</Badge>
       </div>
