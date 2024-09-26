@@ -16,6 +16,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { toast } from "sonner";
+
+const CV_URL =
+  "https://ngmeage7bhggnmnl.public.blob.vercel-storage.com/CV-2024.pdf";
 
 const links = [
   {
@@ -40,6 +44,30 @@ let path = "";
 if (isBrowser) {
   path = window.location.pathname;
 }
+
+// ADD DOWNLOAD CV function for the button, download the cv.pdf file from the public remote url
+
+const downloadCV = async () => {
+  try {
+    const response = await fetch(CV_URL);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "Regi_CV_2024.pdf"; // You can set any filename you want here
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+    toast("Downloading CV...");
+  } catch (error) {
+    console.error("There was a problem with the fetch operation:", error);
+    toast("Failed to download CV.");
+  }
+};
 
 const DropdownNavigation = ({
   activeLink,
@@ -79,7 +107,13 @@ const DropdownNavigation = ({
           </DropdownMenuItem>
         ))}
         <DropdownMenuItem>
-          <Button className="w-full" onClick={() => setOpen(false)}>
+          <Button
+            className="w-full"
+            onClick={() => {
+              downloadCV();
+              setOpen(false);
+            }}
+          >
             Download CV
           </Button>
         </DropdownMenuItem>
@@ -135,8 +169,7 @@ export default function Navbar() {
               )}
             </div>
           ))}
-
-          <Button>Download CV</Button>
+          <Button onClick={downloadCV}>Download CV</Button>
         </nav>
         <div className="md:hidden">
           <DropdownNavigation

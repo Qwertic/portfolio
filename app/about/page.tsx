@@ -75,9 +75,9 @@ export default function About() {
 
       {/* Right column */}
       <div className="w-full lg:w-1/3 lg:fixed lg:right-0 lg:h-screen p-4 sm:p-6 lg:p-8 overflow-y-auto">
-        <div className="flex-shrink-0 mb-6 sm:mb-8 shadow-2xl shadow-blue-500/20">
+        <div className="flex-shrink-0 mb-6 sm:mb-8">
           <Image
-            src="/logo.png"
+            src="/logo-r.png"
             alt="Profile picture"
             width={400}
             height={400}

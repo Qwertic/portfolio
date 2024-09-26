@@ -81,6 +81,7 @@ export default function RootLayout({
         />
       </head>
       <body className={cn("font-sans antialiased", fontSans.variable)}>
+        <Toaster />
         <Navbar />
         <main className="flex w-full mt-16 p-8 flex-wrap justify-between">
           {children}
@@ -88,7 +89,6 @@ export default function RootLayout({
         <Footer />
         <SpeedInsights />
         <Analytics />
-        <Toaster />
       </body>
     </html>
   );
