@@ -19,7 +19,7 @@ import {
 import { toast } from "sonner";
 
 const CV_URL =
-  "https://ngmeage7bhggnmnl.public.blob.vercel-storage.com/CV-2024.pdf";
+  "https://ngmeage7bhggnmnl.public.blob.vercel-storage.com/CV-fZR2K5AtRDaIw9ABnJz9haqGcebJei.pdf";
 
 const links = [
   {
@@ -57,7 +57,7 @@ const downloadCV = async () => {
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = "Regi_CV_2024.pdf"; // You can set any filename you want here
+    link.download = "Regi_CV_2025.pdf"; // You can set any filename you want here
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
