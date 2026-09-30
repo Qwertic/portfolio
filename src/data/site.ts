@@ -1,10 +1,11 @@
 // Contact. Leave BOOKING_URL empty until a scheduling link exists;
 // the "Book a call" button then falls back to an email with a call subject.
 export const EMAIL = "0xQwertic@proton.me";
-export const BOOKING_URL = "";
+export const BOOKING_URL = "https://cal.com/qwertic/20min";
 export const LINKEDIN = "https://www.linkedin.com/in/regi-voda";
 export const GITHUB = "https://github.com/Qwertic";
 // Drop a PDF at public/Regi_Voda_CV.pdf and the CV link appears.
+export const CAIRN = "https://github.com/Qwertic/cairn";
 export const CV_PATH = "/Regi_Voda_CV.pdf";
 
 export const bookingHref =
@@ -27,31 +28,38 @@ export type Work = {
   layers: string[];
   summary: string;
   facts: string[];
+  href?: string;
 };
 
 export const work: Work[] = [
   {
-    title: "AI assistant",
-    context: "EdTech credentialing platform",
-    when: "2024 - now",
-    status: "live",
-    layers: ["LLM", "API", "UI"],
-    summary: "The assistant at the centre of a skills and credentials platform.",
-    facts: [
-      "Reads the documents users upload: PDF, DOCX, XML",
-      "LLM extraction into structured data",
-      "Human review before anything reaches a verified record",
-      "AdonisJS and PostgreSQL API, Next.js frontends, TDD-first",
-    ],
-  },
-  {
-    title: "Agent memory",
+    title: "Cairn",
     context: "Own project",
     when: "Ongoing",
     status: "progress",
-    layers: ["LLM", "Tooling"],
-    summary: "An MCP server that gives coding agents one shared memory.",
-    facts: ["Searchable knowledge base shared across agents", "A human reviews what gets written", "Not public yet"],
+    layers: ["LLM", "MCP", "Data"],
+    summary: "Persistent, shared memory for coding agents, served over MCP.",
+    facts: [
+      "Context engineering for agentic workflows",
+      "Knowledge ingestion into a vector database",
+      "Data integrity: a person reviews what agents write",
+      "Discoverability: agents find what the team already knows",
+    ],
+    href: "https://github.com/Qwertic/cairn",
+  },
+  {
+    title: "EdTech platform",
+    context: "Client, skills and credentials",
+    when: "2026 - now",
+    status: "live",
+    layers: ["DB", "API", "UI", "LLM"],
+    summary: "Shaping the core product and its AI assistant integration.",
+    facts: [
+      "Core features across frontend, backend and internal tools",
+      "AI assistant integration, including MCP",
+      "Contributions to the document extraction pipeline",
+      "AdonisJS and PostgreSQL API, Next.js frontends, TDD-first",
+    ],
   },
   {
     title: "Core chat module",
@@ -98,9 +106,14 @@ export const experience = [
   { when: "2011 - 2019", where: "Chef", what: "Eight years in professional kitchens before I retrained. Still how I work under pressure." },
 ];
 
+export const extras = [
+  { when: "Training", where: "Le Wagon, ThePower MBA", what: "Full-stack bootcamp, 2019. Online MBA program with a certificate, 2020." },
+  { when: "Languages", where: "IT, SQ, EL, EN", what: "Italian and Albanian native, fluent Greek, professional English." },
+];
+
 export const tools = [
   { name: "cursorrules", what: "Curated rule configs for AI-assisted coding.", meta: "26 stars, 6 forks", href: "https://github.com/Qwertic/cursorrules" },
   { name: "crrl", what: "A CLI for managing those rule files.", meta: "17 stars, 2 forks", href: "https://github.com/Qwertic/crrl" },
   { name: "Claude Code skills", what: "Reusable agent workflows for my own engineering practice.", meta: "Daily use", href: "" },
-  { name: "Agent memory", what: "Shared memory for coding agents, with human review.", meta: "In progress", href: "" },
+  { name: "Cairn", what: "Shared memory for coding agents, with human review.", meta: "In progress", href: "https://github.com/Qwertic/cairn" },
 ];

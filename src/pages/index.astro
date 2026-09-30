@@ -1,15 +1,15 @@
 ---
 import fs from "node:fs";
 import Base from "../layouts/Base.astro";
-import { EMAIL, LINKEDIN, GITHUB, CV_PATH, bookingHref, work, stack, experience, tools, statusLabel } from "../data/site";
+import { EMAIL, LINKEDIN, GITHUB, CV_PATH, bookingHref, work, stack, experience, extras, tools, statusLabel } from "../data/site";
 
 const hasCv = fs.existsSync(new URL(`../../public${CV_PATH}`, import.meta.url));
 const [lead, ...rest] = work;
 // Two-ink figures: layer a prints first, layer b is the second pass that slips on hover.
 const glyphs: Record<string, { a: string; b: string }> = {
-  "Agent memory": {
-    a: `<rect x="14" y="70" width="92" height="30" fill="var(--blue)"/>`,
-    b: `<circle cx="32" cy="46" r="18" fill="var(--pink)"/><circle cx="60" cy="40" r="18" fill="var(--pink)"/><circle cx="88" cy="46" r="18" fill="var(--pink)"/>`,
+  "EdTech platform": {
+    a: `<circle cx="60" cy="50" r="38" fill="var(--blue)"/>`,
+    b: `<path d="M36 70h18v40l-9-8-9 8zM66 70h18v40l-9-8-9 8z" fill="var(--pink)"/>`,
   },
   "Core chat module": {
     a: `<path d="M12 18h62v42H34l-14 14V60h-8z" fill="var(--blue)"/>`,
@@ -29,7 +29,7 @@ const arrow = `<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h12M10.
 
 <Base
   title="Qwertic: AI engineer, full stack"
-  description="Regi Voda (Qwertic) builds LLM features that hold up in production, from the database to the model. Remote from Milan."
+  description="Regi Voda (Qwertic) builds LLM features that hold up in production, from the database to the model. Remote from Italy."
 >
   <header class="top wrap">
     <a class="mark print-host" href="#top" aria-label="Qwertic, home">
@@ -60,7 +60,7 @@ const arrow = `<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h12M10.
         </h1>
         <p class="hero__lede">
           I'm Regi Voda, known as Qwertic. I build LLM features that hold up in production, from the database to the
-          model. Remote from Milan, for teams hiring and for products that need it built.
+          model. Remote from Italy, for teams hiring and for products that need it built.
         </p>
         <div class="hero__actions">
           <a class="btn btn--blue" href={bookingHref}>Book a call <Fragment set:html={arrow} /></a>
@@ -82,8 +82,8 @@ const arrow = `<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h12M10.
           </g>
         </svg>
         <div class="now">
-          <p class="now__t">Right now I'm building an AI assistant for an EdTech credentialing platform.</p>
-          <p class="now__d">Documents in, structured data out, a human approves before it counts.</p>
+          <p class="now__t">Right now I'm building Cairn, a shared memory for coding agents.</p>
+          <p class="now__d">Alongside client work on an EdTech platform, where I shape the core product and its AI assistant.</p>
           <a class="now__link" href="#work">See the work</a>
         </div>
       </aside>
@@ -106,24 +106,21 @@ const arrow = `<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h12M10.
           <p class="lead__sum">{lead.summary}</p>
           <ul class="facts">{lead.facts.map((f) => <li>{f}</li>)}</ul>
           <p class="layers label">{lead.layers.join(" / ")}</p>
+          {lead.href && (
+            <a class="lead__link label" href={lead.href} rel="noopener">
+              <span class="visually-hidden">{lead.title} on </span>GitHub <Fragment set:html={arrow} />
+            </a>
+          )}
         </div>
-        <figure class="flow" aria-label="How it works: upload, extract, review">
+        <figure class="flow" aria-label="How it works: ingest, review, recall">
           <ol>
             <li class="flow__step">
               <svg viewBox="0 0 120 120" aria-hidden="true">
                 <g class="ink-a"><rect x="26" y="14" width="68" height="92" fill="var(--blue)" /></g>
                 <g class="ink-b"><rect x="38" y="34" width="44" height="8" fill="var(--pink)" /><rect x="38" y="52" width="34" height="8" fill="var(--pink)" /><rect x="38" y="70" width="40" height="8" fill="var(--pink)" /></g>
               </svg>
-              <span class="label">Upload</span>
-              <span class="flow__d">PDF, DOCX, XML</span>
-            </li>
-            <li class="flow__step">
-              <svg viewBox="0 0 120 120" aria-hidden="true">
-                <g class="ink-a"><circle cx="60" cy="60" r="44" fill="var(--pink)" /></g>
-                <g class="ink-b"><rect x="30" y="40" width="30" height="10" fill="var(--blue)" /><rect x="30" y="58" width="48" height="10" fill="var(--blue)" /><rect x="30" y="76" width="22" height="10" fill="var(--blue)" /></g>
-              </svg>
-              <span class="label">Extract</span>
-              <span class="flow__d">LLM to structured data</span>
+              <span class="label">Ingest</span>
+              <span class="flow__d">Knowledge into a vector store</span>
             </li>
             <li class="flow__step">
               <svg viewBox="0 0 120 120" aria-hidden="true">
@@ -132,6 +129,14 @@ const arrow = `<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h12M10.
               </svg>
               <span class="label">Review</span>
               <span class="flow__d">A person approves it</span>
+            </li>
+            <li class="flow__step">
+              <svg viewBox="0 0 120 120" aria-hidden="true">
+                <g class="ink-a"><circle cx="60" cy="60" r="44" fill="var(--pink)" /></g>
+                <g class="ink-b"><rect x="30" y="40" width="30" height="10" fill="var(--blue)" /><rect x="30" y="58" width="48" height="10" fill="var(--blue)" /><rect x="30" y="76" width="22" height="10" fill="var(--blue)" /></g>
+              </svg>
+              <span class="label">Recall</span>
+              <span class="flow__d">Agents query it over MCP</span>
             </li>
           </ol>
         </figure>
@@ -218,14 +223,11 @@ const arrow = `<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h12M10.
     <section class="section wrap" id="experience" aria-labelledby="exp-h">
       <div class="section__head">
         <h2 id="exp-h" class="caps section__h"><span class="print print--pink" data-ink="Experience">Experience</span></h2>
-        <p class="section__lede">
-          Italian and Albanian native, fluent Greek, professional English. Le Wagon bootcamp 2019, ThePower MBA (online
-          program, certificate) 2020.
-        </p>
+        <p class="section__lede">Seven years in software, eight in professional kitchens before that.</p>
       </div>
       <ol class="exp">
         {
-          experience.map((e) => (
+          [...experience, ...extras].map((e) => (
             <li>
               <span class="label exp__when">{e.when}</span>
               <span class="caps exp__where">{e.where}</span>
@@ -253,7 +255,7 @@ const arrow = `<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h12M10.
       <div class="doors">
         <div class="door">
           <h3 class="caps door__h">You're hiring</h3>
-          <p>AI engineering or full-stack roles, permanent welcome. Remote-first, or hybrid in Milan.</p>
+          <p>AI engineering or full-stack roles, permanent welcome. Remote-first, or hybrid with Milan as a base.</p>
         </div>
         <div class="door">
           <h3 class="caps door__h">You need it built</h3>
@@ -262,12 +264,11 @@ const arrow = `<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h12M10.
       </div>
       <div class="contact__actions">
         <a class="btn btn--ink" href={bookingHref}>Book a call <Fragment set:html={arrow} /></a>
-        <a class="contact__link" href={`mailto:${EMAIL}`}>{EMAIL}</a>
         <a class="contact__link" href={LINKEDIN} rel="noopener">LinkedIn</a>
         <a class="contact__link" href={GITHUB} rel="noopener">GitHub</a>
       </div>
       <p class="contact__foot label">
-        <span>Qwertic is Regi Voda. Milan, Italy.</span><span>&copy; {new Date().getFullYear()}</span>
+        <span>Qwertic is Regi Voda. Based in Italy.</span><span>&copy; {new Date().getFullYear()}</span>
       </p>
     </div>
   </footer>
@@ -588,6 +589,19 @@ const arrow = `<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h12M10.
   .lead__h {
     margin-top: 0;
     font-size: clamp(3.4rem, 7.5vw, 6rem);
+  }
+
+  .lead__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 1rem;
+    color: var(--ink);
+  }
+
+  .lead__link :global(svg) {
+    width: 1em;
+    height: 1em;
   }
 
   .lead__sum {

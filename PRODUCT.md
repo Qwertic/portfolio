@@ -30,7 +30,8 @@ Visitors arrive from LinkedIn, CVs, job applications, GitHub and direct shares, 
 
 ## Capabilities and Constraints
 
-- Contact: email (0xQwertic@proton.me), booking link (URL still to be provided by Regi), LinkedIn (linkedin.com/in/regi-voda). No WhatsApp; the phone number is not published.
+- Contact: booking link https://cal.com/qwertic/20min, email (0xQwertic@proton.me, hero only, not in the footer), LinkedIn (linkedin.com/in/regi-voda). No WhatsApp; the phone number is not published.
+- Location: presented as Italy, remote. Milan only as a possible hybrid base.
 - CV download (the current site offers one).
 - Writing section: all previous personal notes are dropped. Fresh writing will be technical notes on agents and experiments; none exist yet.
 - Links: GitHub github.com/Qwertic, domain qwertic.xyz.
@@ -42,9 +43,9 @@ Visitors arrive from LinkedIn, CVs, job applications, GitHub and direct shares, 
 
 ## Evidence on Hand
 
-- Work history: Callbell (Nov 2020 - Jan 2024; the CRM replaced WhatsApp contact lists and third-party CRMs and gave one view of every lead with notes and team handoffs, per the candidate profile in ai-job-search), JustMe Technologies (2019 - 2020, sole developer on an EU Horizon-funded MVP), freelance 2024 - present (production AI assistant for an unnamed EdTech credentialing platform; the client is not named).
+- Work history: Callbell (Nov 2020 - Jan 2024; the CRM replaced WhatsApp contact lists and third-party CRMs and gave one view of every lead with notes and team handoffs, per the candidate profile in ai-job-search), JustMe Technologies (2019 - 2020, sole developer on an EU Horizon-funded MVP), freelance 2024 - present. Client work since 2026 on an unnamed EdTech skills-and-credentials platform: shaping the core product and its AI assistant integration across frontend, backend, internal tools, the assistant and MCP; contributes to (but does not lead) the document extraction pipeline.
 - Open source: cursorrules (26 stars, 6 forks), crrl (17 stars, 2 forks).
-- Agent memory MCP server: in progress, not yet public. Must be labelled in progress.
+- Cairn (github.com/Qwertic/cairn): his agent memory project, in progress. Agentic use, MCP, context engineering, vector databases, knowledge ingestion, data integrity, discoverability. It is the lead showcase for his AI engineering work. The repo URL returned 404 when checked on 2026-09-30 (private or not yet published).
 - Claude Code skills for his own workflow. No adoption numbers; don't claim any.
 - Company logos in `public/`: clbl.png (Callbell), jm.png (JustMe), lwgn.png (Le Wagon), fl.png.
 - Absent, never fabricate: testimonials, client names beyond the ones above, metrics beyond those listed, screenshots of client work.
