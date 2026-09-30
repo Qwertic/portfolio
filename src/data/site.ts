@@ -5,7 +5,7 @@ export const BOOKING_URL = "https://cal.com/qwertic/20min";
 export const LINKEDIN = "https://www.linkedin.com/in/regi-voda";
 export const GITHUB = "https://github.com/Qwertic";
 // Drop a PDF at public/Regi_Voda_CV.pdf and the CV link appears.
-export const CAIRN = "https://github.com/Qwertic/cairn";
+export const CAIRN = "https://github.com/Qwertic/cairn-releases";
 export const CV_PATH = "/Regi_Voda_CV.pdf";
 
 export const bookingHref =
@@ -45,7 +45,7 @@ export const work: Work[] = [
       "Data integrity: a person reviews what agents write",
       "Discoverability: agents find what the team already knows",
     ],
-    href: "https://github.com/Qwertic/cairn",
+    href: "https://github.com/Qwertic/cairn-releases",
   },
   {
     title: "EdTech platform",
@@ -115,5 +115,5 @@ export const tools = [
   { name: "cursorrules", what: "Curated rule configs for AI-assisted coding.", meta: "26 stars, 6 forks", href: "https://github.com/Qwertic/cursorrules" },
   { name: "crrl", what: "A CLI for managing those rule files.", meta: "17 stars, 2 forks", href: "https://github.com/Qwertic/crrl" },
   { name: "Claude Code skills", what: "Reusable agent workflows for my own engineering practice.", meta: "Daily use", href: "" },
-  { name: "Cairn", what: "Shared memory for coding agents, with human review.", meta: "In progress", href: "https://github.com/Qwertic/cairn" },
+  { name: "Cairn", what: "Shared memory for coding agents, with human review.", meta: "In progress", href: "https://github.com/Qwertic/cairn-releases" },
 ];
