@@ -1,0 +1,354 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-30T15:21:05.615176+00:00",
+  "title": "Design System: Qwertic",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#f6f4ef",
+        "tonalRamp": [
+          "#4a4948",
+          "#7b7a78",
+          "#acaba7",
+          "#dddcd7",
+          "#f7f6f1",
+          "#faf8f5",
+          "#fcfbf9",
+          "#fefefd"
+        ]
+      },
+      "paper-deep": {
+        "role": "neutral",
+        "displayName": "Paper Deep",
+        "canonical": "#ece8df",
+        "tonalRamp": [
+          "#474643",
+          "#767470",
+          "#a5a29c",
+          "#d4d1c9",
+          "#efebe4",
+          "#f4f1ec",
+          "#f8f7f4",
+          "#fdfcfb"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#1c1b22",
+        "tonalRamp": [
+          "#08080a",
+          "#0e0e11",
+          "#141318",
+          "#19181f",
+          "#3e3d43",
+          "#77767a",
+          "#b0afb2",
+          "#e4e4e4"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Ink Soft",
+        "canonical": "#45434d",
+        "tonalRamp": [
+          "#151417",
+          "#222226",
+          "#302f36",
+          "#3e3c45",
+          "#615f68",
+          "#8f8e94",
+          "#bebdc1",
+          "#e9e8ea"
+        ]
+      },
+      "federal-blue": {
+        "role": "primary",
+        "displayName": "Federal Blue",
+        "canonical": "#2f4be0",
+        "tonalRamp": [
+          "#0e1743",
+          "#182670",
+          "#21349d",
+          "#2a44ca",
+          "#4e66e5",
+          "#8293ec",
+          "#b6c0f4",
+          "#e6e9fb"
+        ]
+      },
+      "fluoro-pink": {
+        "role": "secondary",
+        "displayName": "Fluoro Pink",
+        "canonical": "#ee3a96",
+        "tonalRamp": [
+          "#47112d",
+          "#771d4b",
+          "#a72969",
+          "#d63487",
+          "#f158a6",
+          "#f589c0",
+          "#f9bada",
+          "#fde7f2"
+        ]
+      },
+      "pink-soft": {
+        "role": "secondary",
+        "displayName": "Pink Soft",
+        "canonical": "#f7a8cf",
+        "tonalRamp": [
+          "#4a323e",
+          "#7c5468",
+          "#ad7691",
+          "#de97ba",
+          "#f8b5d6",
+          "#facbe2",
+          "#fce1ee",
+          "#fef5f9"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The two-line hero statement; the contact heading uses the same voice."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings in plain words; the lead project heading."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Project row headings and contact doors."
+      },
+      "title-small": {
+        "displayName": "Title Small",
+        "purpose": "Tool names, stack column heads, experience employers."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All reading copy, ink or ink-soft on paper, 36-40ch measure."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "Hero lede under the headline."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Nav, meta rows under headings, status tags, layer lists, dates, footer."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "Button text in spaced caps at width 80."
+      }
+    },
+    "shadows": [],
+    "inkLayers": [
+      {
+        "name": "registration-offset",
+        "value": "translate: 3px 2px",
+        "purpose": "Resting offset of every second ink layer (--reg-x, --reg-y)."
+      },
+      {
+        "name": "text-slip",
+        "value": "translate: calc(3px * 2.4) calc(2px * -1.6)",
+        "purpose": "Second ink of printed text on host hover/focus."
+      },
+      {
+        "name": "button-slip",
+        "value": "translate: 6px 4px",
+        "purpose": "Button second layer on hover."
+      },
+      {
+        "name": "figure-slip",
+        "value": "translate: 7px -5px",
+        "purpose": "ink-b group of flow and row glyphs on host hover."
+      },
+      {
+        "name": "grain-full",
+        "value": "mask: url(/grain.svg)",
+        "purpose": "Poster-size print, figures, buttons."
+      },
+      {
+        "name": "grain-light",
+        "value": "mask: url(/grain-light.svg)",
+        "purpose": "Project headings; section headings under 42rem."
+      },
+      {
+        "name": "paper-tooth",
+        "value": "url(/paper.svg) fixed, opacity 0.22, multiply",
+        "purpose": "Stock texture over the whole viewport."
+      },
+      {
+        "name": "halftone",
+        "value": "radial-gradient(circle, <ink> 2.2px, transparent 2.6px) 0 0 / 11px 11px, multiply, opacity 0.55",
+        "purpose": "One halftone field per flood or hero."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Every transition and entrance in the system."
+      },
+      {
+        "name": "second-pass",
+        "value": "900ms ease-out 250ms, from opacity 0 translate 18px -12px; line two delayed to 420ms",
+        "purpose": "Hero headline prints its second ink on load."
+      },
+      {
+        "name": "ink-shift",
+        "value": "translate 380-700ms ease-out",
+        "purpose": "Second-ink slip on hover (buttons 380ms, text and glyphs 420ms, hero figure 700ms)."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "durations 0.01ms",
+        "purpose": "All animation and transition collapse under prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "tablet",
+        "value": "64rem"
+      },
+      {
+        "name": "phone",
+        "value": "42rem"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Blue Button",
+      "kind": "button",
+      "refersTo": "button-blue",
+      "description": "Primary action (Book a call): blue front ink, pink second pass offset and multiplied.",
+      "html": "<a class=\"ds-btn ds-btn-blue\" href=\"#\">Book a call <svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M3 10h12M10.5 5l5 5-5 5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\"/></svg></a>",
+      "css": ".ds-btn{position:relative;display:inline-flex;align-items:center;gap:.6rem;min-height:3.1rem;padding:.8rem 1.35rem .75rem;font-family:var(--display,\"Anybody Variable\",sans-serif);font-variation-settings:\"wdth\" 80;font-weight:750;font-size:1.02rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;isolation:isolate;border-radius:0;transition:color 200ms cubic-bezier(.16,1,.3,1)}.ds-btn::before,.ds-btn::after{content:\"\";position:absolute;inset:0;z-index:-1;-webkit-mask:url(\"/grain.svg\");mask:url(\"/grain.svg\");transition:translate 380ms cubic-bezier(.16,1,.3,1)}.ds-btn::after{z-index:-2;translate:3px 2px;mix-blend-mode:multiply}.ds-btn:hover::after{translate:6px 4px}.ds-btn svg{width:1.05em;height:1.05em;flex:none;transition:translate 300ms cubic-bezier(.16,1,.3,1)}.ds-btn:hover svg{translate:3px 0}.ds-btn:focus-visible{outline:3px solid var(--blue,#2f4be0);outline-offset:3px}.ds-btn-blue{color:#f6f4ef}.ds-btn-blue::before{background:var(--blue,#2f4be0)}.ds-btn-blue::after{background:var(--pink,#ee3a96)}"
+    },
+    {
+      "name": "Line Button",
+      "kind": "button",
+      "refersTo": "button-line",
+      "description": "Secondary action: blue outline front layer, pink outline second pass.",
+      "html": "<a class=\"ds-btn ds-btn-line\" href=\"#\">Email me</a>",
+      "css": ".ds-btn{position:relative;display:inline-flex;align-items:center;gap:.6rem;min-height:3.1rem;padding:.8rem 1.35rem .75rem;font-family:var(--display,\"Anybody Variable\",sans-serif);font-variation-settings:\"wdth\" 80;font-weight:750;font-size:1.02rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;isolation:isolate;border-radius:0;transition:color 200ms cubic-bezier(.16,1,.3,1)}.ds-btn::before,.ds-btn::after{content:\"\";position:absolute;inset:0;z-index:-1;-webkit-mask:url(\"/grain.svg\");mask:url(\"/grain.svg\");transition:translate 380ms cubic-bezier(.16,1,.3,1)}.ds-btn::after{z-index:-2;translate:3px 2px;mix-blend-mode:multiply}.ds-btn:hover::after{translate:6px 4px}.ds-btn svg{width:1.05em;height:1.05em;flex:none;transition:translate 300ms cubic-bezier(.16,1,.3,1)}.ds-btn:hover svg{translate:3px 0}.ds-btn:focus-visible{outline:3px solid var(--blue,#2f4be0);outline-offset:3px}.ds-btn-line{color:var(--blue,#2f4be0)}.ds-btn-line::before{border:2.5px solid var(--blue,#2f4be0)}.ds-btn-line::after{border:2.5px solid var(--pink,#ee3a96)}"
+    },
+    {
+      "name": "Ink Button",
+      "kind": "button",
+      "refersTo": "button-ink",
+      "description": "Action on the pink contact sheet: ink front layer, blue second pass.",
+      "html": "<div style=\"background:#ee3a96;padding:1.5rem\"><a class=\"ds-btn ds-btn-ink\" href=\"#\">Book a call <svg viewBox=\"0 0 20 20\" aria-hidden=\"true\"><path d=\"M3 10h12M10.5 5l5 5-5 5\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\"/></svg></a></div>",
+      "css": ".ds-btn{position:relative;display:inline-flex;align-items:center;gap:.6rem;min-height:3.1rem;padding:.8rem 1.35rem .75rem;font-family:var(--display,\"Anybody Variable\",sans-serif);font-variation-settings:\"wdth\" 80;font-weight:750;font-size:1.02rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;isolation:isolate;border-radius:0;transition:color 200ms cubic-bezier(.16,1,.3,1)}.ds-btn::before,.ds-btn::after{content:\"\";position:absolute;inset:0;z-index:-1;-webkit-mask:url(\"/grain.svg\");mask:url(\"/grain.svg\");transition:translate 380ms cubic-bezier(.16,1,.3,1)}.ds-btn::after{z-index:-2;translate:3px 2px;mix-blend-mode:multiply}.ds-btn:hover::after{translate:6px 4px}.ds-btn svg{width:1.05em;height:1.05em;flex:none;transition:translate 300ms cubic-bezier(.16,1,.3,1)}.ds-btn:hover svg{translate:3px 0}.ds-btn:focus-visible{outline:3px solid var(--blue,#2f4be0);outline-offset:3px}.ds-btn-ink{color:#f6f4ef}.ds-btn-ink::before{background:var(--ink,#1c1b22)}.ds-btn-ink::after{background:var(--blue,#2f4be0)}.ds-btn-ink:focus-visible{outline-color:#1c1b22}"
+    },
+    {
+      "name": "Status Tags",
+      "kind": "chip",
+      "refersTo": "status-live",
+      "description": "Honest status in the meta row under a heading: Live, In progress, Shipped.",
+      "html": "<p class=\"ds-meta\"><span class=\"ds-status ds-status-live\">Live</span><span class=\"ds-status ds-status-progress\">In progress</span><span class=\"ds-status ds-status-shipped\">Shipped</span><span>Freelance</span><span>2024 - now</span></p>",
+      "css": ".ds-meta{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem 1rem;color:#45434d;font-family:\"Anybody Variable\",sans-serif;font-variation-settings:\"wdth\" 88;font-weight:700;font-size:.78rem;letter-spacing:.09em;text-transform:uppercase}.ds-status{padding:.18rem .5rem .12rem;border:2px solid currentColor;border-radius:0}.ds-status-live{color:#f6f4ef;background:#2f4be0;border-color:#2f4be0}.ds-status-progress{color:#2f4be0;border-style:dashed}.ds-status-shipped{color:#1c1b22}"
+    },
+    {
+      "name": "Printed Heading",
+      "kind": "custom",
+      "refersTo": "headline",
+      "description": "Signature two-ink print: text as front ink, data-ink duplicate as offset second ink, grain-masked; only the second ink slips on hover.",
+      "html": "<a class=\"ds-host\" href=\"#\"><span class=\"ds-print ds-caps\" data-ink=\"Selected work\">Selected work</span></a>",
+      "css": ".ds-host{text-decoration:none}.ds-caps{font-family:\"Anybody Variable\",sans-serif;font-variation-settings:\"wdth\" 62;font-weight:800;text-transform:uppercase;letter-spacing:.01em;line-height:.9;font-size:clamp(3rem,7vw,6rem)}.ds-print{position:relative;display:inline-block;isolation:isolate;color:#2f4be0;padding:0 .08em .08em 0;-webkit-mask:url(\"/grain.svg\");mask:url(\"/grain.svg\")}.ds-print::after{content:attr(data-ink);position:absolute;inset:0 .08em .08em 0;color:#ee3a96;translate:3px 2px;mix-blend-mode:multiply;z-index:-1;transition:translate 420ms cubic-bezier(.16,1,.3,1);pointer-events:none}.ds-host:hover .ds-print::after,.ds-host:focus-visible .ds-print::after{translate:7.2px -3.2px}.ds-host:focus-visible{outline:3px solid #2f4be0;outline-offset:3px}"
+    },
+    {
+      "name": "Top Bar Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Ruled top bar: two-ink Q mark, clean wordmark, blue label nav, compact blue button.",
+      "html": "<header class=\"ds-top\"><a class=\"ds-mark\" href=\"#\"><svg viewBox=\"0 0 40 40\" width=\"34\" height=\"34\" aria-hidden=\"true\"><circle cx=\"18\" cy=\"18\" r=\"11.5\" fill=\"none\" stroke=\"#ee3a96\" stroke-width=\"6.5\"/><rect x=\"22\" y=\"24\" width=\"14\" height=\"6.5\" transform=\"rotate(40 29 27.25)\" fill=\"#2f4be0\" style=\"mix-blend-mode:multiply\"/></svg><span>Qwertic</span></a><nav><ul class=\"ds-nav\"><li><a href=\"#\">Work</a></li><li><a href=\"#\">Stack</a></li><li><a href=\"#\">Tools</a></li><li><a href=\"#\">Experience</a></li></ul></nav></header>",
+      "css": ".ds-top{display:flex;align-items:center;gap:1.5rem;padding-block:1.1rem;border-bottom:1.5px solid #ee3a96;background:#f6f4ef}.ds-mark{display:inline-flex;align-items:center;gap:.55rem;color:#2f4be0;text-decoration:none;font-family:\"Anybody Variable\",sans-serif;font-variation-settings:\"wdth\" 62;font-weight:800;text-transform:uppercase;font-size:1.9rem;line-height:1}.ds-top nav{margin-left:auto}.ds-nav{display:flex;gap:2rem;list-style:none;margin:0;padding:0}.ds-nav a{display:inline-block;padding-block:.5rem;color:#2f4be0;text-decoration:none;font-family:\"Anybody Variable\",sans-serif;font-variation-settings:\"wdth\" 88;font-weight:700;font-size:.78rem;letter-spacing:.09em;text-transform:uppercase}.ds-nav a:hover{text-decoration:underline;text-decoration-color:#ee3a96;text-decoration-thickness:2px;text-underline-offset:.22em}.ds-nav a:focus-visible{outline:3px solid #2f4be0;outline-offset:3px}"
+    },
+    {
+      "name": "Ruled Cell Row",
+      "kind": "card",
+      "refersTo": "title",
+      "description": "Grid cells bounded by pink hairlines instead of cards; heading first, meta below, pink square markers.",
+      "html": "<div class=\"ds-rows\"><div class=\"ds-row\"><h3 class=\"ds-row-h\">Public API</h3><p class=\"ds-lbl\">Shipped / Callbell</p><ul class=\"ds-facts\"><li>Co-designed the Rails public API.</li><li>First consumer via Zapier and Zoho.</li></ul></div><div class=\"ds-row\"><h3 class=\"ds-row-h\">Core chat</h3><p class=\"ds-lbl\">Shipped / Callbell</p><ul class=\"ds-facts\"><li>Millions of messages a day.</li></ul></div></div>",
+      "css": ".ds-rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));background:#f6f4ef;color:#1c1b22;font-family:\"Schibsted Grotesk Variable\",sans-serif;font-size:1.0625rem;line-height:1.55}.ds-row{padding:2rem 2rem 2rem 0;border-bottom:1.5px solid #ee3a96}.ds-row+.ds-row{padding-left:2rem;padding-right:0;border-left:1.5px solid #ee3a96}.ds-row-h{margin:0;color:#2f4be0;font-family:\"Anybody Variable\",sans-serif;font-variation-settings:\"wdth\" 62;font-weight:800;text-transform:uppercase;line-height:.9;font-size:2.6rem}.ds-lbl{margin:.9rem 0 0;color:#45434d;font-family:\"Anybody Variable\",sans-serif;font-variation-settings:\"wdth\" 88;font-weight:700;font-size:.78rem;letter-spacing:.09em;text-transform:uppercase}.ds-facts{list-style:none;margin:1.1rem 0 0;padding:0;display:grid;gap:.5rem}.ds-facts li{position:relative;padding-left:1.3rem}.ds-facts li::before{content:\"\";position:absolute;left:0;top:.62em;width:.62rem;height:.62rem;background:#ee3a96}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Two-Ink Riso Sheet",
+    "overview": "The site is a risograph print: off-white stock, two spot inks (fluoro pink and federal blue) that multiply to purple where they cross, black reserved for reading text. Big plain condensed caps say exactly what the work is; the craft lives in the material (grain eating every ink, halftone dots, one hair of misregistration) and never in a metaphor the visitor has to decode. Everything flat, everything square, everything ruled.\n\nDensity is poster-scale at the top of each section and document-scale inside it: a huge caps heading sits on a pink hairline, and the content below runs on a strict 12-column split (8/4, 6/6, halves, fifths, quarters) divided by more hairlines. Depth comes only from ink order: a front ink and a second ink printed a few pixels off, multiplied.\n\nThe signature is the ink shift. The headline prints in two passes on load (the second ink lands late and settles into its register offset), and on hover only the second ink layer slips further out of register. Rejected by the direction: the dark hero with card grids, and any concept that needs decoding before the visitor knows who this is. The parked alternate world \"The Pass\" (branch `redesign-the-pass`) is history, not a source.",
+    "keyCharacteristics": [
+      "Paper ground, two spot inks, black body text; overlaps multiply, never alpha-blend.",
+      "Condensed poster caps (Anybody at width 62, weight 800) for every heading; a plain grotesk for reading.",
+      "Grain mask on inks, scaled by size; paper tooth multiplied over the whole viewport.",
+      "Pink hairline rules (1.5px) on a strict column grid; no radius anywhere.",
+      "Ink shift: the second ink sits `3px 2px` out of register and slips further on hover.",
+      "One flooded blue panel mid-page and one pink contact sheet at the end; everything else is paper."
+    ],
+    "rules": [
+      {
+        "name": "The Multiply Rule",
+        "body": "Wherever the two inks meet (second-pass text, button back layer, figures, halftone discs), the upper ink uses `mix-blend-mode: multiply` so the overlap prints purple. There is no purple token; purple only exists where pink and blue physically cross. The one exception is on the blue panel, where the pink pass under paper-colored type blends normally, because paper cannot multiply over blue.",
+        "section": "colors"
+      },
+      {
+        "name": "The Black Reads Rule",
+        "body": "Body and reading copy are ink or ink-soft on paper (or paper on blue, ink on pink). Pink never carries text meant to be read; blue carries only labels, links and headings.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Floods Rule",
+        "body": "A page gets at most one flooded solid-ink panel mid-page (Tools, blue) plus the pink contact sheet that closes it. Every other section is paper.",
+        "section": "colors"
+      },
+      {
+        "name": "The Heading Leads Rule",
+        "body": "Nothing sits above a heading. No kicker, no eyebrow, no numbered overline. Status and meta (status tag, context, date) sit directly below the heading as a label row.",
+        "section": "typography"
+      },
+      {
+        "name": "The Plain Names Rule",
+        "body": "Section headings and labels are plain words that say what is there. Texture carries the world; words never need decoding.",
+        "section": "typography"
+      },
+      {
+        "name": "The Grain Scales Rule",
+        "body": "Grain intensity follows size. Full grain (`grain.svg`) only on poster-size print: the hero, section headings on desktop, the contact heading, figures and buttons. Light grain (`grain-light.svg`) for project headings and for section headings under 42rem. Clean (no mask) for small print: the wordmark and tool names.",
+        "section": "typography"
+      },
+      {
+        "name": "The Second Pass Rule",
+        "body": "The ink shift moves only the second ink layer (the `::after` pass on printed text, the back layer of a button, the `ink-b` group of a figure), never the whole element. At rest it sits at the registration offset; on hover of its host it slips to roughly 2.4x/-1.6x (text), 2x (buttons), or `7px -5px` (figures). Transitions run 380 to 700ms on `cubic-bezier(0.16, 1, 0.3, 1)`.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Misregistration Is Not A Shadow Rule",
+        "body": "The offset layer behind a button is the second ink, grained and multiplied, the same device as the headline's second pass. Treat it as print grammar; never replace it with `box-shadow`, and never render it as an ungrained solid black offset.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** set every heading in Anybody caps at width 62, weight 800, line height 0.86 to 0.9, and let it be large.",
+      "**Do** put status and meta directly under a heading as a label row.",
+      "**Do** multiply wherever pink and blue overlap, and let purple appear only there.",
+      "**Do** mask inks with grain matched to size: full at poster sizes, light for project headings and mobile section headings, none for small print.",
+      "**Do** divide content with 1.5px pink hairlines on the column grid instead of boxes.",
+      "**Do** keep reading copy ink or ink-soft on paper, capped at about 40ch.",
+      "**Do** animate the ink shift on the second layer only, with the site ease `cubic-bezier(0.16, 1, 0.3, 1)`, and honor reduced motion."
+    ],
+    "donts": [
+      "**Don't** place a kicker, eyebrow or overline above any heading.",
+      "**Don't** use pink for body or reading text (3.36:1 on paper).",
+      "**Don't** add a second flooded panel mid-page; the blue Tools panel and the pink contact sheet are the whole allowance.",
+      "**Don't** shift a whole printed element on hover; only its second ink moves.",
+      "**Don't** use rounded corners, box-shadows or card backgrounds.",
+      "**Don't** name sections with metaphors or wordplay.",
+      "**Don't** build a dark hero with a card grid.",
+      "**Don't** use pink or pink-soft as a hover text color for small labels; hover on small links changes the underline, never the text colour."
+    ]
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "title": "Re-roll: choose the visual world for qwertic.xyz",
+  "question": "New hand, clarity first. The roll assigned the API reference. Keep it, take an alternate, or re-roll again.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Reference: Qwertic, documented",
+      "kicker": "THE ROLL",
+      "lineage": "the best API reference docs: sidebar, plain headings, examples beside the prose",
+      "thesis": "Qwertic documented like a well-made API: plain sections, real examples, and a request panel that answers \"hiring\" or \"project\".",
+      "palette": ["#FBFAF7", "#16171B", "#2340D8", "#E9E6DF"],
+      "materials": ["docs sidebar", "two-column prose plus example panel", "method badges"],
+      "viewport": "Left: a sidebar with Overview, Work, Stack, Tools, Contact. Centre: \"Qwertic. AI engineer, full stack.\" with a two-line summary and Book a call. Right: an example panel where choosing Hiring or Project prints a short response of relevant facts and a contact action.",
+      "risk": "Tips into the familiar \"me.json\" gimmick if the example panel says more than the prose; the prose has to carry the page.",
+      "raised": [
+        {"from": "luxury-fashion-flagship", "raise": "The overview owns the first viewport with one statement and one action, surrounded by real empty space, not a wall of sections."},
+        {"from": "operate-c-cracktro-scroller-queue", "raise": "Rank is depth: the current work sits frontmost and brightest, and older work steps back in weight, not size."},
+        {"from": "signals-instruments-phosphor-terminal-midnight", "raise": "Statuses print inline as words (live, in progress, shipped) instead of badges and chrome."},
+        {"from": "generative-art-computational-color-chord-counterpoint", "raise": "No state relies on colour alone; every status carries a word."}
+      ],
+      "comp": ".impeccable/mocks/decision/r1-assigned.webp"
+    },
+    {
+      "id": "model-pick",
+      "kicker": "IMPECCABLE’S PICK",
+      "label": "Olivetti: Qwertic, the typewriter company",
+      "lineage": "Olivetti's Milan-era identity: Pintori posters, Lettera 22 catalogues",
+      "thesis": "QWERTY is in the name. Qwertic presented the way Olivetti presented a machine: bold flat colour, clear captions, Italian design confidence.",
+      "palette": ["#F4EFE4", "#1A1A1A", "#E8412C", "#F2B705", "#1C5FA8"],
+      "materials": ["flat poster colour", "catalogue captions", "keycap geometry"],
+      "viewport": "A Pintori-style composition of coloured key shapes spelling QWERTIC, with a plain caption block: AI engineer, full stack. Remote from Milan. Book a call.",
+      "risk": "The cream ground and red accent sit close to a familiar AI-generated look, and it could read as design nostalgia.",
+      "comp": ".impeccable/mocks/decision/r1-pick.webp"
+    },
+    {
+      "id": "challenger-yeye",
+      "label": "Pop record sleeve",
+      "verdict": "competitive",
+      "lineage": "French yé-yé pop sleeves",
+      "thesis": "Qwertic as a release: one saturated ground, a portrait, and four tracks, the four things he does.",
+      "palette": ["#F26A1B", "#FFFFFF", "#1A1A1A", "#1FB5AD"],
+      "materials": ["flat saturated ground", "square-cropped portrait", "rounded logotype"],
+      "viewport": "A tangerine field, a portrait cropped at the chin, QWERTIC in a rounded logotype, and four track titles in the corner: AI features, Full stack, Agent tooling, Contact.",
+      "case": "Fuses well on clarity, since a closed set of four is instantly readable. Loses on audience: it's too playful for hiring leads and needs a strong portrait.",
+      "risk": "Pop kitsch, and it depends on a good portrait photo.",
+      "hero": "https://impeccable.style/worlds/cards/posters-covers-sleeves-yeye-pop-sleeve-hero.webp"
+    },
+    {
+      "id": "challenger-fashion",
+      "label": "Fashion flagship",
+      "verdict": "declined",
+      "lineage": "luxury fashion lookbook sites",
+      "thesis": "Monumental type and vast space.",
+      "palette": ["#F5F2EC", "#111111", "#8C6A4F"],
+      "materials": ["full-bleed photography", "serif display"],
+      "viewport": "One huge word, one image.",
+      "case": "Loses on both counts: there's no imagery to carry it, and it's the artsy you ruled out.",
+      "kept": "One statement per viewport, with space around it.",
+      "risk": "Style over facts.",
+      "hero": "https://impeccable.style/worlds/cards/luxury-fashion-flagship-hero.webp"
+    },
+    {
+      "id": "challenger-silk",
+      "label": "Silk colour chords",
+      "verdict": "declined",
+      "lineage": "generative colour canopy",
+      "thesis": "Overlapping banners as combined states.",
+      "palette": ["#2B3A8C", "#A33A2B", "#E8A317", "#FFFFFF"],
+      "materials": ["translucent silk lanes"],
+      "viewport": "Colour lanes crossing a white field.",
+      "case": "Loses on both counts: abstract, and the facts get lost.",
+      "kept": "States labelled beyond colour.",
+      "risk": "Too artsy.",
+      "hero": "https://impeccable.style/worlds/cards/generative-art-computational-color-chord-counterpoint-hero.webp"
+    },
+    {
+      "id": "challenger-ikebana",
+      "label": "Ikebana alcove",
+      "verdict": "declined",
+      "lineage": "tokonoma and ikebana",
+      "thesis": "Asymmetry and charged emptiness.",
+      "palette": ["#EDE8DF", "#6B5E50", "#4262B8", "#3A3128"],
+      "materials": ["plaster", "pine", "bronze"],
+      "viewport": "One off-centre arrangement.",
+      "case": "Loses on both counts: beautiful, but unrelated to the work.",
+      "kept": "Asymmetric, off-centre composition.",
+      "risk": "Unrelated metaphor.",
+      "hero": "https://impeccable.style/worlds/cards/growth-metamorphosis-branching-ikebana-ma-arrangement-hero.webp"
+    },
+    {
+      "id": "challenger-cracktro",
+      "label": "Cracktro scroller",
+      "verdict": "declined",
+      "lineage": "demoscene title screens",
+      "thesis": "Depth as rank on a black void.",
+      "palette": ["#050505", "#EDE6D6", "#8A8A8A", "#F2A43A"],
+      "materials": ["bitmap type", "drifting dust"],
+      "viewport": "One still line over drifting layers.",
+      "case": "Loses on both counts: hacker aesthetic, hard for recruiters.",
+      "kept": "Depth as rank: the frontmost item outranks the rest.",
+      "risk": "Retro gimmick.",
+      "hero": "https://impeccable.style/worlds/cards/operate-c-cracktro-scroller-queue-hero.webp"
+    },
+    {
+      "id": "challenger-phosphor",
+      "label": "Phosphor terminal",
+      "verdict": "declined",
+      "lineage": "green CRT terminals",
+      "thesis": "The site as a live transcript.",
+      "palette": ["#0A0F0A", "#33FF66", "#1A7A33"],
+      "materials": ["scanlines", "phosphor bloom"],
+      "viewport": "A blinking cursor on black.",
+      "case": "Loses on both counts: the classic developer cliché, close to AI hype.",
+      "kept": "States print themselves as text, not chrome.",
+      "risk": "Cliché.",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-phosphor-terminal-midnight-hero.webp"
+    }
+  ],
+  "reroll": {"registers": ["safer", "bolder"]},
+  "buildPath": {"value": "code", "toggle": false},
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "thesis": "The clean developer portfolio, done with full craft.",
+    "palette": ["#FFFFFF", "#111827", "#2563EB"],
+    "materials": ["clean grid", "project cards"],
+    "viewport": "Name, one-line role, three project cards, contact.",
+    "risk": "Looks like everyone else's by design, which is the generic portfolio you ruled out."
+  },
+  "steer": true
+}

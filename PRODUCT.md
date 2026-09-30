@@ -42,7 +42,7 @@ Visitors arrive from LinkedIn, CVs, job applications, GitHub and direct shares, 
 
 ## Evidence on Hand
 
-- Work history: Callbell (Nov 2020 - Jan 2024), JustMe Technologies (2019 - 2020, sole developer on an EU Horizon-funded MVP), freelance 2024 - present (production AI assistant for an unnamed EdTech credentialing platform; the client is not named).
+- Work history: Callbell (Nov 2020 - Jan 2024; the CRM replaced WhatsApp contact lists and third-party CRMs and gave one view of every lead with notes and team handoffs, per the candidate profile in ai-job-search), JustMe Technologies (2019 - 2020, sole developer on an EU Horizon-funded MVP), freelance 2024 - present (production AI assistant for an unnamed EdTech credentialing platform; the client is not named).
 - Open source: cursorrules (26 stars, 6 forks), crrl (17 stars, 2 forks).
 - Agent memory MCP server: in progress, not yet public. Must be labelled in progress.
 - Claude Code skills for his own workflow. No adoption numbers; don't claim any.
@@ -55,3 +55,4 @@ Visitors arrive from LinkedIn, CVs, job applications, GitHub and direct shares, 
 2. Serve both audiences with a single story; never make one of them hunt.
 3. Pragmatic over decorative: if a detail doesn't help a visitor decide, cut it.
 4. Honest about status: in-progress work is labelled in progress.
+5. Clarity before concept: a first-time visitor knows who this is, what he does and how to reach him within seconds. Section names and labels are plain words; any metaphor stays texture and never needs decoding. (Learned from the parked "The Pass" direction, branch redesign-the-pass.)

@@ -1,0 +1,102 @@
+{
+  "title": "Re-roll 3, bolder: foreign forms at full commitment",
+  "question": "Bolder hand. It leads with the collider event display; two challengers beat it on both axes. Pick one, or re-roll.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Event display: every project a collision",
+      "kicker": "THE ROLL",
+      "lineage": "particle-detector event displays",
+      "thesis": "Each project shown as one frozen event: the product moment at the centre, tracks curving out through the layers it touched (DB, API, UI, LLM), labelled plainly.",
+      "palette": ["#07080B", "#3E5670", "#F5D90A", "#27D3E6", "#E5332A"],
+      "materials": ["WebGL tracks", "concentric detector rings", "tabular labels"],
+      "viewport": "A rotating event display fills the right two-thirds, with tracks labelled Callbell CRM, AI assistant and so on. Left: QWERTIC, AI engineer, full stack, and Book a call. Selecting a track isolates it and opens its facts.",
+      "risk": "A dark screen with glowing lines drifts toward AI-hype, and it's a metaphor again, so labels must do all the explaining.",
+      "raised": [
+        {"from": "textiles-weave-drape-fashion-drawcord-transforming-cape", "raise": "One control reshapes the page: switching Hiring or Project changes which tracks light up."},
+        {"from": "food-fermentation-culinary-theater-pickling-brine-calendar", "raise": "Every track carries a plain label and a date, never colour alone."}
+      ],
+      "comp": ".impeccable/mocks/decision/r3-assigned.webp",
+      "hero": "https://impeccable.style/worlds/cards/scientific-notation-particle-detector-event-display-hero.webp"
+    },
+    {
+      "id": "challenger-riso",
+      "label": "Risograph: printed in two inks",
+      "verdict": "wins",
+      "lineage": "risograph zines and posters",
+      "thesis": "The whole site printed in fluoro pink and federal blue on white paper, slightly out of register, with big plain type saying exactly what he does.",
+      "palette": ["#F7F5F0", "#FF48B0", "#0078BF", "#1A1A1A"],
+      "materials": ["spot-ink layers multiplied", "halftone grain", "deliberate misregistration"],
+      "viewport": "QWERTIC huge in blue with a pink offset layer, \"AI engineer, full stack\" in black, and the current AI work as a printed block. Hovering nudges the inks out of register.",
+      "case": "Beats the event display on both counts: plain type makes it instantly clear, and it has real personality without a metaphor.",
+      "risk": "Riso is a popular indie look; it needs a sharp grid and real restraint to read as product-grade.",
+      "hero": "https://impeccable.style/worlds/cards/risograph-web-system-hero.webp"
+    },
+    {
+      "id": "challenger-tanaka",
+      "label": "Plane portrait: Ikko Tanaka",
+      "verdict": "wins",
+      "lineage": "Ikko Tanaka's geometric poster portraits",
+      "thesis": "A portrait of Qwertic built from a handful of flat coloured planes on a strict grid, with quiet, plain captions carrying the facts.",
+      "palette": ["#F4F2EE", "#E4412B", "#27358C", "#E9B21F", "#111111"],
+      "materials": ["flat SVG planes", "strict grid", "whisper-quiet captions"],
+      "viewport": "A monumental figure (a face, or the Q, made of five planes) owns the left half. Right: QWERTIC, AI engineer, full stack, three plain lines and Book a call. Planes recompose per section.",
+      "case": "Beats the event display on both counts: calm, clear captions, and personal because it is literally a portrait.",
+      "risk": "Close to a poster tribute; the planes have to relate to the work, not just decorate the page.",
+      "hero": "https://impeccable.style/worlds/cards/tanaka-plane-portrait-hero.webp"
+    },
+    {
+      "id": "challenger-seedbed",
+      "label": "Green field, floating capsules",
+      "verdict": "competitive",
+      "lineage": "contemporary product marketing with pill UI",
+      "thesis": "One saturated green owns the viewport, and the interface floats on it as white capsules.",
+      "palette": ["#82CC5C", "#2F3130", "#FFFFFF", "#F2EFE3", "#F0574C"],
+      "materials": ["floating pill nav", "rounded slabs"],
+      "viewport": "A green field, a flush-left oversized headline, and a floating capsule bar with Book a call.",
+      "case": "Holds on clarity and product-grade polish; loses on personality, since it looks like a SaaS launch page.",
+      "risk": "Reads as a startup landing page, not a person.",
+      "hero": "https://impeccable.style/worlds/cards/sd-seedbed-lobes-hero.webp"
+    },
+    {
+      "id": "challenger-pickling",
+      "label": "Brine calendar",
+      "verdict": "declined",
+      "lineage": "pickling jars by season",
+      "thesis": "Work maturing in jars.",
+      "palette": ["#EAF2EE", "#E8735A", "#9B1B30", "#7BA05B"],
+      "materials": ["jar glass", "kraft labels"],
+      "viewport": "Jars on shelves.",
+      "case": "Loses on both counts: culinary again, and it needs decoding.",
+      "kept": "Plain labels with dates on every item.",
+      "risk": "Confusing.",
+      "hero": "https://impeccable.style/worlds/cards/food-fermentation-culinary-theater-pickling-brine-calendar-hero.webp"
+    },
+    {
+      "id": "challenger-cape",
+      "label": "Drawcord cape",
+      "verdict": "declined",
+      "lineage": "transforming garments",
+      "thesis": "One pull reshapes the whole.",
+      "palette": ["#0B0B0B", "#C9A227", "#4A4A4A"],
+      "materials": ["black silk", "gold cord"],
+      "viewport": "A cloth plane that gathers.",
+      "case": "Loses on both counts: fashion abstraction.",
+      "kept": "One control that transforms the page.",
+      "risk": "Unrelated.",
+      "hero": "https://impeccable.style/worlds/cards/textiles-weave-drape-fashion-drawcord-transforming-cape-hero.webp"
+    }
+  ],
+  "reroll": {"registers": ["safer", "bolder"]},
+  "buildPath": {"value": "code", "toggle": false},
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "thesis": "The clean designer-engineer portfolio, done with full craft.",
+    "palette": ["#FFFFFF", "#111111", "#8F8F8F"],
+    "materials": ["single column", "project list", "subtle motion"],
+    "viewport": "Name, one line, a short list of work and writing, contact.",
+    "risk": "Clean and familiar by design; the personality has to come from the details."
+  },
+  "steer": true
+}

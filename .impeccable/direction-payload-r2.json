@@ -1,0 +1,131 @@
+{
+  "title": "Re-roll 2: modern, product-grade, with personality",
+  "question": "Steered toward designer-engineer portfolios. The roll assigned the annotated notebook. Keep it, take an alternate, or re-roll.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Annotated: an engineer's notebook",
+      "kicker": "THE ROLL",
+      "lineage": "sidenote typography (Tufte) as practiced on the best designer-engineer sites",
+      "thesis": "Plain facts in the main column, and the margin talks back: small live demos, asides in his own voice, the reasoning behind each piece of work.",
+      "palette": ["#F6F6F4", "#111214", "#6B6F76", "#3148FF"],
+      "materials": ["sidenotes", "live inline demos", "precise hairline rules"],
+      "viewport": "Left main column: \"Qwertic. AI engineer, full stack.\" and three plain sentences with Book a call. Right margin, aligned line by line: a live miniature of the human-review flow (a synthetic document, extracted fields, an approve step), labelled as a demo.",
+      "risk": "Can read as a quiet blog if the margin demos are timid; the margin has to be the memorable part.",
+      "raised": [
+        {"from": "signals-instruments-night-flight-six-pack", "raise": "A fixed row of six plain facts up top (role, base, availability, current work, stack, contact) that the rest of the page cross-checks."},
+        {"from": "brand-identity-canon-brodovitch-bazaar-spread", "raise": "Main column and margin answer each other across the gutter, line for line, never floating loose."},
+        {"from": "kinetic-sculpture-automata-crank-paper-menagerie", "raise": "One accent colour, used only for the thing currently live or moving."},
+        {"from": "craft-making-lowicz-layered-papercut", "raise": "No drop shadows: layers read by overlap and rules only."}
+      ],
+      "comp": ".impeccable/mocks/decision/r2-assigned.webp"
+    },
+    {
+      "id": "model-pick",
+      "kicker": "IMPECCABLE’S PICK",
+      "label": "Working interface: the site is a small product",
+      "lineage": "product sites where the demo is the hero",
+      "thesis": "Don't describe the AI work, run it: the homepage opens on a live synthetic version of the document to extraction to human review flow, with a ⌘K palette as navigation.",
+      "palette": ["#FFFFFF", "#0B0B0C", "#E5E5E3", "#FF5B1F"],
+      "materials": ["product UI chrome", "command palette", "keyboard shortcuts"],
+      "viewport": "Headline left, and on the right a working mini-app: drop a sample CV, watch fields extract, approve or correct them. Book a call under the headline.",
+      "risk": "This is where most designer-engineer sites land; it's familiar and effective, but less personal.",
+      "comp": ".impeccable/mocks/decision/r2-pick.webp"
+    },
+    {
+      "id": "challenger-ascii",
+      "label": "ASCII live render",
+      "verdict": "competitive",
+      "lineage": "medium-native ASCII scenes",
+      "thesis": "A live scene drawn entirely in typed characters: a Q keycap turning, made of glyphs, above plain text.",
+      "palette": ["#0B0B0A", "#E8E4D8", "#F2A43A"],
+      "materials": ["monospace glyph grid", "luminance ramp"],
+      "viewport": "A rotating keycap rendered in ASCII over half the screen, with QWERTIC, the role line and Book a call set in the same grid.",
+      "case": "Fuses well on personality and engineer appeal (the keyboard is in the name). Loses narrowly on clarity for non-technical visitors.",
+      "risk": "Dark mono reads as a hacker cliché unless the text around it is calm and plain.",
+      "hero": "https://impeccable.style/worlds/cards/medium-native-ascii-live-scene-render-hero.webp"
+    },
+    {
+      "id": "challenger-sixpack",
+      "label": "Night-flight instruments",
+      "verdict": "declined",
+      "lineage": "aircraft six-pack gauges",
+      "thesis": "Six calm dials that agree.",
+      "palette": ["#0A0A0A", "#F2F2F2", "#5CFF8A", "#FFB020"],
+      "materials": ["round dials", "placards"],
+      "viewport": "Six gauges as facts.",
+      "case": "Loses on both counts: a metaphor that needs decoding.",
+      "kept": "A fixed set of facts that cross-check each other.",
+      "risk": "Costume.",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-night-flight-six-pack-hero.webp"
+    },
+    {
+      "id": "challenger-brodovitch",
+      "label": "Bazaar spread",
+      "verdict": "declined",
+      "lineage": "Brodovitch-era Harper's Bazaar",
+      "thesis": "Didot and photographs dancing across the gutter.",
+      "palette": ["#FBF8F2", "#1A1A1A", "#D0302A"],
+      "materials": ["Didot hairlines", "photogravure"],
+      "viewport": "A magazine spread.",
+      "case": "Loses on both counts: editorial luxury, not product-grade.",
+      "kept": "Two columns answering each other across the gutter.",
+      "risk": "Too editorial.",
+      "hero": "https://impeccable.style/worlds/cards/brand-identity-canon-brodovitch-bazaar-spread-hero.webp"
+    },
+    {
+      "id": "challenger-japan",
+      "label": "Japanese high-density web",
+      "verdict": "declined",
+      "lineage": "dense Japanese portals",
+      "thesis": "Everything on one packed screen.",
+      "palette": ["#FFFFFF", "#111111", "#E60012", "#D9D9D9"],
+      "materials": ["ruled modules", "red tabs"],
+      "viewport": "Dozens of boxed modules.",
+      "case": "Loses on both counts: too dense for a first visit.",
+      "kept": "The courage to pack real detail at small sizes.",
+      "risk": "Overwhelming.",
+      "hero": "https://impeccable.style/worlds/cards/japanese-high-density-web-hero.webp"
+    },
+    {
+      "id": "challenger-automata",
+      "label": "Paper automata",
+      "verdict": "declined",
+      "lineage": "hand-cranked paper figures",
+      "thesis": "A crank turns and figures move.",
+      "palette": ["#F4F1EA", "#C4A77D", "#2A2A2A", "#C8102E"],
+      "materials": ["cut paper", "kraft board"],
+      "viewport": "A paper procession.",
+      "case": "Loses on both counts: whimsical, off-brief.",
+      "kept": "One accent reserved for what's moving.",
+      "risk": "Too artsy.",
+      "hero": "https://impeccable.style/worlds/cards/kinetic-sculpture-automata-crank-paper-menagerie-hero.webp"
+    },
+    {
+      "id": "challenger-lowicz",
+      "label": "Łowicz papercut",
+      "verdict": "declined",
+      "lineage": "Polish folk papercuts",
+      "thesis": "Depth by layered flat colour.",
+      "palette": ["#1F7A3A", "#E53935", "#FDD835", "#1E3A8A"],
+      "materials": ["layered paper"],
+      "viewport": "A symmetric roundel.",
+      "case": "Loses on both counts: folk craft, unrelated to the work.",
+      "kept": "Depth by overlap, never by shading.",
+      "risk": "Unrelated.",
+      "hero": "https://impeccable.style/worlds/cards/craft-making-lowicz-layered-papercut-hero.webp"
+    }
+  ],
+  "reroll": {"registers": ["safer", "bolder"]},
+  "buildPath": {"value": "code", "toggle": false},
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "thesis": "The clean designer-engineer portfolio, done with full craft.",
+    "palette": ["#FFFFFF", "#111111", "#8F8F8F"],
+    "materials": ["single column", "project list", "subtle motion"],
+    "viewport": "Name, one line, a short list of work and writing, contact.",
+    "risk": "Clean and familiar by design; the personality has to come from the details."
+  },
+  "steer": true
+}

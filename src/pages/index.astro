@@ -1,1114 +1,1092 @@
 ---
 import fs from "node:fs";
 import Base from "../layouts/Base.astro";
-import {
-  EMAIL,
-  LINKEDIN,
-  GITHUB,
-  CV_PATH,
-  bookingHref,
-  tickets,
-  stations,
-  record,
-  tools,
-  statusLabel,
-  statusNote,
-} from "../data/site";
+import { EMAIL, LINKEDIN, GITHUB, CV_PATH, bookingHref, work, stack, experience, tools, statusLabel } from "../data/site";
 
 const hasCv = fs.existsSync(new URL(`../../public${CV_PATH}`, import.meta.url));
-const stationKey: Record<string, string> = { Database: "DB", API: "API", Frontend: "UI", LLM: "LLM", Tooling: "Tooling" };
-const firstId = tickets[0].id;
+const [lead, ...rest] = work;
+// Two-ink figures: layer a prints first, layer b is the second pass that slips on hover.
+const glyphs: Record<string, { a: string; b: string }> = {
+  "Agent memory": {
+    a: `<rect x="14" y="70" width="92" height="30" fill="var(--blue)"/>`,
+    b: `<circle cx="32" cy="46" r="18" fill="var(--pink)"/><circle cx="60" cy="40" r="18" fill="var(--pink)"/><circle cx="88" cy="46" r="18" fill="var(--pink)"/>`,
+  },
+  "Core chat module": {
+    a: `<path d="M12 18h62v42H34l-14 14V60h-8z" fill="var(--blue)"/>`,
+    b: `<path d="M46 44h62v42h-8v14L86 86H46z" fill="var(--pink)"/>`,
+  },
+  "CRM, from scratch": {
+    a: `<rect x="14" y="14" width="92" height="92" fill="var(--blue)"/>`,
+    b: `<rect x="26" y="28" width="56" height="12" fill="var(--pink)"/><rect x="26" y="54" width="68" height="12" fill="var(--pink)"/><rect x="26" y="80" width="44" height="12" fill="var(--pink)"/>`,
+  },
+  "Public API": {
+    a: `<rect x="14" y="30" width="56" height="56" fill="var(--blue)"/>`,
+    b: `<rect x="50" y="50" width="56" height="56" fill="var(--pink)"/>`,
+  },
+};
+const arrow = `<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h12M10.5 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.4"/></svg>`;
 ---
 
 <Base
   title="Qwertic: AI engineer, full stack"
   description="Regi Voda (Qwertic) builds LLM features that hold up in production, from the database to the model. Remote from Milan."
 >
-  <header class="rail-zone">
-    <nav class="bar wrap" aria-label="Sections">
-      <a class="bar__mark" href="#top">Qwertic</a>
-      <ul class="bar__links">
-        <li><a href="#line">The line</a></li>
-        <li><a href="#spike">Record</a></li>
-        <li><a href="#mise">Tools</a></li>
-        <li><a href="#order">Contact</a></li>
+  <header class="top wrap">
+    <a class="mark print-host" href="#top" aria-label="Qwertic, home">
+      <svg class="qmark" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="18" cy="18" r="11.5" fill="none" stroke="var(--pink)" stroke-width="6.5" />
+        <rect x="22" y="24" width="14" height="6.5" transform="rotate(40 29 27.25)" fill="var(--blue)" />
+      </svg>
+      <span class="print print--clean caps mark__word" data-ink="Qwertic">Qwertic</span>
+    </a>
+    <nav aria-label="Sections">
+      <ul class="nav label">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#stack">Stack</a></li>
+        <li><a href="#tools">Tools</a></li>
+        <li><a href="#experience">Experience</a></li>
       </ul>
     </nav>
-
-    <div class="rail" id="top">
-      <div class="rail__bar" aria-hidden="true"></div>
-      <div class="rail__track" role="tablist" aria-label="Work on the rail">
-        {
-          tickets.map((t, i) => (
-            <button
-              class={`slip slip--${t.status}`}
-              role="tab"
-              id={`tab-${t.id}`}
-              aria-controls={`panel-${t.id}`}
-              aria-selected={t.id === firstId ? "true" : "false"}
-              tabindex={t.id === firstId ? 0 : -1}
-              data-ticket={t.id}
-              style={`--i:${i}`}
-            >
-              <span class="slip__clip" aria-hidden="true" />
-              <span class="slip__paper">
-                <span class="slip__top">
-                  <span>#{t.no}</span>
-                  <span class={`stamp stamp--${t.status}`}>{statusLabel[t.status]}</span>
-                </span>
-                <span class="slip__title">{t.title}</span>
-                <span class="slip__table">{t.table}</span>
-                <span class="slip__stations">{t.stations.join(" / ")}</span>
-              </span>
-            </button>
-          ))
-        }
-      </div>
-    </div>
+    <a class="btn btn--blue top__cta" href={bookingHref}>Book a call</a>
   </header>
 
-  <main>
-    <section class="pass wrap" aria-labelledby="who">
-      <div class="pass__copy">
-        <h1 id="who" class="plate">
-          <span class="plate__word">Qwertic</span>
+  <main id="top">
+    <!-- first viewport -->
+    <section class="hero wrap" aria-labelledby="hero-h">
+      <div class="hero__main">
+        <h1 id="hero-h" class="hero__h caps">
+          <span class="print hero__line hero__line--a" data-ink="AI engineer,">AI engineer,</span>
+          <span class="print print--pink hero__line hero__line--b" data-ink="full stack.">full stack.</span>
         </h1>
-        <p class="pass__role">AI engineer, full stack.</p>
-        <p class="pass__lede">
-          I build LLM features that hold up in production, from the database to the model. For teams hiring and for
-          products that need it built.
+        <p class="hero__lede">
+          I'm Regi Voda, known as Qwertic. I build LLM features that hold up in production, from the database to the
+          model. Remote from Milan, for teams hiring and for products that need it built.
         </p>
-        <div class="pass__actions">
-          <a class="btn btn--lamp" href={bookingHref}>
-            Book a call
-            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" /></svg>
-          </a>
+        <div class="hero__actions">
+          <a class="btn btn--blue" href={bookingHref}>Book a call <Fragment set:html={arrow} /></a>
           <a class="btn btn--line" href={`mailto:${EMAIL}`}>Email me</a>
         </div>
-        <p class="pass__who">Regi Voda. Remote from Milan, Italy.</p>
       </div>
 
-      <div class="pass__order">
+      <aside class="hero__side" aria-label="Now">
+        <svg class="figure" viewBox="0 0 320 300" aria-hidden="true">
+          <defs>
+            <pattern id="dots" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(18)">
+              <circle cx="4.5" cy="4.5" r="2.3" fill="var(--blue)" />
+            </pattern>
+          </defs>
+          <g class="figure__ink">
+            <circle class="f-ring" cx="150" cy="140" r="96" fill="none" stroke="var(--pink)" stroke-width="54" />
+            <rect class="f-tail" x="176" y="196" width="140" height="52" transform="rotate(38 246 222)" fill="var(--blue)" />
+            <circle class="f-dots" cx="96" cy="86" r="62" fill="url(#dots)" />
+          </g>
+        </svg>
+        <div class="now">
+          <p class="now__t">Right now I'm building an AI assistant for an EdTech credentialing platform.</p>
+          <p class="now__d">Documents in, structured data out, a human approves before it counts.</p>
+          <a class="now__link" href="#work">See the work</a>
+        </div>
+      </aside>
+    </section>
+
+    <!-- work -->
+    <section class="section wrap" id="work" aria-labelledby="work-h">
+      <div class="section__head">
+        <h2 id="work-h" class="caps section__h"><span class="print" data-ink="Selected work">Selected work</span></h2>
+        <p class="section__lede">What's live, what's in progress, and what I shipped at scale.</p>
+      </div>
+
+      <article class="lead print-host">
+        <div class="lead__text">
+          <h3 class="caps lead__h"><span class="print print--light" data-ink={lead.title}>{lead.title}</span></h3>
+          <p class="meta label">
+            <span class={`status status--${lead.status}`}>{statusLabel[lead.status]}</span>
+            <span>{lead.context}</span><span>{lead.when}</span>
+          </p>
+          <p class="lead__sum">{lead.summary}</p>
+          <ul class="facts">{lead.facts.map((f) => <li>{f}</li>)}</ul>
+          <p class="layers label">{lead.layers.join(" / ")}</p>
+        </div>
+        <figure class="flow" aria-label="How it works: upload, extract, review">
+          <ol>
+            <li class="flow__step">
+              <svg viewBox="0 0 120 120" aria-hidden="true">
+                <g class="ink-a"><rect x="26" y="14" width="68" height="92" fill="var(--blue)" /></g>
+                <g class="ink-b"><rect x="38" y="34" width="44" height="8" fill="var(--pink)" /><rect x="38" y="52" width="34" height="8" fill="var(--pink)" /><rect x="38" y="70" width="40" height="8" fill="var(--pink)" /></g>
+              </svg>
+              <span class="label">Upload</span>
+              <span class="flow__d">PDF, DOCX, XML</span>
+            </li>
+            <li class="flow__step">
+              <svg viewBox="0 0 120 120" aria-hidden="true">
+                <g class="ink-a"><circle cx="60" cy="60" r="44" fill="var(--pink)" /></g>
+                <g class="ink-b"><rect x="30" y="40" width="30" height="10" fill="var(--blue)" /><rect x="30" y="58" width="48" height="10" fill="var(--blue)" /><rect x="30" y="76" width="22" height="10" fill="var(--blue)" /></g>
+              </svg>
+              <span class="label">Extract</span>
+              <span class="flow__d">LLM to structured data</span>
+            </li>
+            <li class="flow__step">
+              <svg viewBox="0 0 120 120" aria-hidden="true">
+                <g class="ink-a"><rect x="16" y="16" width="88" height="88" fill="none" stroke="var(--blue)" stroke-width="12" /></g>
+                <g class="ink-b"><path d="M34 62 52 80 88 40" fill="none" stroke="var(--pink)" stroke-width="14" /></g>
+              </svg>
+              <span class="label">Review</span>
+              <span class="flow__d">A person approves it</span>
+            </li>
+          </ol>
+        </figure>
+      </article>
+
+      <ul class="rows">
         {
-          tickets.map((t) => (
-            <article
-              class={`order order--${t.status}`}
-              role="tabpanel"
-              id={`panel-${t.id}`}
-              aria-labelledby={`tab-${t.id}`}
-              hidden={t.id !== firstId}
-              tabindex="0"
-            >
-              <div class="order__head">
-                <span>Order #{t.no}</span>
-                <span>{t.when}</span>
-              </div>
-              <div class="order__table">Table: {t.table}</div>
-              <h2 class="order__title">{t.title}</h2>
-              <ul class="order__lines">
-                {t.lines.map((l) => (
-                  <li>{l}</li>
+          rest.map((w) => (
+            <li class="row print-host">
+              <svg class="glyph" viewBox="0 0 120 120" aria-hidden="true">
+                <g class="ink-a"><Fragment set:html={glyphs[w.title].a} /></g>
+                <g class="ink-b"><Fragment set:html={glyphs[w.title].b} /></g>
+              </svg>
+              <h3 class="caps row__h">
+                <span class="print print--light" data-ink={w.title}>{w.title}</span>
+              </h3>
+              <p class="meta label">
+                <span class={`status status--${w.status}`}>{statusLabel[w.status]}</span>
+                <span>{w.context}</span>
+                <span>{w.when}</span>
+              </p>
+              <p class="row__sum">{w.summary}</p>
+              <ul class="facts facts--small">
+                {w.facts.map((f) => (
+                  <li>{f}</li>
                 ))}
               </ul>
-              <div class="order__foot">
-                <span>Stations: {t.stations.join(" / ")}</span>
-                <span class={`stamp stamp--big stamp--${t.status}`}>
-                  {statusLabel[t.status]}
-                  <small>{statusNote[t.status]}</small>
-                </span>
-              </div>
-            </article>
+              <p class="layers label">{w.layers.join(" / ")}</p>
+            </li>
           ))
         }
-        <p class="pass__hint">Pull another ticket off the rail.</p>
-      </div>
+      </ul>
     </section>
 
-    <section class="line" id="line" aria-labelledby="line-h">
-      <div class="wrap">
-        <h2 id="line-h" class="tape">The line</h2>
-        <p class="section-lede">
-          One person across every station. I take a feature from the migration to the model call to the screen, and
-          test it on the way.
-        </p>
+    <!-- stack -->
+    <section class="section wrap" id="stack" aria-labelledby="stack-h">
+      <div class="section__head">
+        <h2 id="stack-h" class="caps section__h"><span class="print print--pink" data-ink="Across the stack">Across the stack</span></h2>
+        <p class="section__lede">One person from the migration to the model call to the screen, tested on the way.</p>
       </div>
-      <div class="counter wrap">
+      <div class="stack">
         {
-          stations.map((s) => {
-            const key = stationKey[s.name];
-            const onRail = tickets.filter((t) => t.stations.includes(key));
-            return (
-              <div class="station">
-                <h3 class="station__name">{s.name}</h3>
-                <ul class="station__items">
-                  {s.items.map((it) => (
-                    <li>{it}</li>
-                  ))}
-                </ul>
-                {onRail.length > 0 && (
-                  <p class="station__rail">
-                    <span>On the rail:</span>
-                    {onRail.map((t) => (
-                      <a href="#top" data-pull={t.id}>
-                        {t.title}
-                      </a>
-                    ))}
-                  </p>
-                )}
-              </div>
-            );
-          })
+          stack.map((s) => (
+            <div class="stack__col">
+              <h3 class="caps stack__h">{s.name}</h3>
+              <ul>
+                {s.items.map((i) => (
+                  <li>{i}</li>
+                ))}
+              </ul>
+            </div>
+          ))
         }
       </div>
     </section>
 
-    <section class="spike-zone wrap" id="spike" aria-labelledby="spike-h">
-      <div class="spike-zone__intro">
-        <h2 id="spike-h" class="tape">On the spike</h2>
-        <p class="section-lede">
-          Served tickets go on the spike. This is mine, newest on top.
+    <!-- tools -->
+    <section class="section section--ink" id="tools" aria-labelledby="tools-h"><div class="wrap">
+      <div class="section__head">
+        <h2 id="tools-h" class="caps section__h"><span class="print print--on-ink" data-ink="Tools I build">Tools I build</span></h2>
+        <p class="section__lede">Agent tooling I make for my own work and use every day. Some of it other developers use too.</p>
+      </div>
+      <ul class="tools">
+        {
+          tools.map((t) => (
+            <li class="tool print-host">
+              <h3 class="caps tool__h">
+                <span class="print print--on-ink print--clean" data-ink={t.name}>{t.name}</span>
+              </h3>
+              <p class="tool__what">{t.what}</p>
+              <p class="label tool__meta">{t.meta}</p>
+              {t.href && (
+                <a class="tool__link label" href={t.href} rel="noopener">
+                  <span class="visually-hidden">{t.name} on </span>GitHub <Fragment set:html={arrow} />
+                </a>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </div></section>
+
+    <!-- experience -->
+    <section class="section wrap" id="experience" aria-labelledby="exp-h">
+      <div class="section__head">
+        <h2 id="exp-h" class="caps section__h"><span class="print print--pink" data-ink="Experience">Experience</span></h2>
+        <p class="section__lede">
+          Italian and Albanian native, fluent Greek, professional English. Le Wagon bootcamp 2019, ThePower MBA (online
+          program, certificate) 2020.
         </p>
       </div>
-      <div class="spike">
-        <svg class="spike__pin" viewBox="0 0 40 120" aria-hidden="true">
-          <defs>
-            <linearGradient id="pin" x1="0" x2="1">
-              <stop offset="0" stop-color="#7c858b" />
-              <stop offset="0.45" stop-color="#eef0f1" />
-              <stop offset="1" stop-color="#4a5257" />
-            </linearGradient>
-          </defs>
-          <path d="M20 2 L23 60 L23 104 L17 104 L17 60 Z" fill="url(#pin)" />
-          <ellipse cx="20" cy="108" rx="18" ry="6" fill="#4a5257" />
-          <ellipse cx="20" cy="105" rx="18" ry="6" fill="#b7bec3" />
-        </svg>
-        <div class="receipt">
-          <div class="receipt__head">
-            <span>Qwertic</span>
-            <span>Service record</span>
-          </div>
-          <ol class="receipt__lines">
-            {
-              record.map((r) => (
-                <li>
-                  <span class="receipt__when">{r.when}</span>
-                  <span class="receipt__where">{r.where}</span>
-                  <span class="receipt__what">{r.what}</span>
-                </li>
-              ))
-            }
-          </ol>
-          <div class="receipt__extra">
-            <p><span>Training</span> Le Wagon full-stack bootcamp, 2019. ThePower MBA, online program, certificate, 2020.</p>
-            <p><span>Languages</span> Italian and Albanian native, fluent Greek, professional English.</p>
-          </div>
-          {
-            hasCv && (
-              <a class="receipt__cv" href={CV_PATH} download>
-                Download the full CV (PDF)
-              </a>
-            )
-          }
-        </div>
-      </div>
-    </section>
-
-    <section class="mise" id="mise" aria-labelledby="mise-h">
-      <div class="wrap">
-        <h2 id="mise-h" class="tape">Mise en place</h2>
-        <p class="section-lede">
-          The tools I build for my own station and use every day. Some of them other developers use too.
-        </p>
-        <ul class="shelf">
-          {
-            tools.map((t) => (
-              <li class="tub">
-                <span class="tub__label">{t.name}</span>
-                <p class="tub__what">{t.what}</p>
-                <p class="tub__meta">{t.meta}</p>
-                {t.href && (
-                  <a class="tub__link" href={t.href} rel="noopener">
-                    <span class="visually-hidden">{t.name} on </span>GitHub
-                    <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 14 14 6M7 6h7v7" fill="none" stroke="currentColor" stroke-width="2" /></svg>
-                  </a>
-                )}
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-    </section>
-
-    <section class="order-in wrap" id="order" aria-labelledby="order-h">
-      <h2 id="order-h" class="tape">Order in</h2>
-      <div class="tables">
-        <article class="order order--open">
-          <div class="order__head"><span>Table 1</span><span>Hiring</span></div>
-          <h3 class="order__title">You're hiring</h3>
-          <ul class="order__lines">
-            <li>AI engineering or full-stack roles</li>
-            <li>Permanent roles welcome</li>
-            <li>Remote-first, or hybrid in Milan</li>
-          </ul>
-        </article>
-        <article class="order order--open">
-          <div class="order__head"><span>Table 2</span><span>Project</span></div>
-          <h3 class="order__title">You need it built</h3>
-          <ul class="order__lines">
-            <li>An LLM feature that has to work in production</li>
-            <li>Built end to end: data, API, UI and the model in between</li>
-            <li>Freelance, remote</li>
-          </ul>
-        </article>
-      </div>
-      <div class="order-in__actions">
-        <a class="btn btn--lamp" href={bookingHref}>
-          Book a call
-          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" /></svg>
-        </a>
-        <a class="btn btn--line" href={`mailto:${EMAIL}`}>{EMAIL}</a>
-        <a class="btn btn--line" href={LINKEDIN} rel="noopener">LinkedIn</a>
-        <a class="btn btn--line" href={GITHUB} rel="noopener">GitHub</a>
-      </div>
+      <ol class="exp">
+        {
+          experience.map((e) => (
+            <li>
+              <span class="label exp__when">{e.when}</span>
+              <span class="caps exp__where">{e.where}</span>
+              <span class="exp__what">{e.what}</span>
+            </li>
+          ))
+        }
+      </ol>
+      {
+        hasCv && (
+          <a class="btn btn--line exp__cv" href={CV_PATH} download>
+            Download CV (PDF)
+          </a>
+        )
+      }
     </section>
   </main>
 
-  <footer class="foot wrap">
-    <p>Qwertic is Regi Voda, full-stack AI engineer. Milan, Italy.</p>
-    <p>&copy; {new Date().getFullYear()}</p>
+  <!-- contact -->
+  <footer class="contact" id="contact" aria-labelledby="contact-h">
+    <div class="wrap contact__in">
+      <h2 id="contact-h" class="caps contact__h">
+        <span class="print contact__print" data-ink="Work with me">Work with me</span>
+      </h2>
+      <div class="doors">
+        <div class="door">
+          <h3 class="caps door__h">You're hiring</h3>
+          <p>AI engineering or full-stack roles, permanent welcome. Remote-first, or hybrid in Milan.</p>
+        </div>
+        <div class="door">
+          <h3 class="caps door__h">You need it built</h3>
+          <p>An LLM feature that has to work in production, built end to end: data, API, UI and the model in between.</p>
+        </div>
+      </div>
+      <div class="contact__actions">
+        <a class="btn btn--ink" href={bookingHref}>Book a call <Fragment set:html={arrow} /></a>
+        <a class="contact__link" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+        <a class="contact__link" href={LINKEDIN} rel="noopener">LinkedIn</a>
+        <a class="contact__link" href={GITHUB} rel="noopener">GitHub</a>
+      </div>
+      <p class="contact__foot label">
+        <span>Qwertic is Regi Voda. Milan, Italy.</span><span>&copy; {new Date().getFullYear()}</span>
+      </p>
+    </div>
   </footer>
 </Base>
 
-<script>
-  const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>(".slip"));
-
-  function pull(id: string, focus = false) {
-    tabs.forEach((tab) => {
-      const on = tab.dataset.ticket === id;
-      tab.setAttribute("aria-selected", String(on));
-      tab.tabIndex = on ? 0 : -1;
-      const panel = document.getElementById(tab.getAttribute("aria-controls")!);
-      if (!panel) return;
-      panel.hidden = !on;
-      if (on) {
-        panel.classList.remove("is-printing");
-        void panel.offsetWidth;
-        panel.classList.add("is-printing");
-      }
-      if (on && focus) tab.focus();
-    });
-  }
-
-  tabs.forEach((tab, i) => {
-    tab.addEventListener("click", () => pull(tab.dataset.ticket!));
-    tab.addEventListener("keydown", (e) => {
-      const step = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
-      if (e.key === "Home" || e.key === "End") {
-        e.preventDefault();
-        pull(tabs[e.key === "Home" ? 0 : tabs.length - 1].dataset.ticket!, true);
-      } else if (step) {
-        e.preventDefault();
-        pull(tabs[(i + step + tabs.length) % tabs.length].dataset.ticket!, true);
-      }
-    });
-  });
-
-  document.querySelectorAll<HTMLAnchorElement>("[data-pull]").forEach((a) => {
-    a.addEventListener("click", () => pull(a.dataset.pull!));
-  });
-</script>
-
 <style>
-  /* ---------- nav ---------- */
-  .rail-zone {
-    position: relative;
-    padding-top: 0.75rem;
-  }
-
-  .bar {
+  /* ---------- top bar ---------- */
+  .top {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
+    gap: 1.5rem;
+    padding-block: 1.1rem;
+    border-bottom: 1.5px solid var(--rule);
   }
 
-  .bar__mark {
-    font-family: var(--display);
-    font-variation-settings: "wdth" 75;
-    font-weight: 900;
-    font-size: 1.125rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+  .mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
     text-decoration: none;
+    color: var(--blue);
   }
 
-  .bar__links {
+  .qmark {
+    width: 2.1rem;
+    height: 2.1rem;
+    -webkit-mask: url("/grain.svg");
+    mask: url("/grain.svg");
+  }
+
+  .qmark rect {
+    mix-blend-mode: multiply;
+  }
+
+  .mark__word {
+    font-size: 1.9rem;
+    line-height: 1;
+  }
+
+  .top nav {
+    margin-left: auto;
+  }
+
+  .nav {
     display: flex;
-    gap: clamp(0.75rem, 2.5vw, 1.75rem);
-    font-weight: 600;
-    font-variation-settings: "wdth" 90;
-    font-size: 0.95rem;
+    gap: clamp(1rem, 2.4vw, 2rem);
   }
 
-  .bar__links a {
-    text-decoration: none;
+  .nav a {
+    display: inline-block;
     padding-block: 0.5rem;
+    color: var(--blue);
+    text-decoration: none;
   }
 
-  .bar__links a:hover {
+  .nav a:hover {
     text-decoration: underline;
-    text-decoration-color: var(--lamp);
+    text-decoration-color: var(--pink);
   }
 
-  /* ---------- the rail ---------- */
-  .rail {
+  .top__cta {
+    min-height: 2.6rem;
+    padding: 0.55rem 1rem 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  /* ---------- first viewport ---------- */
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+  }
+
+  .hero__main {
     position: relative;
-    margin-top: 0.75rem;
-    padding-top: 1.1rem;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3.5rem) clamp(2rem, 5vw, 4rem) 0;
+    border-right: 1.5px solid var(--rule);
   }
 
-  .rail__bar {
-    position: absolute;
-    inset: 0.5rem 0 auto;
-    height: 1.35rem;
-    background: linear-gradient(180deg, #f6f7f8 0%, #b7bec3 35%, #7c858b 60%, #d3d8db 80%, #8d959a 100%);
-    box-shadow:
-      0 3px 6px rgb(0 0 0 / 0.25),
-      inset 0 -1px 0 rgb(0 0 0 / 0.25);
-    z-index: 2;
+  .hero__h {
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(4.2rem, 14vw, 13.25rem);
+    line-height: 0.86;
+    letter-spacing: -0.005em;
   }
 
-  /* heat lamp: warm light cast down onto tickets that are firing */
-  .slip--firing::before {
+  .hero__line {
+    width: fit-content;
+  }
+
+  /* one overprint: a blue halftone disc laid over the second line, purple where it hits pink */
+  .hero__main::after {
     content: "";
     position: absolute;
-    inset: -1.5rem -2.5rem -2rem;
-    background: radial-gradient(closest-side, var(--lamp-glow), transparent);
-    filter: blur(6px);
-    z-index: -1;
+    top: clamp(6rem, 17vw, 15rem);
+    right: clamp(-2rem, 2vw, 3rem);
+    width: clamp(8rem, 20vw, 17rem);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--blue) 2.4px, transparent 2.8px) 0 0 / 10px 10px;
+    mix-blend-mode: multiply;
+    opacity: 0.8;
     pointer-events: none;
+    -webkit-mask: radial-gradient(closest-side, #000 96%, transparent 100%);
+    mask: radial-gradient(closest-side, #000 96%, transparent 100%);
   }
 
-  .rail__track {
-    position: relative;
-    z-index: 3;
-    display: flex;
-    gap: clamp(0.6rem, 1.4vw, 1.1rem);
-    padding: 0 var(--gutter) 1.75rem;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: var(--gutter);
-    scrollbar-width: thin;
-    scrollbar-color: var(--steel-500) transparent;
+  /* the headline prints in two passes: blue is already down, the second ink lands */
+  .hero__line::after {
+    animation: second-pass 900ms var(--ease-out) 250ms both;
   }
 
-  @media (min-width: 76rem) {
-    .rail__track {
-      justify-content: center;
-    }
+  .hero__line--b::after {
+    animation-delay: 420ms;
   }
 
-  .slip {
-    all: unset;
-    flex: 0 0 clamp(11.5rem, 17vw, 13.75rem);
-    position: relative;
-    scroll-snap-align: start;
-    cursor: pointer;
-    filter: drop-shadow(0 7px 7px rgb(0 0 0 / 0.18));
-    transform-origin: top center;
-    animation: slide-in 700ms var(--ease-out) both;
-    animation-delay: calc(var(--i) * 70ms + 120ms);
-    transition:
-      translate 260ms var(--ease-out),
-      rotate 260ms var(--ease-out),
-      filter 260ms var(--ease-out),
-      opacity 260ms var(--ease-out);
-  }
-
-  .slip:nth-child(odd) {
-    rotate: -0.6deg;
-  }
-  .slip:nth-child(even) {
-    rotate: 0.5deg;
-  }
-
-  .slip:hover {
-    translate: 0 4px;
-  }
-
-  .slip[aria-selected="true"] {
-    translate: 0 12px;
-    rotate: 0deg;
-    filter: drop-shadow(0 14px 12px rgb(0 0 0 / 0.24));
-  }
-
-  .slip[aria-selected="false"] .slip__paper {
-    background: #f1f1ee;
-  }
-
-  .slip:focus-visible {
-    outline: none;
-  }
-
-  .slip:focus-visible .slip__paper {
-    outline: 3px solid var(--ink);
-    outline-offset: 3px;
-  }
-
-  @keyframes slide-in {
+  @keyframes second-pass {
     from {
-      translate: 3rem 0;
       opacity: 0;
+      translate: 18px -12px;
     }
   }
 
-  .slip__clip {
-    position: absolute;
-    top: -0.9rem;
-    left: 50%;
-    width: 2.4rem;
-    height: 1.6rem;
-    translate: -50% 0;
-    background: linear-gradient(180deg, #eef0f1, #7c858b);
-    border-radius: 2px 2px 6px 6px;
-    box-shadow: 0 2px 2px rgb(0 0 0 / 0.3);
-    z-index: 2;
-  }
-
-  .slip__paper {
-    display: grid;
-    gap: 0.3rem;
-    padding: 1.1rem 0.95rem 1.4rem;
-    min-height: 9.5rem;
-    background: var(--paper);
-    font-family: var(--ticket);
-    font-variation-settings: "wdth" 90;
-    font-size: 0.72rem;
-    line-height: 1.35;
-    color: var(--ink-soft);
-    --tooth: 10px;
-    mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / var(--tooth) 100%;
-    transition: background-color 260ms var(--ease-out);
-  }
-
-  .slip__top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .slip__title {
-    margin-top: 0.3rem;
-    font-family: var(--display);
-    font-variation-settings: "wdth" 80;
-    font-weight: 800;
-    font-size: 1.2rem;
-    line-height: 1.05;
-    color: var(--ink);
-  }
-
-  .slip__table {
-    color: var(--ink-soft);
-  }
-
-  .slip__stations {
-    margin-top: auto;
-    padding-top: 0.45rem;
-    border-top: 1px dashed var(--steel-300);
-    letter-spacing: 0.04em;
-  }
-
-  /* status stamps */
-  .stamp {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 0.4em;
-    padding: 0.1rem 0.4rem;
-    font-family: var(--ticket);
-    font-weight: 700;
-    font-size: 0.66rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    border: 1.5px solid currentColor;
-  }
-
-  .stamp--firing {
-    color: var(--lamp-deep);
-  }
-
-  .stamp--prep {
-    color: var(--ink);
-    border-style: dashed;
-  }
-
-  .stamp--served {
-    color: var(--steel-700);
-  }
-
-  .stamp--big {
-    font-size: 0.85rem;
-    padding: 0.3rem 0.6rem;
-    border-width: 2px;
-    rotate: -4deg;
-  }
-
-  .stamp--big small {
-    font-size: 0.7em;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    text-transform: none;
-  }
-
-  /* ---------- the pass (first viewport) ---------- */
-  .pass {
-    display: grid;
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-    gap: clamp(2rem, 5vw, 5rem);
-    align-items: start;
-    padding-block: clamp(1.5rem, 3vw, 2.5rem) clamp(4rem, 8vw, 7rem);
-  }
-
-  .plate {
-    display: inline-block;
-    padding: 0.2rem 0.9rem 0.35rem;
-    background: linear-gradient(180deg, #e9ecee, #c3c9cd);
-    box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.9),
-      inset 0 -2px 0 rgb(0 0 0 / 0.12),
-      0 4px 10px rgb(0 0 0 / 0.14);
-  }
-
-  .plate__word {
-    display: block;
-    font-family: var(--display);
-    font-variation-settings: "wdth" 72;
-    font-weight: 900;
-    font-size: clamp(3.6rem, 10vw, 6rem);
-    line-height: 0.95;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    color: #5d666c;
-    /* debossed: letters pressed into the plate */
-    text-shadow:
-      0 1px 0 rgb(255 255 255 / 0.85),
-      0 -1px 0 rgb(0 0 0 / 0.35);
-  }
-
-  .pass__role {
-    margin-top: 1.4rem;
-    font-family: var(--display);
-    font-variation-settings: "wdth" 85;
-    font-weight: 800;
-    font-size: clamp(1.7rem, 3.4vw, 2.6rem);
-    line-height: 1.05;
-    letter-spacing: -0.01em;
-  }
-
-  .pass__lede {
-    margin-top: 0.9rem;
-    max-width: 34ch;
-    font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+  .hero__lede {
+    margin-top: clamp(1.5rem, 3vw, 2.25rem);
+    max-width: 38ch;
+    font-size: clamp(1.15rem, 1.7vw, 1.38rem);
     line-height: 1.45;
     color: var(--ink-soft);
   }
 
-  .pass__actions {
+  .hero__actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 1.75rem;
+    gap: 0.9rem 1.1rem;
+    margin-top: 2rem;
   }
 
-  .pass__who {
-    margin-top: 1.25rem;
-    font-size: 0.95rem;
-    color: var(--steel-700);
-  }
-
-  .pass__order {
-    position: relative;
-    padding-top: 0.5rem;
-  }
-
-  .pass__hint {
-    margin-top: 0.9rem;
-    font-size: 0.9rem;
-    color: var(--steel-700);
-  }
-
-  /* ---------- big printed order ---------- */
-  .order {
-    position: relative;
-    padding: 1.5rem 1.5rem 2.2rem;
-    background: var(--paper);
-    font-family: var(--ticket);
-    font-variation-settings: "wdth" 92;
-    font-size: 0.85rem;
-    line-height: 1.5;
-    color: var(--ink);
-    --tooth: 14px;
-    mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / var(--tooth) 100%;
-  }
-
-  .pass__order .order {
-    filter: none;
-  }
-
-  .pass__order {
-    filter: drop-shadow(0 16px 18px rgb(0 0 0 / 0.2));
-  }
-
-  .order:focus-visible {
-    outline: 3px solid var(--ink);
-    outline-offset: -6px;
-  }
-
-  .order.is-printing {
-    animation: print 520ms steps(14, end) both;
-  }
-
-  @keyframes print {
-    from {
-      clip-path: inset(0 0 100% 0);
-    }
-    to {
-      clip-path: inset(0 0 0 0);
-    }
-  }
-
-  .order__head {
+  .hero__side {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    gap: 1rem;
-    padding-bottom: 0.6rem;
-    border-bottom: 1.5px dashed var(--ink);
-    font-variant-numeric: tabular-nums;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-size: 0.75rem;
+    gap: 2rem;
+    padding: clamp(2rem, 4vw, 3rem) 0 clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem);
   }
 
-  .order__table {
-    margin-top: 0.8rem;
+  .figure {
+    width: 100%;
+    max-width: 22rem;
+    align-self: center;
+    overflow: visible;
+  }
+
+  .figure__ink {
+    -webkit-mask: url("/grain.svg");
+    mask: url("/grain.svg");
+  }
+
+  .figure__ink > * {
+    mix-blend-mode: multiply;
+    transition: translate 700ms var(--ease-out);
+  }
+
+  .f-tail {
+    animation: tail-in 1s var(--ease-out) 300ms both;
+  }
+
+  .f-dots {
+    translate: 4px 3px;
+  }
+
+  @keyframes tail-in {
+    from {
+      translate: 26px 22px;
+      opacity: 0;
+    }
+  }
+
+  .hero__side:hover .f-ring {
+    translate: -5px 3px;
+  }
+  .hero__side:hover .f-tail {
+    translate: 6px 4px;
+  }
+  .hero__side:hover .f-dots {
+    translate: 10px -4px;
+  }
+
+  .now {
+    padding-top: 1.1rem;
+    border-top: 1.5px solid var(--rule);
+  }
+
+  .now__t {
+    margin-top: 0.2rem;
+    font-family: var(--display);
+    font-variation-settings: "wdth" 75;
+    font-weight: 700;
+    font-size: 1.45rem;
+    line-height: 1.12;
+  }
+
+  .now__d {
+    margin-top: 0.5rem;
     color: var(--ink-soft);
   }
 
-  .order__title {
-    margin-top: 0.35rem;
-    font-family: var(--display);
-    font-variation-settings: "wdth" 80;
-    font-weight: 800;
-    font-size: clamp(1.8rem, 3vw, 2.4rem);
-    line-height: 1;
-    letter-spacing: -0.01em;
+  .now__link {
+    display: inline-block;
+    margin-top: 0.8rem;
+    font-weight: 600;
+    color: var(--blue);
   }
 
-  .order__lines {
+  /* ---------- sections ---------- */
+  .section {
+    padding-block: clamp(4.5rem, 9vw, 7.5rem) 0;
+  }
+
+  #work {
+    padding-top: clamp(2rem, 4vw, 3.25rem);
+  }
+
+  .section__head {
+    display: grid;
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+    align-items: end;
+    gap: 1rem 2.5rem;
+    padding-bottom: 1.4rem;
+    border-bottom: 1.5px solid var(--rule);
+  }
+
+  .section__h {
+    font-size: clamp(3rem, 7vw, 6rem);
+  }
+
+  .section__lede {
+    max-width: 36ch;
+    color: var(--ink-soft);
+    font-size: 1.08rem;
+  }
+
+  .meta {
+    margin-top: 0.9rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 1rem;
+    color: var(--ink-soft);
+  }
+
+  .status {
+    padding: 0.18rem 0.5rem 0.12rem;
+    border: 2px solid currentColor;
+  }
+
+  .status--live {
+    color: var(--paper);
+    background: var(--blue);
+    border-color: var(--blue);
+  }
+
+  .status--progress {
+    color: var(--blue);
+    border-style: dashed;
+  }
+
+  .status--shipped {
+    color: var(--ink);
+  }
+
+  .facts {
     display: grid;
     gap: 0.5rem;
     margin-top: 1.1rem;
   }
 
-  .order__lines li {
+  .facts li {
     position: relative;
-    padding-left: 1.5rem;
+    padding-left: 1.3rem;
   }
 
-  /* kitchen ticket modifiers are printed with a leading plus */
-  .order__lines li::before {
-    content: "+";
+  .facts li::before {
+    content: "";
     position: absolute;
-    left: 0.2rem;
-    font-weight: 700;
-    color: var(--lamp-deep);
+    left: 0;
+    top: 0.62em;
+    width: 0.62rem;
+    height: 0.62rem;
+    background: var(--pink);
   }
 
-  .order__foot {
+  .facts--small {
+    font-size: 0.98rem;
+  }
+
+  .layers {
+    margin-top: 1.2rem;
+    color: var(--blue);
+  }
+
+  /* lead project */
+  .lead {
+    display: grid;
+    grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+    border-bottom: 1.5px solid var(--rule);
+  }
+
+  .lead__text {
+    padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem) clamp(2rem, 4vw, 3rem) 0;
+    border-right: 1.5px solid var(--rule);
+  }
+
+  .lead__h {
+    margin-top: 0;
+    font-size: clamp(3.4rem, 7.5vw, 6rem);
+  }
+
+  .lead__sum {
+    margin-top: 1rem;
+    max-width: 40ch;
+    font-size: 1.2rem;
+  }
+
+  .flow {
+    margin: 0;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    padding: clamp(2rem, 4vw, 3rem) 0 clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .flow ol {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1rem;
-    margin-top: 1.4rem;
-    padding-top: 0.9rem;
-    border-top: 1.5px dashed var(--ink);
-    font-size: 0.75rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+    width: 100%;
+    counter-reset: step;
   }
 
-  /* ---------- shared section bits ---------- */
-  .section-lede {
-    margin-top: 1.1rem;
-    max-width: 52ch;
-    font-size: 1.15rem;
+  .flow__step {
+    position: relative;
+    display: grid;
+    gap: 0.3rem;
+    justify-items: start;
+  }
+
+  .flow__step svg {
+    width: 100%;
+    max-width: 8.5rem;
+    -webkit-mask: url("/grain.svg");
+    mask: url("/grain.svg");
+  }
+
+  .flow__step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 32%;
+    right: -0.9rem;
+    width: 0.9rem;
+    height: 3px;
+    background: var(--ink);
+  }
+
+  /* ink shift: only the second pass slips out of register */
+  .ink-b {
+    mix-blend-mode: multiply;
+    translate: 2px 1.5px;
+    transition: translate 420ms var(--ease-out);
+  }
+
+  .lead:hover .flow__step .ink-b,
+  .row:hover .ink-b {
+    translate: 7px -5px;
+  }
+
+  .flow__step .label {
+    margin-top: 0.6rem;
+    color: var(--blue);
+  }
+
+  .flow__d {
+    font-size: 0.95rem;
     color: var(--ink-soft);
+    line-height: 1.35;
   }
 
-  /* ---------- the line: stations on a steel counter ---------- */
-  .line {
-    padding-block: clamp(4rem, 8vw, 6.5rem);
-    background: linear-gradient(180deg, rgb(35 40 43 / 0.06), rgb(35 40 43 / 0));
-    border-top: 1px solid rgb(255 255 255 / 0.7);
-    box-shadow: inset 0 1px 0 rgb(0 0 0 / 0.08);
+  /* other work */
+  .rows {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .counter {
+  .row {
+    padding: clamp(1.75rem, 3vw, 2.5rem) clamp(1.5rem, 3vw, 2.5rem) clamp(1.75rem, 3vw, 2.5rem) 0;
+    border-bottom: 1.5px solid var(--rule);
+  }
+
+  .row:nth-child(even) {
+    padding-left: clamp(1.5rem, 3vw, 2.5rem);
+    padding-right: 0;
+    border-left: 1.5px solid var(--rule);
+  }
+
+  .row {
+    position: relative;
+  }
+
+  .glyph {
+    float: right;
+    width: clamp(4rem, 7vw, 5.5rem);
+    height: auto;
+    margin: 0 0 0.75rem 1.25rem;
+    overflow: visible;
+    -webkit-mask: url("/grain.svg");
+    mask: url("/grain.svg");
+  }
+
+  .row__h {
+    margin-top: 0.2rem;
+    font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+  }
+
+  .row__sum {
+    margin-top: 0.7rem;
+    font-size: 1.1rem;
+  }
+
+  /* stack */
+  .stack {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    margin-top: 2.75rem;
-    background: linear-gradient(180deg, var(--steel-50), var(--steel-100));
-    border: 1px solid var(--steel-300);
-    box-shadow:
-      inset 0 1px 0 #fff,
-      0 10px 24px -12px rgb(0 0 0 / 0.3);
+    border-bottom: 1.5px solid var(--rule);
   }
 
-  .station {
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
-    padding: 1.4rem 1.2rem 1.5rem;
-    border-left: 1px solid var(--steel-300);
-    box-shadow: inset 1px 0 0 #fff;
+  .stack__col {
+    padding: 1.75rem 1.25rem 2rem;
+    border-left: 1.5px solid var(--rule);
   }
 
-  .station:first-child {
+  .stack__col:first-child {
+    padding-left: 0;
     border-left: 0;
-    box-shadow: none;
   }
 
-  .station__name {
-    font-family: var(--display);
-    font-variation-settings: "wdth" 75;
-    font-weight: 900;
-    font-size: 1.05rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding-bottom: 0.7rem;
-    border-bottom: 3px solid var(--ink);
+  .stack__h {
+    font-size: 2.1rem;
+    color: var(--blue);
+    padding-bottom: 0.9rem;
+    margin-bottom: 1rem;
+    /* halftone underline */
+    background: radial-gradient(circle, var(--pink) 1.6px, transparent 1.9px) 0 100% / 7px 7px repeat-x;
+    background-size: 7px 8px;
   }
 
-  .station__items {
+  .stack__col ul {
     display: grid;
-    gap: 0.55rem;
-    font-size: 0.98rem;
+    gap: 0.6rem;
+    font-size: 0.99rem;
     line-height: 1.4;
   }
 
-  .station__rail {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem 0.6rem;
-    margin-top: auto;
-    padding-top: 0.8rem;
-    border-top: 1px dashed var(--steel-500);
-    font-size: 0.85rem;
-    color: var(--steel-700);
-  }
-
-  .station__rail a {
-    font-weight: 600;
-    color: var(--ink);
-  }
-
-  /* ---------- the spike ---------- */
-  .spike-zone {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
-    gap: clamp(2rem, 5vw, 5rem);
-    align-items: start;
-    padding-block: clamp(4rem, 8vw, 6.5rem);
-  }
-
-  .spike-zone__intro {
-    position: sticky;
-    top: 2rem;
-  }
-
-  .spike {
-    position: relative;
-    display: grid;
-    justify-items: center;
-  }
-
-  .spike__pin {
-    position: relative;
-    z-index: 2;
-    width: 2.5rem;
-    height: 7.5rem;
-    margin-bottom: -5.2rem;
-    filter: drop-shadow(0 3px 3px rgb(0 0 0 / 0.3));
-  }
-
-  .receipt {
-    width: 100%;
-    max-width: 38rem;
-    padding: 3.2rem clamp(1.25rem, 3vw, 2rem) 2.6rem;
-    background: var(--paper);
-    font-family: var(--ticket);
-    font-variation-settings: "wdth" 92;
-    font-size: 0.85rem;
-    line-height: 1.55;
-    rotate: 0.6deg;
-    --tooth: 14px;
-    mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / var(--tooth) 100%;
-  }
-
-  .spike {
-    filter: drop-shadow(0 14px 16px rgb(0 0 0 / 0.18));
-  }
-
-  .receipt__head {
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 0.7rem;
-    border-bottom: 1.5px dashed var(--ink);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-size: 0.75rem;
-    font-weight: 700;
-  }
-
-  .receipt__lines {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .receipt__lines li {
-    display: grid;
-    grid-template-columns: 7.5rem minmax(0, 1fr);
-    gap: 0.15rem 1rem;
-    padding-block: 1rem;
-    border-bottom: 1px dashed var(--steel-300);
-  }
-
-  .receipt__when {
-    grid-row: span 2;
-    font-variant-numeric: tabular-nums;
-    color: var(--ink-soft);
-  }
-
-  .receipt__where {
-    font-family: var(--display);
-    font-variation-settings: "wdth" 85;
-    font-weight: 800;
-    font-size: 1.1rem;
-    line-height: 1.2;
-  }
-
-  .receipt__what {
-    font-family: var(--text);
-    font-size: 1rem;
-    color: var(--ink-soft);
-  }
-
-  .receipt__extra {
-    display: grid;
-    gap: 0.7rem;
-    margin-top: 1.2rem;
-    font-family: var(--text);
-    font-size: 0.98rem;
-    color: var(--ink-soft);
-  }
-
-  .receipt__extra span {
-    display: block;
-    font-family: var(--ticket);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ink);
-  }
-
-  .receipt__cv {
-    display: inline-block;
-    margin-top: 1.4rem;
-    font-weight: 700;
-  }
-
-  /* ---------- mise en place ---------- */
-  .mise {
-    padding-block: clamp(4rem, 8vw, 6.5rem);
-    background: var(--steel-900);
-    color: var(--steel-50);
-    background-image:
-      repeating-linear-gradient(0deg, rgb(255 255 255 / 0.035) 0 1px, transparent 1px 3px),
-      linear-gradient(180deg, #2b3134, #1d2124);
-  }
-
-  .mise .section-lede {
-    color: var(--steel-300);
-  }
-
-  .shelf {
+  /* tools */
+  .tools {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: clamp(1rem, 2vw, 1.5rem);
-    margin-top: 2.75rem;
+    border-bottom: 1.5px solid var(--rule);
   }
 
-  .tub {
+  .tool {
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
-    padding: 1.4rem 1.2rem 1.3rem;
-    border-top: 3px solid var(--steel-500);
-    background: rgb(255 255 255 / 0.04);
+    padding: 1.9rem 1.4rem 2rem;
+    border-left: 1.5px solid var(--rule);
   }
 
-  .tub__label {
-    align-self: flex-start;
-    padding: 0.25rem 0.7rem 0.15rem;
-    font-family: var(--marker);
-    font-size: 1.3rem;
-    line-height: 1.15;
-    color: var(--ink);
-    background: var(--tape);
-    rotate: -1.5deg;
-    box-shadow: 0 2px 3px rgb(0 0 0 / 0.35);
+  .tool:first-child {
+    padding-left: 0;
+    border-left: 0;
   }
 
-  .tub:nth-child(even) .tub__label {
-    rotate: 1deg;
+  .tool__h {
+    font-size: 2.35rem;
   }
 
-  .tub__what {
-    margin-top: 0.3rem;
+  .tool__what {
     font-size: 1.02rem;
-    line-height: 1.45;
-    color: var(--steel-50);
   }
 
-  .tub__meta {
-    font-family: var(--ticket);
-    font-size: 0.75rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--steel-300);
+  .tool__meta {
+    color: var(--blue);
   }
 
-  .tub__link {
+  .tool__link {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
     margin-top: auto;
     padding-top: 0.6rem;
-    font-weight: 700;
-    color: var(--paper);
+    color: var(--ink);
   }
 
-  .tub__link svg {
+  .tool__link :global(svg),
+  .now__link :global(svg) {
     width: 1em;
     height: 1em;
   }
 
-  /* ---------- order in ---------- */
-  .order-in {
-    padding-block: clamp(4rem, 8vw, 6.5rem) clamp(3rem, 6vw, 5rem);
+  /* the one flooded panel mid-page: blue ink, paper type */
+  .section--ink {
+    margin-top: clamp(4.5rem, 9vw, 7.5rem);
+    padding-block: clamp(4rem, 8vw, 6.5rem);
+    background: var(--blue);
+    color: var(--paper);
+    --rule: rgb(246 244 239 / 0.45);
+    position: relative;
+    isolation: isolate;
   }
 
-  .tables {
+  .section--ink::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: min(30rem, 45%);
+    background: radial-gradient(circle, var(--pink) 2.2px, transparent 2.6px) 0 0 / 11px 11px;
+    opacity: 0.55;
+    -webkit-mask: linear-gradient(110deg, #000 0%, transparent 75%);
+    mask: linear-gradient(110deg, #000 0%, transparent 75%);
+    z-index: -1;
+  }
+
+  .section--ink .section__lede,
+  .section--ink .tool__what {
+    color: var(--paper);
+  }
+
+  .section--ink .tool__meta,
+  .section--ink .tool__link {
+    color: var(--paper);
+  }
+
+  .section--ink .tool__link {
+    text-decoration-color: var(--pink);
+  }
+
+  .section--ink a:hover {
+    color: var(--paper);
+    text-decoration-color: var(--paper);
+  }
+
+  .section--ink :focus-visible {
+    outline-color: var(--paper);
+  }
+
+  .print--on-ink {
+    --ink-a: var(--paper);
+    --ink-b: var(--pink);
+  }
+
+  .print--on-ink::after {
+    mix-blend-mode: normal;
+  }
+
+  /* experience */
+  .exp li {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 4fr) minmax(0, 6fr);
+    gap: 0.4rem 2rem;
+    align-items: baseline;
+    padding-block: 1.3rem;
+    border-bottom: 1.5px solid var(--rule);
+  }
+
+  .exp__when {
+    color: var(--blue);
+  }
+
+  .exp__where {
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .exp__what {
+    color: var(--ink-soft);
+  }
+
+  .exp__cv {
+    margin-top: 2rem;
+  }
+
+  /* ---------- contact: the pink sheet ---------- */
+  .contact {
+    position: relative;
+    margin-top: clamp(5rem, 10vw, 8rem);
+    background: var(--pink);
+    color: var(--ink);
+    isolation: isolate;
+  }
+
+  /* halftone overprint in blue across the sheet's top-right */
+  .contact::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto auto;
+    width: min(46rem, 60%);
+    height: 100%;
+    background: radial-gradient(circle, var(--blue) 2.2px, transparent 2.6px) 0 0 / 11px 11px;
+    mix-blend-mode: multiply;
+    opacity: 0.55;
+    -webkit-mask: linear-gradient(200deg, #000 10%, transparent 70%);
+    mask: linear-gradient(200deg, #000 10%, transparent 70%);
+    z-index: -1;
+  }
+
+  .contact__in {
+    padding-block: clamp(4rem, 8vw, 6.5rem) 2rem;
+  }
+
+  .contact__h {
+    font-size: clamp(4rem, 12vw, 10.5rem);
+  }
+
+  .contact__print {
+    --ink-a: var(--ink);
+    --ink-b: var(--blue);
+  }
+
+  .doors {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(1.25rem, 3vw, 2.5rem);
     margin-top: 2.5rem;
-    filter: drop-shadow(0 14px 16px rgb(0 0 0 / 0.16));
+    border-top: 2px solid var(--ink);
   }
 
-  .tables .order:first-child {
-    rotate: -0.6deg;
-  }
-  .tables .order:last-child {
-    rotate: 0.5deg;
+  .door {
+    padding: 1.75rem 2rem 1.75rem 0;
+    font-size: 1.12rem;
   }
 
-  .order-in__actions {
+  .door + .door {
+    padding-left: 2rem;
+    border-left: 2px solid var(--ink);
+  }
+
+  .door__h {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    margin-bottom: 0.7rem;
+  }
+
+  .contact__actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 2.5rem;
+    align-items: center;
+    gap: 1rem 1.75rem;
+    padding-top: 1.75rem;
+    border-top: 2px solid var(--ink);
   }
 
-  /* ---------- footer ---------- */
-  .foot {
+  .contact__link {
+    font-weight: 600;
+    font-size: 1.08rem;
+    text-decoration-color: var(--ink);
+  }
+
+  .contact__link:hover {
+    color: var(--ink);
+    text-decoration-color: var(--blue);
+  }
+
+  .contact a:focus-visible {
+    outline-color: var(--ink);
+  }
+
+  .contact__foot {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 0.5rem 2rem;
-    padding-block: 2rem 2.5rem;
-    border-top: 1px solid var(--steel-300);
-    font-size: 0.92rem;
-    color: var(--steel-700);
+    margin-top: clamp(3.5rem, 7vw, 5.5rem);
   }
 
   /* ---------- responsive ---------- */
-  @media (max-width: 60rem) {
-    .pass,
-    .spike-zone {
+  @media (max-width: 64rem) {
+    .hero,
+    .lead,
+    .section__head {
       grid-template-columns: minmax(0, 1fr);
     }
 
-    .spike-zone__intro {
-      position: static;
+    .hero {
+      min-height: 0;
     }
 
-    .counter {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    .hero__main,
+    .lead__text {
+      padding-right: 0;
+      border-right: 0;
     }
 
-    .station:nth-child(odd) {
+    .hero__main {
+      border-bottom: 1.5px solid var(--rule);
+    }
+
+    .hero__side {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+      align-items: end;
+      padding-left: 0;
+    }
+
+    .lead__text {
+      border-bottom: 1.5px solid var(--rule);
+    }
+
+    .flow {
+      padding-left: 0;
+    }
+
+    .stack {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .stack__col:nth-child(4) {
+      padding-left: 0;
       border-left: 0;
-      box-shadow: none;
     }
 
-    .station {
-      border-top: 1px solid var(--steel-300);
+    .stack__col:nth-child(n + 4) {
+      border-top: 1.5px solid var(--rule);
     }
 
-    .station:first-child,
-    .station:nth-child(2) {
-      border-top: 0;
-    }
-
-    .shelf {
+    .tools {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .tool:nth-child(3) {
+      padding-left: 0;
+      border-left: 0;
+    }
+
+    .tool:nth-child(n + 3) {
+      border-top: 1.5px solid var(--rule);
     }
   }
 
-  @media (max-width: 40rem) {
-    .bar__links li:not(:last-child) {
+  @media (max-width: 42rem) {
+    .hero__main::after {
+      top: 5.3rem;
+      right: 0;
+      width: 5.5rem;
+    }
+
+    .glyph {
+      float: none;
+      display: block;
+      width: 3.5rem;
+      margin: 0 0 0.9rem;
+    }
+
+    .section__h .print {
+      -webkit-mask: url("/grain-light.svg");
+      mask: url("/grain-light.svg");
+    }
+
+    .hero__h {
+      font-size: 18.5vw;
+    }
+
+    .top nav {
       display: none;
     }
 
-    .counter,
-    .shelf,
-    .tables {
+    .top__cta {
+      margin-left: auto;
+    }
+
+    .hero__side {
       grid-template-columns: minmax(0, 1fr);
     }
 
-    .station {
+    .figure {
+      max-width: 13rem;
+      justify-self: start;
+    }
+
+    .rows,
+    .stack,
+    .tools,
+    .doors {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .row:nth-child(even),
+    .stack__col,
+    .tool,
+    .door + .door {
+      padding-left: 0;
       border-left: 0;
-      box-shadow: none;
-      border-top: 1px solid var(--steel-300);
     }
 
-    .station:nth-child(2) {
-      border-top: 1px solid var(--steel-300);
+    .stack__col:not(:first-child),
+    .tool:not(:first-child) {
+      border-top: 1.5px solid var(--rule);
     }
 
-    .receipt__lines li {
+    .door + .door {
+      border-top: 2px solid var(--ink);
+    }
+
+    .flow ol {
+      gap: 0.75rem;
+    }
+
+    .exp li {
       grid-template-columns: minmax(0, 1fr);
-    }
-
-    .receipt__when {
-      grid-row: auto;
-    }
-
-    .order {
-      padding-inline: 1.1rem;
     }
   }
 </style>
