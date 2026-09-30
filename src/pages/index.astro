@@ -3,7 +3,7 @@ import fs from "node:fs";
 import Base from "../layouts/Base.astro";
 import { EMAIL, LINKEDIN, GITHUB, CV_PATH, bookingHref, work, stack, experience, extras, tools, statusLabel } from "../data/site";
 
-const hasCv = fs.existsSync(new URL(`../../public${CV_PATH}`, import.meta.url));
+const hasCv = fs.existsSync(`${process.cwd()}/public${CV_PATH}`);
 const [lead, ...rest] = work;
 // Two-ink figures: layer a prints first, layer b is the second pass that slips on hover.
 const glyphs: Record<string, { a: string; b: string }> = {
