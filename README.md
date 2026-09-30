@@ -5,7 +5,7 @@ Personal site of Qwertic (Regi Voda). AI engineer, full stack.
 ## Stack
 
 - Astro, static output
-- Self-hosted fonts via Fontsource (Archivo, Martian Mono, Permanent Marker)
+- Self-hosted fonts via Fontsource (Anybody, Schibsted Grotesk)
 - Cloudflare Pages
 
 ## Develop
@@ -17,10 +17,10 @@ bun run dev
 
 ## Content
 
-Everything on the page lives in `src/data/site.ts`: tickets, stations, record, tools and contact links.
+Everything on the page lives in `src/data/site.ts`: work, stack, experience, tools and contact links. The design system is in `DESIGN.md`.
 
-- `BOOKING_URL`: set it to a scheduling link. While it is empty, "Book a call" opens an email.
-- CV: put a PDF at `public/Regi_Voda_CV.pdf` and the download link appears on the service record.
+- `BOOKING_URL`: the scheduling link behind every "Book a call". If empty, it falls back to an email.
+- CV: `public/Regi_Voda_CV.pdf` (the phone-free web build of the CV). Remove it and the download link disappears.
 
 ## Deploy (Cloudflare Pages)
 
