@@ -11,8 +11,8 @@ Personal site of Qwertic (Regi Voda). AI engineer, full stack.
 ## Develop
 
 ```sh
-pnpm install
-pnpm dev
+bun install
+bun run dev
 ```
 
 ## Content
@@ -26,8 +26,8 @@ Everything on the page lives in `src/data/site.ts`: tickets, stations, record, t
 
 Connect the repo in the Cloudflare dashboard with:
 
-- Build command: `pnpm build`
+- Build command: `bun run build`
 - Output directory: `dist`
-- Environment variable: `NODE_VERSION=22`
+- Environment variables: `BUN_VERSION=1.3.6`, `NODE_VERSION=22`
 
 Then point qwertic.xyz at the Pages project.
