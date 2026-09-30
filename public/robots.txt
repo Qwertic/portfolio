@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://qwertic.xyz/sitemap-index.xml

@@ -1,0 +1,131 @@
+{
+  "title": "Choose the visual world for qwertic.xyz",
+  "question": "The roll assigned the Milano Centrale departure board. Keep it, take an alternate, or re-roll.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Partenze: the departure board",
+      "kicker": "THE ROLL",
+      "lineage": "Solari split-flap boards and the yellow printed Partenze timetables of Italian stations",
+      "thesis": "The work read as departures: each project a row with its layer, its status and where it's heading.",
+      "palette": ["#141517", "#EEEBE3", "#F4D23C", "#D2352B"],
+      "materials": ["split-flap tiles", "yellow printed timetable paper", "station signage type"],
+      "viewport": "A full-width split-flap board flips QWERTIC in, with rows for the chat module, CRM, public API, AI assistant and agent memory, each showing its platform (DB, API, UI, LLM) and status. Beside it, a yellow timetable card: AI engineering, full-stack, remote from Milan, with Book a call and Email.",
+      "risk": "Turns into kitsch if the flap animation runs everywhere; it has to stay a readable table first.",
+      "raised": [
+        {"from": "civic-bureau-prospectus-late-modern", "raise": "Colour is spent only on the yellow timetable and one status red; everything else is black, white and flap grey."},
+        {"from": "dream-surreal-impossible-worlds-luminescent-alien-understory", "raise": "The row in focus is the brightest thing on the board; every other row sits one step dimmer."},
+        {"from": "light-shadow-caustics-rain-night-cityscape", "raise": "The board runs on Milan local time and carries current availability as a live row."},
+        {"from": "signals-instruments-darkroom-safelight-bay", "raise": "Status moves through fixed stages, prototype, in progress, shipped, and never skips one."}
+      ],
+      "comp": ".impeccable/mocks/decision/assigned.webp"
+    },
+    {
+      "id": "model-pick",
+      "kicker": "IMPECCABLE’S PICK",
+      "label": "The Pass: kitchen brigade",
+      "lineage": "restaurant ticket rails, brigade stations and the pass",
+      "thesis": "Full-stack as the brigade: every station, one pass, and a chef who cooked for eight years before shipping code.",
+      "palette": ["#C9CDD0", "#FAF7EE", "#222222", "#E5672A"],
+      "materials": ["thermal order tickets", "stainless rail", "heat-lamp glow"],
+      "viewport": "A stainless ticket rail across the top holds projects as clipped order tickets; below, the stations (DB, API, UI, LLM) and the pass where work ships.",
+      "risk": "Paper plus orange sits close to the familiar AI cream-and-terracotta look, and the chef story can overshadow the AI work.",
+      "comp": ".impeccable/mocks/decision/model-pick.webp"
+    },
+    {
+      "id": "challenger-zine",
+      "label": "Napkin-sketch zine",
+      "verdict": "competitive",
+      "lineage": "hand-drawn technical zines",
+      "thesis": "Every project explained the way you'd sketch it for a friend: arrows, boxes and the one line that matters.",
+      "palette": ["#FBF6EA", "#111111", "#FFE14D", "#FF7BAC", "#2EC4B6"],
+      "materials": ["marker ink", "highlighter swipes", "doodled diagrams"],
+      "viewport": "A marker-lettered QWERTIC above a doodled diagram of agent memory with human review, arrows drawing in on scroll.",
+      "case": "Fuses well on clarity, since the diagrams explain the agent work. Loses on audience: hiring leads may read it as too artsy.",
+      "risk": "Hand-lettering reads juvenile, or too artsy for hiring readers, unless the facts stay typeset.",
+      "hero": "https://impeccable.style/worlds/cards/hand-drawn-zine-explainer-hero.webp"
+    },
+    {
+      "id": "challenger-understory",
+      "label": "Luminescent understory",
+      "verdict": "declined",
+      "lineage": "bioluminescent alien forest",
+      "thesis": "Paths that light up as you approach.",
+      "palette": ["#0B0F0C", "#6FE3E1", "#C7A6F2", "#B8F2C2"],
+      "materials": ["spore glow", "root veins"],
+      "viewport": "A dark field with glowing growths as projects.",
+      "case": "Loses on both counts: it lands exactly on the AI-hype glow you ruled out.",
+      "kept": "Attention as light: the focused element is the brightest one.",
+      "risk": "Neon-on-black AI cliché.",
+      "hero": "https://impeccable.style/worlds/cards/dream-surreal-impossible-worlds-luminescent-alien-understory-hero.webp"
+    },
+    {
+      "id": "challenger-cityscape",
+      "label": "Rain-night cityscape",
+      "verdict": "declined",
+      "lineage": "blue-hour urban nocturne",
+      "thesis": "The city's lights as a live timetable.",
+      "palette": ["#1D2F6F", "#0A0A0C", "#F2A93B", "#C9CED6"],
+      "materials": ["wet reflections", "window grids"],
+      "viewport": "A skyline with projects as lit windows.",
+      "case": "Loses on both counts: atmospheric, but the facts get buried.",
+      "kept": "Time-indexed state: the page knows what hour it is.",
+      "risk": "Mood over content.",
+      "hero": "https://impeccable.style/worlds/cards/light-shadow-caustics-rain-night-cityscape-hero.webp"
+    },
+    {
+      "id": "challenger-civic",
+      "label": "Late-modern prospectus",
+      "verdict": "declined",
+      "lineage": "corporate prospectus, bone-white and violet",
+      "thesis": "One ribbon of colour on an empty white page.",
+      "palette": ["#F7F7FA", "#1B1547", "#6B5CE7", "#7FD8D0"],
+      "materials": ["rendered ribbon", "hairline rules"],
+      "viewport": "Headline left, WebGL ribbon right.",
+      "case": "Loses on both counts: this is the corporate polish you ruled out.",
+      "kept": "Total colour restraint: all colour spent in one place.",
+      "risk": "Reads as a SaaS consultancy.",
+      "hero": "https://impeccable.style/worlds/cards/civic-bureau-prospectus-late-modern-hero.webp"
+    },
+    {
+      "id": "challenger-feed",
+      "label": "Vertical media feed",
+      "verdict": "declined",
+      "lineage": "full-screen short-video feeds",
+      "thesis": "One item owns the screen; the next is a flick away.",
+      "palette": ["#000000", "#FFFFFF", "#FE2C55"],
+      "materials": ["full-bleed media", "glyph rail"],
+      "viewport": "One project per snap, full viewport.",
+      "case": "Loses on both counts: there's no media to fill it with, and hiring readers want to scan.",
+      "kept": "One item at a time, at full scale, with the next one ready.",
+      "risk": "Empty frames without video.",
+      "hero": "https://impeccable.style/worlds/cards/pop-culture-shelf-vertical-video-feed-surface-hero.webp"
+    },
+    {
+      "id": "challenger-darkroom",
+      "label": "Darkroom safelight",
+      "verdict": "declined",
+      "lineage": "photo printing darkroom",
+      "thesis": "Work emerging slowly in the developer tray.",
+      "palette": ["#C2461E", "#2A2A2A", "#A9A9A9", "#F4F1EA"],
+      "materials": ["amber safelight", "wet prints"],
+      "viewport": "Projects developing station by station.",
+      "case": "Loses on both counts: slow and artsy.",
+      "kept": "Ordered, irreversible stages as the state vocabulary.",
+      "risk": "Too artsy, too slow.",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-darkroom-safelight-bay-hero.webp"
+    }
+  ],
+  "reroll": {"registers": ["safer", "bolder"]},
+  "buildPath": {"value": "code", "toggle": false},
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "thesis": "The clean developer portfolio, done with full craft.",
+    "palette": ["#FFFFFF", "#111827", "#2563EB"],
+    "materials": ["clean grid", "project cards"],
+    "viewport": "Name, one-line role, three project cards, contact.",
+    "risk": "Looks like everyone else's by design, which is the generic portfolio you ruled out."
+  },
+  "steer": true
+}
