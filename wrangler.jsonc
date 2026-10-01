@@ -1,0 +1,8 @@
+{
+  // Static site: Cloudflare Workers serves the Astro build output.
+  "name": "portfolio",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./dist"
+  }
+}
