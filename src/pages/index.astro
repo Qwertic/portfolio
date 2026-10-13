@@ -16,7 +16,8 @@ const hasCv = fs.existsSync(`${process.cwd()}/public${CV_PATH}`);
   description="Regi Voda (Qwertic) is an AI lead across the full stack: knowing what to build with AI, how, and when not to. Memory, MCP, retrieval, guardrails and evaluation, from the database to the model. Remote from Italy."
 >
   <a class="skip" href="#main">Skip to content</a>
-  <header class="top col">
+  <header class="top">
+    <div class="top__in col">
     <a class="top__name" href="#main">Qwertic</a>
     <nav aria-label="Sections">
       <ul>
@@ -27,6 +28,8 @@ const hasCv = fs.existsSync(`${process.cwd()}/public${CV_PATH}`);
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
+    <button class="top__theme" type="button" data-theme-toggle hidden>Dark</button>
+    </div>
   </header>
 
   <main id="main">
@@ -74,13 +77,12 @@ const hasCv = fs.existsSync(`${process.cwd()}/public${CV_PATH}`);
 
   <footer class="foot col">
     <p>Palette follows the season<span data-season-now></span>.</p>
-    <p><button class="link foot__theme" type="button" data-theme-toggle hidden>Dark theme</button></p>
     <p>Qwertic, Regi Voda</p>
   </footer>
 </Base>
 
 <script>
-  // Footer: name the season, and let the visitor override the OS theme. The choice is a convenience, kept locally.
+  // Footer names the season; the header toggle lets the visitor override the OS theme, kept locally as a convenience.
   const root = document.documentElement;
   const season = document.querySelector("[data-season-now]");
   if (season) season.textContent = `, ${root.dataset.season ?? "autumn"} now`;
@@ -89,7 +91,9 @@ const hasCv = fs.existsSync(`${process.cwd()}/public${CV_PATH}`);
   const osDark = matchMedia("(prefers-color-scheme: dark)");
   const isDark = () => (root.dataset.theme ? root.dataset.theme === "dark" : osDark.matches);
   const label = () => {
-    if (toggle) toggle.textContent = isDark() ? "Light theme" : "Dark theme";
+    if (!toggle) return;
+    toggle.textContent = isDark() ? "Light" : "Dark";
+    toggle.setAttribute("aria-label", isDark() ? "Switch to the light theme" : "Switch to the dark theme");
   };
   if (toggle) {
     toggle.hidden = false;
@@ -107,11 +111,66 @@ const hasCv = fs.existsSync(`${process.cwd()}/public${CV_PATH}`);
 </script>
 
 <style>
+  /* Sticky header. Its bottom rule is drawn by scroll: invisible at the top, present once the page moves. */
   .top {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: var(--ground);
+    border-bottom: 1px solid var(--hair);
+  }
+
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .top {
+        animation: top-rule linear both;
+        animation-timeline: scroll(root block);
+        animation-range: 0 6rem;
+      }
+    }
+  }
+
+  @keyframes top-rule {
+    from {
+      border-bottom-color: transparent;
+    }
+    to {
+      border-bottom-color: var(--hair);
+    }
+  }
+
+  .top__in {
     display: flex;
     align-items: baseline;
     gap: var(--s-3);
-    padding-top: var(--s-4);
+    padding-block: var(--s-2);
+  }
+
+  .top__theme {
+    min-height: 2.25rem;
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--hair);
+    border-radius: var(--r-2);
+    background: transparent;
+    color: var(--ink);
+    font: inherit;
+    font-size: var(--fs-1);
+    cursor: pointer;
+    transition: background-color var(--t-hover) var(--ease), border-color var(--t-hover) var(--ease);
+  }
+
+  .top__theme:hover {
+    background: var(--ground-2);
+    border-color: var(--ink-2);
+  }
+
+  .top__theme:active {
+    background: var(--ink);
+    color: var(--ground);
+  }
+
+  .top__theme[hidden] {
+    display: none;
   }
 
   .top__name {
@@ -215,27 +274,31 @@ const hasCv = fs.existsSync(`${process.cwd()}/public${CV_PATH}`);
     color: var(--ink-2);
   }
 
-  .foot__theme {
-    border: 0;
-    padding: 0;
-    background: none;
-    font: inherit;
-    color: var(--ink);
-    cursor: pointer;
-  }
-
-  .foot__theme[hidden] {
-    display: none;
-  }
-
   @media (max-width: 40rem) {
-    .top {
-      flex-direction: column;
-      gap: var(--s-1);
+    /* Phone: name and toggle on one line, the section links on one scrollable line below. */
+    .top__in {
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--s-1) var(--s-2);
+      padding-block: var(--s-1);
+    }
+
+    .top__theme {
+      margin-left: auto;
     }
 
     .top nav {
+      order: 3;
+      width: 100%;
       margin-left: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .top ul {
+      flex-wrap: nowrap;
+      white-space: nowrap;
+      padding-bottom: 0.25rem;
     }
 
     .intro {
