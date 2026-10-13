@@ -1,18 +1,23 @@
 # Qwertic (Regi Voda)
 
-> Regi Voda, known as Qwertic, is a full-stack AI engineer based in Italy, working remotely (hybrid possible with Milan as a base). He builds LLM features that hold up in production, from the database to the model. Available for AI engineering and full-stack roles, and for freelance projects.
+> Regi Voda, known as Qwertic, is an AI lead across the full stack, based in Italy, working remotely (hybrid possible with Milan as a base). He knows what to build with AI, how, and when not to: memory, MCP tools, ingestion pipelines, retrieval, guardrails, evaluation and AI interface practice, shipped to production from the database to the model. Available for AI lead and senior AI engineering roles, and for freelance projects.
 
 ## Now
 
 - Cairn (own project, in progress): persistent, shared memory for coding agents, served over MCP. Context engineering, knowledge ingestion into a vector database, data integrity (a person reviews what agents write), discoverability. Releases: https://github.com/Qwertic/cairn-releases
-- EdTech skills-and-credentials platform (client, 2026 - present): shapes the core product and its AI assistant integration, across frontend, backend, internal tools and MCP.
+- Dokimazo (https://dokimazo.io, client, 2026 - present): skills-and-credentials platform. Shapes the core product and its AI assistant integration, across frontend, backend, internal tools and MCP.
 
 ## Experience
 
 - 2024 - present: Freelance full-stack and AI engineer, remote.
-- 2020 - 2024: Software Developer at Callbell, a customer-messaging platform at millions of messages a day. Owned the core chat module, built the CRM from scratch (Rails, React), co-designed the public API and built the Zapier and Zoho integrations on it.
+- 2020 - 2024: Software Developer at Callbell, a customer-messaging platform at millions of messages a day. Owned the core chat module, built the CRM from scratch (Rails, React), co-designed the public API and built the Zapier and Zoho integrations on it, and early LLM features around the chat automations.
 - 2019 - 2020: Sole developer on an EU Horizon-funded MVP at JustMe Technologies, Paris.
 - 2011 - 2019: Chef in professional kitchens, before retraining into software (Le Wagon, 2019).
+
+## On the site
+
+- "Should this use AI?": a hand-written decision tree (no model) that walks a use case to a recommendation, from "no AI, write the rule" to agents with tools, with guardrails and evaluation for each.
+- "Where AI belongs": his rules of thumb by layer (model, interface, tools and pipelines, database).
 
 ## Skills
 

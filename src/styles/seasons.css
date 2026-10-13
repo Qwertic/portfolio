@@ -1,0 +1,180 @@
+/*
+ * Season palettes, light and dark. Generated from the palette table in MASTER.md;
+ * every pair there is contrast-checked. Only color changes with the season or the theme.
+ * The season comes from the visitor's date, the theme from the OS unless the visitor picks one.
+ */
+
+:root {
+  color-scheme: light;
+}
+
+/* autumn: fog, wet bark, lichen, larch */
+:root,
+:root[data-season="autumn"] {
+  --ground: #e9eae6;
+  --ground-2: #dfe1dc;
+  --ink: #2a2622;
+  --ink-2: #57524c;
+  --strata: #7b8572;
+  --strata-ink: #57624f;
+  --signal: #b5873a;
+  --signal-hi: #c39646;
+  --on-signal: #2a2622;
+  --hair: #c4c6bf;
+}
+
+/* winter: overcast snow, slate, frost, rosehip */
+:root[data-season="winter"] {
+  --ground: #e8eaec;
+  --ground-2: #dde0e3;
+  --ink: #23272b;
+  --ink-2: #50565d;
+  --strata: #7c8894;
+  --strata-ink: #4e5b67;
+  --signal: #cd7f71;
+  --signal-hi: #d99285;
+  --on-signal: #23272b;
+  --hair: #c2c7cc;
+}
+
+/* spring: new-leaf mist, moss, wisteria */
+:root[data-season="spring"] {
+  --ground: #eaebe4;
+  --ground-2: #dfe1d7;
+  --ink: #262822;
+  --ink-2: #53564c;
+  --strata: #7e8b62;
+  --strata-ink: #56633c;
+  --signal: #a593c4;
+  --signal-hi: #b4a4d0;
+  --on-signal: #262822;
+  --hair: #c5c8bb;
+}
+
+/* summer: sun-bleached stone, dry olive, sea */
+:root[data-season="summer"] {
+  --ground: #ebeae5;
+  --ground-2: #e0dfd8;
+  --ink: #24272a;
+  --ink-2: #51555a;
+  --strata: #8a8a63;
+  --strata-ink: #5f6040;
+  --signal: #6fa3a0;
+  --signal-hi: #80b1ae;
+  --on-signal: #24272a;
+  --hair: #c7c6bd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #1c1b19;
+    --ground-2: #272522;
+    --ink: #e7e5df;
+    --ink-2: #aaa59c;
+    --strata: #77826c;
+    --strata-ink: #a3ae93;
+    --signal: #c4924a;
+    --signal-hi: #d3a25a;
+    --on-signal: #1c1b19;
+    --hair: #3d3a36;
+    color-scheme: dark;
+  }
+
+  :root:not([data-theme="light"])[data-season="winter"] {
+    --ground: #181b1e;
+    --ground-2: #22262a;
+    --ink: #e4e7ea;
+    --ink-2: #a3aab1;
+    --strata: #6d7a86;
+    --strata-ink: #a0afbd;
+    --signal: #cf7c70;
+    --signal-hi: #db8d82;
+    --on-signal: #181b1e;
+    --hair: #363c42;
+    color-scheme: dark;
+  }
+
+  :root:not([data-theme="light"])[data-season="spring"] {
+    --ground: #1a1c17;
+    --ground-2: #252820;
+    --ink: #e6e8df;
+    --ink-2: #a8ac9e;
+    --strata: #728057;
+    --strata-ink: #a6b58a;
+    --signal: #b2a1d2;
+    --signal-hi: #c1b2dd;
+    --on-signal: #1a1c17;
+    --hair: #393d33;
+    color-scheme: dark;
+  }
+
+  :root:not([data-theme="light"])[data-season="summer"] {
+    --ground: #1a1b1c;
+    --ground-2: #252627;
+    --ink: #e7e7e3;
+    --ink-2: #a9aaa5;
+    --strata: #7d7d58;
+    --strata-ink: #b3b38c;
+    --signal: #78aeab;
+    --signal-hi: #8abcb9;
+    --on-signal: #1a1b1c;
+    --hair: #3a3b3a;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --ground: #1c1b19;
+  --ground-2: #272522;
+  --ink: #e7e5df;
+  --ink-2: #aaa59c;
+  --strata: #77826c;
+  --strata-ink: #a3ae93;
+  --signal: #c4924a;
+  --signal-hi: #d3a25a;
+  --on-signal: #1c1b19;
+  --hair: #3d3a36;
+  color-scheme: dark;
+}
+
+:root[data-theme="dark"][data-season="winter"] {
+  --ground: #181b1e;
+  --ground-2: #22262a;
+  --ink: #e4e7ea;
+  --ink-2: #a3aab1;
+  --strata: #6d7a86;
+  --strata-ink: #a0afbd;
+  --signal: #cf7c70;
+  --signal-hi: #db8d82;
+  --on-signal: #181b1e;
+  --hair: #363c42;
+  color-scheme: dark;
+}
+
+:root[data-theme="dark"][data-season="spring"] {
+  --ground: #1a1c17;
+  --ground-2: #252820;
+  --ink: #e6e8df;
+  --ink-2: #a8ac9e;
+  --strata: #728057;
+  --strata-ink: #a6b58a;
+  --signal: #b2a1d2;
+  --signal-hi: #c1b2dd;
+  --on-signal: #1a1c17;
+  --hair: #393d33;
+  color-scheme: dark;
+}
+
+:root[data-theme="dark"][data-season="summer"] {
+  --ground: #1a1b1c;
+  --ground-2: #252627;
+  --ink: #e7e7e3;
+  --ink-2: #a9aaa5;
+  --strata: #7d7d58;
+  --strata-ink: #b3b38c;
+  --signal: #78aeab;
+  --signal-hi: #8abcb9;
+  --on-signal: #1a1b1c;
+  --hair: #3a3b3a;
+  color-scheme: dark;
+}

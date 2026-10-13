@@ -8,21 +8,21 @@ web
 
 ## Stack
 
-Astro (content site with MDX). Deploys to Cloudflare Pages as a static build. Replaces the previous Next.js 14 + shadcn/aceternity app, which was deployed on Fly.io.
+Astro, static. Deploys to Cloudflare Pages as a static build. Replaces the previous Next.js 14 + shadcn/aceternity app, which was deployed on Fly.io.
 
 ## Users
 
 Two audiences with equal weight:
 - **Hiring teams:** recruiters and engineering leads looking at Qwertic for AI engineering roles, usually coming from LinkedIn, a CV link or an application. They want to know quickly what he builds, at what level, and whether it's real.
-- **Freelance clients:** founders and product teams who need LLM features built into a real product. They want to know what he can take on end to end and how to start a conversation.
+- **Freelance clients:** founders and product teams deciding whether and how to build AI into a real product. They want to know what he can take on end to end and how to start a conversation.
 
 ## Product Purpose
 
-The personal site of Qwertic (Regi Voda). It establishes him as an AI engineer on the full-stack side: someone who turns LLMs into product features that work in production. Success means a visitor from either audience gets in touch (email, booking a call, or LinkedIn).
+The personal site of Qwertic (Regi Voda). It establishes him as an AI lead across the full stack: someone who knows what to build with AI, how, and when not to, and takes it to production from the database to the model. Success means a visitor from either audience gets in touch (email, booking a call, or LinkedIn).
 
 ## Positioning
 
-A full-stack engineer who ships LLM features to production, not an ML researcher and not model training. The claim a neighbour can't copy: production reliability habits from Callbell (core chat module at millions of messages a day, CRM built from scratch, co-designed public API), applied to non-deterministic systems, plus hands-on agent tooling he builds and uses daily (agent memory, Claude Code skills, open-source tools other developers use).
+AI lead defined by judgement, not by managing people: when to use an LLM and when not to, memory, MCP tools, pipelines and ingestion, retrieval, guardrails, evaluation, testing, AI interface practice, workflow optimisation. A full-stack engineer who ships these to production, not an ML researcher and not model training. The site proves the judgement in use: a hand-written "Should this use AI?" decision tree that itself uses no model. The claim a neighbour can't copy: production reliability habits from Callbell (core chat module at millions of messages a day, CRM built from scratch, co-designed public API), applied to non-deterministic systems, plus hands-on agent tooling he builds and uses daily (agent memory, Claude Code skills, open-source tools other developers use).
 
 ## Operating Context
 
@@ -33,7 +33,7 @@ Visitors arrive from LinkedIn, CVs, job applications, GitHub and direct shares, 
 - Contact: booking link https://cal.com/qwertic/20min, email (0xQwertic@proton.me, hero only, not in the footer), LinkedIn (linkedin.com/in/regi-voda). No WhatsApp; the phone number is not published.
 - Location: presented as Italy, remote. Milan only as a possible hybrid base.
 - CV download (the current site offers one).
-- Writing section: all previous personal notes are dropped. Fresh writing will be technical notes on agents and experiments; none exist yet.
+- Writing section: all previous personal notes are dropped. Fresh writing will be field notes, one per decision (e.g. when not to use RAG); no section until the first note exists.
 - Links: GitHub github.com/Qwertic, domain qwertic.xyz.
 
 ## Brand Commitments
@@ -43,9 +43,10 @@ Visitors arrive from LinkedIn, CVs, job applications, GitHub and direct shares, 
 
 ## Evidence on Hand
 
-- Work history: Callbell (Nov 2020 - Jan 2024; the CRM replaced WhatsApp contact lists and third-party CRMs and gave one view of every lead with notes and team handoffs, per the candidate profile in ai-job-search), JustMe Technologies (2019 - 2020, sole developer on an EU Horizon-funded MVP), freelance 2024 - present. Client work since 2026 on an unnamed EdTech skills-and-credentials platform: shaping the core product and its AI assistant integration across frontend, backend, internal tools, the assistant and MCP; contributes to (but does not lead) the document extraction pipeline.
+- Work history: Callbell (Nov 2020 - Jan 2024; the CRM replaced WhatsApp contact lists and third-party CRMs and gave one view of every lead with notes and team handoffs, per the candidate profile in ai-job-search), JustMe Technologies (2019 - 2020, sole developer on an EU Horizon-funded MVP), freelance 2024 - present. Client work since 2026 on Dokimazo (dokimazo.io), a skills-and-credentials platform (named on the site since 2026-10-13): shaping the core product and its AI assistant integration across frontend, backend, internal tools, the assistant and MCP; contributes to (but does not lead) the document extraction pipeline.
 - Open source: cursorrules (26 stars, 6 forks), crrl (17 stars, 2 forks).
-- Cairn (github.com/Qwertic/cairn): his agent memory project, in progress. Agentic use, MCP, context engineering, vector databases, knowledge ingestion, data integrity, discoverability. It is the lead showcase for his AI engineering work. The source repo (github.com/Qwertic/cairn) is private; the site links the public release binaries at github.com/Qwertic/cairn-releases until Cairn has its own website.
+- Callbell also included early LLM work: small AI features around the chat automations.
+- Cairn (github.com/Qwertic/cairn): his agent memory project, in progress, spanning model, UI, API and database. Agentic use, MCP, context engineering, vector databases, knowledge ingestion, data integrity, discoverability. It is the lead showcase for his AI engineering work. The source repo (github.com/Qwertic/cairn) is private; the site links the public release binaries at github.com/Qwertic/cairn-releases until Cairn has its own website.
 - Claude Code skills for his own workflow. No adoption numbers; don't claim any.
 - Company logos in `public/`: clbl.png (Callbell), jm.png (JustMe), lwgn.png (Le Wagon), fl.png.
 - Absent, never fabricate: testimonials, client names beyond the ones above, metrics beyond those listed, screenshots of client work.

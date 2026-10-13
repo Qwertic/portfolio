@@ -25,10 +25,12 @@ export type Work = {
   context: string;
   when: string;
   status: Status;
-  layers: string[];
+  layers: ("LLM" | "UI" | "API" | "DB")[];
   summary: string;
   facts: string[];
+  parts?: { title: string; text: string }[];
   href?: string;
+  explainer?: boolean;
 };
 
 export const work: Work[] = [
@@ -37,7 +39,7 @@ export const work: Work[] = [
     context: "Own project",
     when: "Ongoing",
     status: "progress",
-    layers: ["LLM", "MCP", "Data"],
+    layers: ["LLM", "UI", "API", "DB"],
     summary: "Persistent, shared memory for coding agents, served over MCP.",
     facts: [
       "Context engineering for agentic workflows",
@@ -46,13 +48,14 @@ export const work: Work[] = [
       "Discoverability: agents find what the team already knows",
     ],
     href: "https://github.com/Qwertic/cairn-releases",
+    explainer: true,
   },
   {
-    title: "EdTech platform",
-    context: "Client, skills and credentials",
+    title: "Dokimazo",
+    context: "Client, skills and credentials platform",
     when: "2026 - now",
     status: "live",
-    layers: ["DB", "API", "UI", "LLM"],
+    layers: ["LLM", "UI", "API", "DB"],
     summary: "Shaping the core product and its AI assistant integration.",
     facts: [
       "Core features across frontend, backend and internal tools",
@@ -60,47 +63,40 @@ export const work: Work[] = [
       "Contributions to the document extraction pipeline",
       "AdonisJS and PostgreSQL API, Next.js frontends, TDD-first",
     ],
+    href: "https://dokimazo.io",
   },
   {
-    title: "Core chat module",
-    context: "Callbell",
+    title: "Callbell",
+    context: "Software developer, remote",
     when: "2020 - 2024",
     status: "shipped",
-    layers: ["API", "UI"],
-    summary: "The platform's core customer-messaging feature.",
-    facts: ["Millions of messages a day", "Reliability through testing and bug prevention"],
+    layers: ["LLM", "UI", "API", "DB"],
+    summary: "Four years across the stack of a customer-messaging platform, including its early LLM features.",
+    facts: [],
+    parts: [
+      {
+        title: "Core chat module",
+        text: "The platform's core customer-messaging feature, at millions of messages a day. Reliability through testing and bug prevention.",
+      },
+      {
+        title: "CRM, from scratch",
+        text: "Designed and built in Rails and React. It replaced WhatsApp contact lists and third-party CRMs with one view of every lead, with notes and team handoffs, used daily across multiple teams.",
+      },
+      {
+        title: "Public API",
+        text: "Co-designed the Rails API partners build on, then became its first consumer with the Zapier and Zoho integrations.",
+      },
+      {
+        title: "Early LLM features",
+        text: "Small AI features around the chat automations.",
+      },
+    ],
   },
-  {
-    title: "CRM, from scratch",
-    context: "Callbell",
-    when: "2020 - 2024",
-    status: "shipped",
-    layers: ["DB", "API", "UI"],
-    summary: "Designed and built in Rails and React.",
-    facts: ["Replaced WhatsApp contact lists and third-party CRMs", "Every lead in one view, with notes and team handoffs", "Used daily across multiple teams"],
-  },
-  {
-    title: "Public API",
-    context: "Callbell",
-    when: "2020 - 2024",
-    status: "shipped",
-    layers: ["API"],
-    summary: "Co-designed the Rails API partners build on.",
-    facts: ["Then its first consumer: the Zapier and Zoho integrations"],
-  },
-];
-
-export const stack = [
-  { name: "Database", items: ["PostgreSQL schema design and migrations", "Redis", "Vector stores"] },
-  { name: "API", items: ["Ruby on Rails, AdonisJS, Node and Bun", "REST and OpenAPI design"] },
-  { name: "Frontend", items: ["React, Next.js, Astro", "Design systems and component libraries", "React Native"] },
-  { name: "LLM", items: ["Assistants and agents in production", "RAG, structured output, validation", "Human-in-the-loop review", "MCP, Vercel AI SDK, OpenAI Agents"] },
-  { name: "Tooling", items: ["Claude Code every day, with my own skills", "TDD", "Docker, AWS, GitHub Actions, Turborepo"] },
 ];
 
 export const experience = [
   { when: "2024 - now", where: "Freelance, remote", what: "AI features and full-stack product for clients." },
-  { when: "2020 - 2024", where: "Callbell, remote", what: "Software developer across the stack. Chat, CRM, public API, frontend rebuild." },
+  { when: "2020 - 2024", where: "Callbell, remote", what: "Software developer across the stack. Chat, CRM, public API, frontend rebuild, early LLM features." },
   { when: "2019 - 2020", where: "JustMe Technologies, Paris", what: "Sole developer on an EU Horizon-funded MVP, architecture to release." },
   { when: "2019", where: "Freelance, Milan", what: "First client projects after the Le Wagon bootcamp." },
   { when: "2011 - 2019", where: "Chef", what: "Eight years in professional kitchens before I retrained. Still how I work under pressure." },

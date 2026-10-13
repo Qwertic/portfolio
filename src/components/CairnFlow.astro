@@ -1,0 +1,211 @@
+---
+// How Cairn works, advanced by click only. A diagram of the flow, not a picture of the product.
+const steps = [
+  {
+    name: "Propose",
+    at: 0,
+    text: "An agent learns something while it works: a decision, a gotcha, a convention. It proposes it to Cairn over MCP.",
+  },
+  {
+    name: "Review",
+    at: 1,
+    text: "A person reviews the proposal. Nothing becomes shared knowledge until someone approves it.",
+  },
+  {
+    name: "Store",
+    at: 2,
+    text: "Approved knowledge is ingested with its provenance, who and when and from which session, into a vector store.",
+  },
+  {
+    name: "Recall",
+    at: 0,
+    text: "At the start of a session, any agent asks what the team already knows, and gets it back with its sources.",
+  },
+];
+const nodes = ["Agent", "Person", "Memory"];
+---
+
+<figure class="flow" data-flow aria-labelledby="flow-cap">
+  <figcaption id="flow-cap" class="sc flow__cap">How Cairn works</figcaption>
+
+  <div class="flow__steps" role="group" aria-label="Steps">
+    {steps.map((s, i) => (
+      <button class="choice" type="button" data-step={i} aria-pressed={i === 0 ? "true" : "false"} aria-controls="flow-text">
+        {s.name}
+      </button>
+    ))}
+  </div>
+
+  <div class="flow__map" aria-hidden="true" data-at="0" data-step="0">
+    {nodes.map((n, i) => (
+      <span class="node" data-node={i}><span class="node__name">{n}</span></span>
+    ))}
+    <span class="rail"></span>
+    <span class="rail rail--ink"></span>
+    <span class="note"></span>
+  </div>
+
+  <p class="flow__text" id="flow-text" aria-live="polite">{steps[0].text}</p>
+  <p class="flow__nav">
+    <button class="link flow__next" type="button" data-next>Next step</button>
+  </p>
+
+  <script type="application/json" data-steps set:html={JSON.stringify(steps)} />
+</figure>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-flow]").forEach((flow) => {
+    const steps = JSON.parse(flow.querySelector("[data-steps]")!.textContent!) as { name: string; at: number; text: string }[];
+    const buttons = flow.querySelectorAll<HTMLButtonElement>("[data-step]");
+    const map = flow.querySelector<HTMLElement>(".flow__map")!;
+    const text = flow.querySelector<HTMLElement>("#flow-text")!;
+    const next = flow.querySelector<HTMLButtonElement>("[data-next]")!;
+    let current = 0;
+    const show = (i: number) => {
+      current = i;
+      buttons.forEach((b, j) => b.setAttribute("aria-pressed", String(j === i)));
+      map.dataset.at = String(steps[i].at);
+      map.dataset.step = String(i);
+      text.textContent = steps[i].text;
+      next.textContent = i === steps.length - 1 ? "Back to the start" : "Next step";
+    };
+    buttons.forEach((b, i) => b.addEventListener("click", () => show(i)));
+    next.addEventListener("click", () => show((current + 1) % steps.length));
+  });
+</script>
+
+<style>
+  .flow {
+    margin-top: var(--s-4);
+    padding: var(--s-3) 0;
+    border-top: 1px solid var(--hair);
+    border-bottom: 1px solid var(--hair);
+  }
+
+  .flow__cap {
+    font-size: var(--fs-1);
+    color: var(--ink-2);
+  }
+
+  .flow__steps {
+    margin-top: var(--s-2);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-1);
+  }
+
+  .flow__map {
+    --at: 0;
+    position: relative;
+    margin-top: var(--s-4);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-4);
+  }
+
+  .flow__map[data-at="1"] {
+    --at: 1;
+  }
+
+  .flow__map[data-at="2"] {
+    --at: 2;
+  }
+
+  .rail {
+    position: absolute;
+    left: calc(100% / 6);
+    right: calc(100% / 6);
+    top: 1.5rem;
+    height: 1px;
+    background: var(--hair);
+    z-index: 0;
+  }
+
+  .node {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    min-height: 3rem;
+    border: 1px solid var(--hair);
+    border-radius: var(--r-2);
+    background: var(--ground);
+    font-size: var(--fs-1);
+    color: var(--ink-2);
+    transition: border-color var(--t-layer) var(--ease), color var(--t-layer) var(--ease);
+  }
+
+  /* The path walked stays drawn: the rail inks in behind the note and holds through Recall. */
+  .rail--ink {
+    height: 2px;
+    top: calc(1.5rem - 0.5px);
+    background: var(--ink);
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform var(--t-layer) var(--ease);
+  }
+
+  .flow__map[data-step="1"] .rail--ink {
+    transform: scaleX(0.5);
+  }
+
+  .flow__map[data-step="2"] .rail--ink,
+  .flow__map[data-step="3"] .rail--ink {
+    transform: scaleX(1);
+  }
+
+  .flow__map[data-at="0"] .node[data-node="0"],
+  .flow__map[data-at="1"] .node[data-node="1"],
+  .flow__map[data-at="2"] .node[data-node="2"] {
+    border-color: var(--ink);
+    color: var(--ink);
+  }
+
+  /* The note: one piece of knowledge, moving between the three places. */
+  .note {
+    position: absolute;
+    z-index: 2;
+    top: 3.5rem;
+    left: 0;
+    width: calc((100% - 2 * var(--s-4)) / 3);
+    height: 0.6rem;
+    border-radius: var(--r-1);
+    background: var(--strata);
+    transform: translateX(calc(var(--at) * (100% + var(--s-4))));
+    transition: transform var(--t-layer) var(--ease), background-color var(--t-layer) var(--ease);
+  }
+
+  .flow__map[data-step="2"] .note,
+  .flow__map[data-step="3"] .note {
+    background: var(--ink);
+  }
+
+  .flow__text {
+    margin-top: var(--s-5);
+    min-height: 3.2em;
+    max-width: var(--measure);
+  }
+
+  .flow__nav {
+    margin-top: var(--s-2);
+  }
+
+  .flow__next {
+    border: 0;
+    padding: 0;
+    background: none;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  @media (max-width: 40rem) {
+    .flow__map {
+      gap: var(--s-1);
+    }
+
+    .note {
+      width: calc((100% - 2 * var(--s-1)) / 3);
+      transform: translateX(calc(var(--at) * (100% + var(--s-1))));
+    }
+  }
+</style>

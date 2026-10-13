@@ -1,0 +1,208 @@
+---
+import { work, statusLabel, tools } from "../data/site";
+import CairnFlow from "./CairnFlow.astro";
+
+const LAYERS = ["LLM", "UI", "API", "DB"] as const;
+const repos = tools.filter((t) => t.href && t.name !== "Cairn");
+---
+
+<section class="work-section col ruled" id="work" aria-labelledby="work-h">
+  <h2 id="work-h">Work</h2>
+
+  <ol class="works">
+    {work.map((w, i) => (
+      <li class="work" style={`--i:${i + 1}`}>
+        <span class="core" aria-hidden="true">
+          {LAYERS.map((l) => <span class={`core__band${w.layers.includes(l) ? " is-on" : ""}`} data-layer={l}></span>)}
+        </span>
+        <div class="work__body">
+          <h3>{w.title}</h3>
+          <p class="meta sc">
+            <span class={`status status--${w.status}`}>{statusLabel[w.status]}</span>
+            <span>{w.context}</span>
+            <span>{w.when}</span>
+            <span class="layers-text">{w.layers.join(", ")}</span>
+          </p>
+          <p class="work__sum">{w.summary}</p>
+          {w.facts.length > 0 && <ul class="facts">{w.facts.map((f) => <li>{f}</li>)}</ul>}
+          {w.parts && (
+            <dl class="parts">
+              {w.parts.map((p) => (
+                <div>
+                  <dt>{p.title}</dt>
+                  <dd>{p.text}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
+          {w.explainer && <CairnFlow />}
+          {w.href && (
+            <p class="work__link">
+              <a class="link" href={w.href} rel="noopener">{w.explainer ? "Release binaries on GitHub" : w.href.replace("https://", "")}</a>
+            </p>
+          )}
+        </div>
+      </li>
+    ))}
+  </ol>
+
+  <p class="oss">
+    <span class="sc">Open source</span>
+    {repos.map((t) => (
+      <Fragment>
+        <a class="link" href={t.href} rel="noopener">{t.name}</a>, {t.what.charAt(0).toLowerCase() + t.what.slice(1, -1)} ({t.meta}).{" "}
+      </Fragment>
+    ))}
+    And the Claude Code skills I work with every day.
+  </p>
+</section>
+
+<style>
+  .work-section {
+    padding-block: var(--s-6);
+  }
+
+  h2 {
+    font-size: var(--fs-4);
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
+  .works {
+    margin-top: var(--s-4);
+    display: grid;
+    gap: var(--s-6);
+  }
+
+  .work {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: var(--s-3);
+  }
+
+  .core {
+    display: grid;
+    gap: 3px;
+    align-content: start;
+    padding-top: 0.5rem;
+  }
+
+  .core__band {
+    height: 0.6rem;
+    border: 1px solid var(--hair);
+    border-radius: var(--r-1);
+    transition: background-color var(--t-layer) var(--ease), border-color var(--t-layer) var(--ease);
+    /* The selected layer runs down the page in reading order, after the decisions row (index 0). */
+    transition-delay: calc(var(--i, 0) * var(--stagger));
+  }
+
+  .core__band.is-on {
+    background: var(--strata);
+    border-color: var(--strata);
+  }
+
+  :global(html[data-layer="LLM"]) .core__band.is-on[data-layer="LLM"],
+  :global(html[data-layer="UI"]) .core__band.is-on[data-layer="UI"],
+  :global(html[data-layer="API"]) .core__band.is-on[data-layer="API"],
+  :global(html[data-layer="DB"]) .core__band.is-on[data-layer="DB"] {
+    background: var(--ink);
+    border-color: var(--ink);
+  }
+
+  h3 {
+    font-size: var(--fs-3);
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .meta {
+    margin-top: 0.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem var(--s-2);
+    font-size: var(--fs-1);
+    color: var(--ink-2);
+  }
+
+  .status--live {
+    color: var(--ink);
+  }
+
+  .status--progress {
+    color: var(--strata-ink);
+  }
+
+  .layers-text {
+    color: var(--strata-ink);
+  }
+
+  .work__sum {
+    margin-top: var(--s-1);
+    max-width: var(--measure);
+  }
+
+  .facts {
+    margin-top: var(--s-1);
+    display: grid;
+    gap: 0.2rem;
+    color: var(--ink-2);
+  }
+
+  .facts li {
+    position: relative;
+    padding-left: var(--s-2);
+  }
+
+  .facts li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.8em;
+    width: 0.4rem;
+    height: 1px;
+    background: currentColor;
+  }
+
+  .parts {
+    margin-top: var(--s-2);
+    display: grid;
+    gap: var(--s-2);
+  }
+
+  .parts dt {
+    font-weight: 500;
+  }
+
+  .parts dd {
+    color: var(--ink-2);
+    max-width: var(--measure);
+  }
+
+  .work__link {
+    margin-top: var(--s-2);
+  }
+
+  .oss {
+    margin-top: var(--s-6);
+    padding-top: var(--s-3);
+    border-top: 1px solid var(--hair);
+    color: var(--ink-2);
+  }
+
+  .oss .sc {
+    display: block;
+    font-size: var(--fs-1);
+    margin-bottom: 0.25rem;
+  }
+
+  .oss .link {
+    color: var(--ink);
+  }
+
+  @media (max-width: 40rem) {
+    .work {
+      grid-template-columns: 1.75rem 1fr;
+      gap: var(--s-2);
+    }
+  }
+</style>

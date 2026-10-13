@@ -1,0 +1,98 @@
+---
+import { experience, extras } from "../data/site";
+
+const rows = [...experience, ...extras];
+---
+
+<section class="story col ruled" id="story" aria-labelledby="story-h">
+  <h2 id="story-h">How I got here</h2>
+
+  <div class="story__text">
+    <p>
+      I spent eight years in professional kitchens before I retrained as a developer. It is still how I work under
+      pressure.
+    </p>
+    <p>
+      In 2019 I did the Le Wagon bootcamp, took my first client projects in Milan, then built an EU Horizon-funded MVP in
+      Paris as its sole developer. Four years at Callbell followed: chat, CRM, the public API, a frontend rebuild and the
+      first LLM features.
+    </p>
+    <p>
+      Since 2024 I work freelance, and AI has moved from one part of the job to the centre of it: Dokimazo, Cairn, and the
+      tools I use every day.
+    </p>
+    <p class="story__close">I'm a generalist by nature: four languages, two careers, every layer of the stack.</p>
+  </div>
+
+  <dl class="timeline">
+    {rows.map((r) => (
+      <div class="row">
+        <dt><span class="row__when">{r.when}</span> {r.where}</dt>
+        <dd>{r.what}</dd>
+      </div>
+    ))}
+  </dl>
+</section>
+
+<style>
+  .story {
+    padding-block: var(--s-6);
+  }
+
+  h2 {
+    font-size: var(--fs-4);
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
+  .story__text {
+    margin-top: var(--s-3);
+    display: grid;
+    gap: var(--s-2);
+    max-width: var(--measure);
+  }
+
+  .story__close {
+    color: var(--ink-2);
+  }
+
+  .timeline {
+    margin-top: var(--s-5);
+    display: grid;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 15rem 1fr;
+    gap: var(--s-3);
+    padding-block: 0.75rem;
+    border-bottom: 1px solid var(--hair);
+    font-size: var(--fs-1);
+    line-height: 1.5;
+  }
+
+  .row:first-child {
+    border-top: 1px solid var(--hair);
+  }
+
+  .row dt {
+    font-weight: 500;
+  }
+
+  .row__when {
+    display: block;
+    font-weight: 400;
+    color: var(--strata-ink);
+  }
+
+  .row dd {
+    color: var(--ink-2);
+  }
+
+  @media (max-width: 40rem) {
+    .row {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+  }
+</style>

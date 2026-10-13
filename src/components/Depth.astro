@@ -1,0 +1,74 @@
+---
+// Depth gauge: four layers that fill top to bottom as the page is read, from AI decisions down to the bedrock of the story.
+// Wide screens only, scroll-linked, decorative.
+const LAYERS = ["LLM", "UI", "API", "DB"];
+---
+
+<div class="depth" aria-hidden="true">
+  {LAYERS.map(() => <span class="depth__band"></span>)}
+</div>
+
+<style>
+  .depth {
+    display: none;
+  }
+
+  @supports (animation-timeline: scroll()) {
+    @media (min-width: 72rem) and (prefers-reduced-motion: no-preference) {
+      .depth {
+        position: fixed;
+        top: 50%;
+        left: var(--s-4);
+        z-index: 1;
+        display: grid;
+        gap: 3px;
+        width: 0.6rem;
+        translate: 0 -50%;
+      }
+
+      .depth__band {
+        position: relative;
+        height: 3rem;
+        overflow: hidden;
+        border: 1px solid var(--hair);
+        border-radius: var(--r-1);
+      }
+
+      .depth__band::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--strata);
+        transform-origin: top;
+        animation: depth-fill linear both;
+        animation-timeline: scroll(root block);
+      }
+
+      .depth__band:nth-child(1)::after {
+        animation-range: 0% 25%;
+      }
+
+      .depth__band:nth-child(2)::after {
+        animation-range: 25% 50%;
+      }
+
+      .depth__band:nth-child(3)::after {
+        animation-range: 50% 75%;
+      }
+
+      .depth__band:nth-child(4)::after {
+        animation-range: 75% 100%;
+      }
+
+    }
+  }
+
+  @keyframes depth-fill {
+    from {
+      scale: 1 0;
+    }
+    to {
+      scale: 1 1;
+    }
+  }
+</style>

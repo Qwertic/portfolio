@@ -1,6 +1,9 @@
 ---
-import "@fontsource-variable/anybody/wdth.css";
-import "@fontsource-variable/schibsted-grotesk";
+import "@fontsource/alegreya-sans/400.css";
+import "@fontsource/alegreya-sans/400-italic.css";
+import "@fontsource/alegreya-sans/500.css";
+import "@fontsource/alegreya-sans/700.css";
+import "@fontsource/alegreya-sans-sc/500.css";
 import "../styles/global.css";
 
 interface Props {
@@ -22,7 +25,7 @@ const jsonLd = {
     "@id": `${Astro.site}#person`,
     name: "Regi Voda",
     alternateName: "Qwertic",
-    jobTitle: "AI Engineer, Full Stack",
+    jobTitle: "AI Lead, Full Stack",
     description,
     url: Astro.site?.href,
     image: ogImage.href,
@@ -33,6 +36,8 @@ const jsonLd = {
       "AI engineering",
       "Large language models",
       "Model Context Protocol (MCP)",
+      "Retrieval and data ingestion",
+      "LLM guardrails and evaluation",
       "Context engineering",
       "Retrieval-augmented generation",
       "AI agents",
@@ -49,7 +54,7 @@ const jsonLd = {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-season="autumn">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -57,7 +62,8 @@ const jsonLd = {
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <meta name="theme-color" content="#F6F4EF" />
+    <meta name="theme-color" content="#E9EAE6" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1C1B19" media="(prefers-color-scheme: dark)" />
     <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt" />
     <meta name="author" content="Regi Voda" />
     <meta property="og:type" content="profile" />
@@ -68,13 +74,26 @@ const jsonLd = {
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Qwertic: AI engineer, full stack. Regi Voda." />
+    <meta property="og:image:alt" content="Qwertic: AI lead across the full stack. Regi Voda." />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImage} />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script is:inline>
+      // The palette follows the visitor's season (northern hemisphere); the theme follows the OS
+      // unless the visitor picked one. Runs before paint so nothing flashes.
+      (function () {
+        var root = document.documentElement;
+        var m = new Date().getMonth();
+        root.dataset.season = m < 2 || m === 11 ? "winter" : m < 5 ? "spring" : m < 8 ? "summer" : "autumn";
+        try {
+          var t = localStorage.getItem("theme");
+          if (t === "light" || t === "dark") root.dataset.theme = t;
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <slot />

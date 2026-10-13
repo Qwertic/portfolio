@@ -1,0 +1,191 @@
+---
+import { across, layers, sourceLabel } from "../data/decisions";
+---
+
+<section class="decisions col ruled" id="decisions" aria-labelledby="decisions-h">
+  <h2 id="decisions-h">Where AI belongs</h2>
+  <p class="decisions__intro">
+    The calls I make, layer by layer, from the model on top to the database underneath. Each comes from client work
+    and my own projects unless marked. Choose a layer to follow it through the page.
+  </p>
+
+  <div class="across">
+    <p class="sc across__label">Across the system</p>
+    <ul class="rules">
+      {across.map((d) => (
+        <li><p>{d.rule}</p>{d.source !== "both" && <p class="source sc">{sourceLabel[d.source]}</p>}</li>
+      ))}
+    </ul>
+  </div>
+
+  <ol class="layers">
+    {layers.map((l) => (
+      <li class="layer" data-layer={l.id}>
+        <button class="key" type="button" data-select={l.id} aria-pressed="false">
+          <span class="key__band" aria-hidden="true"></span>
+          <span class="sc key__id">{l.id}</span>
+          <span class="key__name">{l.name}</span>
+        </button>
+        <ul class="rules">
+          {l.decisions.map((d) => (
+            <li><p>{d.rule}</p>{d.source !== "both" && <p class="source sc">{sourceLabel[d.source]}</p>}</li>
+          ))}
+        </ul>
+      </li>
+    ))}
+  </ol>
+</section>
+
+<script>
+  // One layer at a time. Selecting it lights it everywhere the page marks data-layer; again, or Escape, clears.
+  const root = document.documentElement;
+  const keys = document.querySelectorAll<HTMLButtonElement>("[data-select]");
+  const set = (layer: string | null) => {
+    if (layer) root.dataset.layer = layer;
+    else delete root.dataset.layer;
+    keys.forEach((k) => k.setAttribute("aria-pressed", String(k.dataset.select === layer)));
+  };
+  keys.forEach((k) =>
+    k.addEventListener("click", () => set(root.dataset.layer === k.dataset.select ? null : k.dataset.select!)),
+  );
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && root.dataset.layer) set(null);
+  });
+</script>
+
+<style>
+  .decisions {
+    padding-block: var(--s-6);
+  }
+
+  h2 {
+    font-size: var(--fs-4);
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
+  .decisions__intro {
+    margin-top: var(--s-1);
+    max-width: var(--measure);
+    color: var(--ink-2);
+  }
+
+  .across {
+    margin-top: var(--s-4);
+    padding-block: var(--s-3);
+    border-top: 1px solid var(--hair);
+  }
+
+  .across__label {
+    font-size: var(--fs-1);
+    color: var(--ink-2);
+  }
+
+  .rules {
+    display: grid;
+    gap: var(--s-2);
+  }
+
+  .across .rules {
+    margin-top: var(--s-1);
+  }
+
+  .source {
+    margin-top: 0.15rem;
+    font-size: var(--fs-1);
+    color: var(--strata-ink);
+  }
+
+  .layers {
+    display: grid;
+  }
+
+  .layer {
+    display: grid;
+    grid-template-columns: 9.5rem 1fr;
+    gap: var(--s-3);
+    margin-inline: calc(-1 * var(--s-2));
+    padding: var(--s-3) var(--s-2);
+    border-top: 1px solid var(--hair);
+    transition: background-color var(--t-layer) var(--ease);
+  }
+
+  .layer:last-child {
+    border-bottom: 1px solid var(--hair);
+  }
+
+  .key {
+    align-self: start;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: baseline;
+    column-gap: 0.6rem;
+    row-gap: 0.4rem;
+    margin: -0.4rem 0 0 -0.6rem;
+    padding: 0.4rem 0.6rem;
+    border: 0;
+    border-radius: var(--r-2);
+    background: transparent;
+    color: var(--ink);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color var(--t-hover) var(--ease), color var(--t-hover) var(--ease);
+  }
+
+  .key:hover {
+    background: var(--ground-2);
+  }
+
+  .key[aria-pressed="true"] {
+    background: var(--ink);
+    color: var(--ground);
+  }
+
+  .key__band {
+    grid-column: 1 / -1;
+    height: 0.6rem;
+    width: 100%;
+    border-radius: var(--r-1);
+    background: var(--strata);
+    transition: background-color var(--t-layer) var(--ease);
+  }
+
+  .key[aria-pressed="true"] .key__band {
+    background: var(--ground);
+  }
+
+  .key__id {
+    min-width: 2.2rem;
+  }
+
+  .key__name {
+    font-size: var(--fs-1);
+    color: inherit;
+    opacity: 0.85;
+  }
+
+  /* Selection lights a layer instead of dimming the others, so every line keeps its contrast. */
+  :global(html[data-layer]) .layer .key__band {
+    background: var(--hair);
+  }
+
+  :global(html[data-layer="LLM"]) .layer[data-layer="LLM"],
+  :global(html[data-layer="UI"]) .layer[data-layer="UI"],
+  :global(html[data-layer="API"]) .layer[data-layer="API"],
+  :global(html[data-layer="DB"]) .layer[data-layer="DB"] {
+    background: var(--ground-2);
+  }
+
+  @media (max-width: 40rem) {
+    .layer {
+      grid-template-columns: 1fr;
+      gap: var(--s-2);
+    }
+
+    .key {
+      justify-self: start;
+      min-width: 9.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,356 @@
+---
+import { START, questions, outcomes } from "../data/explorer";
+import { bookingHref } from "../data/site";
+
+const LAYERS = ["LLM", "UI", "API", "DB"] as const;
+const data = JSON.stringify({ start: START, questions, outcomes });
+---
+
+<section class="explorer col ruled" id="explorer" aria-labelledby="explorer-h">
+  <h2 id="explorer-h">Should this use AI?</h2>
+  <p class="explorer__intro">
+    Pick what you want to build and I'll show you how I would decide, one question at a time.
+  </p>
+  <p class="explorer__note sc">This tool uses no model. It is a decision tree I wrote by hand, because it doesn't need one.</p>
+
+  <ol class="trail" data-trail aria-live="polite"></ol>
+
+  <noscript>
+    <ul class="fallback">
+      {outcomes.map((o) => (
+        <li><span class="sc">{o.verdict}</span> {o.title} {o.why}</li>
+      ))}
+    </ul>
+  </noscript>
+
+  <template data-outcome-tpl>
+    <li class="outcome">
+      <p class="outcome__verdict sc"></p>
+      <h3 class="outcome__title" tabindex="-1"></h3>
+      <p class="outcome__why"></p>
+      <div class="outcome__lists">
+        <div><p class="sc">What I'd build</p><ul data-list="build"></ul></div>
+        <div><p class="sc">Guardrails</p><ul data-list="guardrails"></ul></div>
+        <div><p class="sc">How I'd check it</p><ul data-list="evaluate"></ul></div>
+      </div>
+      <div class="outcome__layers">
+        <span class="sc">Layers</span>
+        <span class="strip" aria-hidden="true">{LAYERS.map((l, i) => <span class="strip__band" data-band={l} style={`--i:${i}`}></span>)}</span>
+        <span class="outcome__layer-names"></span>
+      </div>
+      <p class="outcome__actions">
+        <a class="btn" href={bookingHref}>Book a call</a>
+        <button class="link outcome__restart" type="button" data-restart>Start over</button>
+      </p>
+    </li>
+  </template>
+
+  <script type="application/json" data-explorer set:html={data} />
+</section>
+
+<script>
+  type Q = { id: string; ask: string; choices: { label: string; next: string }[] };
+  type O = {
+    id: string;
+    verdict: string;
+    title: string;
+    why: string;
+    build: string[];
+    guardrails: string[];
+    evaluate: string[];
+    layers: string[];
+  };
+
+  const root = document.getElementById("explorer");
+  const raw = root?.querySelector<HTMLScriptElement>("[data-explorer]")?.textContent;
+  const trail = root?.querySelector<HTMLOListElement>("[data-trail]");
+  const tpl = root?.querySelector<HTMLTemplateElement>("[data-outcome-tpl]");
+
+  if (root && raw && trail && tpl) {
+    const { start, questions, outcomes } = JSON.parse(raw) as { start: string; questions: Q[]; outcomes: O[] };
+    const qById = new Map(questions.map((q) => [q.id, q]));
+    const oById = new Map(outcomes.map((o) => [o.id, o]));
+    const exitMs = () => (matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 240);
+
+    const settle = (el: HTMLElement) => {
+      el.classList.add("is-entering");
+      el.addEventListener("animationend", () => el.classList.remove("is-entering"), { once: true });
+    };
+
+    // Remove every step after `li`, fading them out first.
+    const cut = (li: Element | null) =>
+      new Promise<void>((done) => {
+        const later: Element[] = [];
+        let n = li ? li.nextElementSibling : trail.firstElementChild;
+        while (n) {
+          later.push(n);
+          n = n.nextElementSibling;
+        }
+        if (!later.length) return done();
+        later.forEach((el) => el.classList.add("is-leaving"));
+        setTimeout(() => {
+          later.forEach((el) => el.remove());
+          done();
+        }, exitMs());
+      });
+
+    const renderQuestion = (q: Q, focus: boolean) => {
+      const li = document.createElement("li");
+      li.className = "step";
+      const ask = document.createElement("p");
+      ask.className = "step__ask";
+      ask.id = `ask-${q.id}`;
+      ask.tabIndex = -1;
+      ask.textContent = q.ask;
+      const group = document.createElement("div");
+      group.className = "step__choices";
+      group.setAttribute("role", "group");
+      group.setAttribute("aria-labelledby", ask.id);
+      q.choices.forEach((c) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "choice";
+        b.textContent = c.label;
+        b.setAttribute("aria-pressed", "false");
+        b.addEventListener("click", async () => {
+          if (b.getAttribute("aria-pressed") === "true") return;
+          group.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+          li.classList.add("is-answered");
+          await cut(li);
+          go(c.next, true);
+        });
+        group.append(b);
+      });
+      li.append(ask, group);
+      trail.append(li);
+      settle(li);
+      // Only follow the visitor's own clicks: the first question renders without moving the page.
+      if (focus) {
+        ask.focus({ preventScroll: true });
+        li.scrollIntoView({ block: "nearest", behavior: exitMs() ? "smooth" : "auto" });
+      }
+    };
+
+    const renderOutcome = (o: O) => {
+      const li = tpl.content.firstElementChild!.cloneNode(true) as HTMLLIElement;
+      li.querySelector(".outcome__verdict")!.textContent = o.verdict;
+      li.querySelector(".outcome__title")!.textContent = o.title;
+      li.querySelector(".outcome__why")!.textContent = o.why;
+      (["build", "guardrails", "evaluate"] as const).forEach((k) => {
+        const ul = li.querySelector(`[data-list="${k}"]`)!;
+        o[k].forEach((t) => {
+          const item = document.createElement("li");
+          item.textContent = t;
+          ul.append(item);
+        });
+      });
+      li.querySelectorAll<HTMLElement>("[data-band]").forEach((band) =>
+        band.classList.toggle("is-on", o.layers.includes(band.dataset.band!)),
+      );
+      li.querySelector(".outcome__layer-names")!.textContent = o.layers.join(", ");
+      li.querySelector("[data-restart]")!.addEventListener("click", async () => {
+        await cut(null);
+        go(start, true);
+      });
+      trail.append(li);
+      settle(li);
+      (li.querySelector(".outcome__title") as HTMLElement).focus({ preventScroll: true });
+      li.scrollIntoView({ block: "nearest", behavior: exitMs() ? "smooth" : "auto" });
+    };
+
+    const go = (id: string, focus: boolean) => {
+      const q = qById.get(id);
+      if (q) return renderQuestion(q, focus);
+      const o = oById.get(id);
+      if (o) renderOutcome(o);
+    };
+
+    go(start, false);
+  }
+</script>
+
+<style>
+  .explorer {
+    padding-block: var(--s-6);
+  }
+
+  h2 {
+    font-size: var(--fs-4);
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
+  .explorer__intro {
+    margin-top: var(--s-1);
+    max-width: var(--measure);
+    color: var(--ink-2);
+  }
+
+  .explorer__note {
+    margin-top: var(--s-2);
+    font-size: var(--fs-1);
+    color: var(--strata-ink);
+  }
+
+  .trail {
+    margin-top: var(--s-4);
+    display: grid;
+  }
+
+  .trail :global(.step),
+  .trail :global(.outcome) {
+    padding-block: var(--s-3);
+    border-top: 1px solid var(--hair);
+  }
+
+  .trail :global(.step__ask) {
+    font-size: var(--fs-3);
+    line-height: 1.4;
+  }
+
+  .trail :global(.step__ask:focus-visible),
+  .trail :global(.outcome__title:focus-visible) {
+    outline-offset: 6px;
+  }
+
+  .trail :global(.step__choices) {
+    margin-top: var(--s-2);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-1);
+  }
+
+  .trail :global(.step.is-answered .choice[aria-pressed="false"]) {
+    color: var(--ink-2);
+    border-color: var(--hair);
+  }
+
+  .trail :global(.step.is-answered .choice[aria-pressed="false"]:hover) {
+    color: var(--ink);
+    border-color: var(--ink-2);
+  }
+
+  .trail :global(.is-entering) {
+    animation: settle var(--t-step) var(--ease) both;
+  }
+
+  .trail :global(.is-leaving) {
+    opacity: 0;
+    transition: opacity var(--t-exit) var(--ease);
+  }
+
+  @keyframes settle {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .trail :global(.outcome__verdict) {
+    font-size: var(--fs-1);
+    color: var(--strata-ink);
+  }
+
+  .trail :global(.outcome__title) {
+    margin-top: 0.25rem;
+    font-size: var(--fs-4);
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
+  .trail :global(.outcome__why) {
+    margin-top: var(--s-1);
+    max-width: var(--measure);
+  }
+
+  .trail :global(.outcome__lists) {
+    margin-top: var(--s-3);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-3);
+  }
+
+  .trail :global(.outcome__lists .sc) {
+    font-size: var(--fs-1);
+    color: var(--ink-2);
+  }
+
+  .trail :global(.outcome__lists ul) {
+    margin-top: 0.25rem;
+    display: grid;
+    gap: 0.35rem;
+    font-size: var(--fs-1);
+    line-height: 1.5;
+  }
+
+  .trail :global(.outcome__layers) {
+    margin-top: var(--s-3);
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    font-size: var(--fs-1);
+    color: var(--ink-2);
+  }
+
+  .trail :global(.strip) {
+    display: grid;
+    gap: 3px;
+    width: 2.5rem;
+  }
+
+  .trail :global(.strip__band) {
+    height: 0.5rem;
+    border: 1px solid var(--hair);
+    border-radius: var(--r-1);
+  }
+
+  /* The outcome finds its layers: bands fill top to bottom, one stagger apart. */
+  .trail :global(.strip__band.is-on) {
+    animation: band-fill var(--t-layer) var(--ease) both;
+    animation-delay: calc(var(--i) * var(--stagger));
+  }
+
+  @keyframes band-fill {
+    from {
+      background-color: transparent;
+      border-color: var(--hair);
+    }
+    to {
+      background-color: var(--strata);
+      border-color: var(--strata);
+    }
+  }
+
+  .trail :global(.outcome__actions) {
+    margin-top: var(--s-4);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-3);
+  }
+
+  .trail :global(.outcome__restart) {
+    border: 0;
+    padding: 0;
+    background: none;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .fallback {
+    margin-top: var(--s-3);
+    display: grid;
+    gap: var(--s-2);
+  }
+
+  @media (max-width: 40rem) {
+    .trail :global(.outcome__lists) {
+      grid-template-columns: 1fr;
+      gap: var(--s-2);
+    }
+  }
+</style>
