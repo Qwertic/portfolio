@@ -28,6 +28,10 @@ TypeScript, React, Next.js, Node.js and Bun, Ruby on Rails, PostgreSQL, REST and
 - cursorrules: curated rule configs for AI-assisted coding. https://github.com/Qwertic/cursorrules
 - crrl: a CLI for managing those rule files. https://github.com/Qwertic/crrl
 
+## Full text
+
+- Everything on the page, including the full decision tree and every rule: https://qwertic.xyz/llms-full.txt
+
 ## Links
 
 - Site: https://qwertic.xyz

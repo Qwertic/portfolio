@@ -16,13 +16,17 @@ const data = JSON.stringify({ start: START, questions, outcomes });
 
   <ol class="trail" data-trail aria-live="polite"></ol>
 
-  <noscript>
-    <ul class="fallback">
+  <details class="every">
+    <summary>Every recommendation in this tree</summary>
+    <dl class="every__list">
       {outcomes.map((o) => (
-        <li><span class="sc">{o.verdict}</span> <Fragment set:html={protect(`${o.title} ${o.why}`)} /></li>
+        <div>
+          <dt><span class="sc">{o.verdict}</span> <Fragment set:html={protect(o.title)} /></dt>
+          <dd set:html={protect(o.why)} />
+        </div>
       ))}
-    </ul>
-  </noscript>
+    </dl>
+  </details>
 
   <template data-outcome-tpl>
     <li class="outcome">
@@ -344,10 +348,42 @@ const data = JSON.stringify({ start: START, questions, outcomes });
     cursor: pointer;
   }
 
-  .fallback {
-    margin-top: var(--s-3);
+  /* The whole tree as plain text: readable without the walk-through, and by crawlers that run no script. */
+  .every {
+    margin-top: var(--s-4);
+    padding-top: var(--s-2);
+    border-top: 1px solid var(--hair);
+    font-size: var(--fs-1);
+  }
+
+  .every summary {
+    cursor: pointer;
+    color: var(--ink-2);
+    transition: color var(--t-hover) var(--ease);
+  }
+
+  .every summary:hover {
+    color: var(--ink);
+  }
+
+  .every__list {
+    margin-top: var(--s-2);
     display: grid;
     gap: var(--s-2);
+  }
+
+  .every dt {
+    font-weight: 500;
+  }
+
+  .every dt .sc {
+    color: var(--strata-ink);
+    margin-right: 0.4rem;
+  }
+
+  .every dd {
+    color: var(--ink-2);
+    max-width: var(--measure);
   }
 
   @media (max-width: 40rem) {

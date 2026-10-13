@@ -5,6 +5,7 @@ import Explorer from "../components/Explorer.astro";
 import Decisions from "../components/Decisions.astro";
 import Work from "../components/Work.astro";
 import Story from "../components/Story.astro";
+import Questions from "../components/Questions.astro";
 import Depth from "../components/Depth.astro";
 import { EMAIL, LINKEDIN, GITHUB, CV_PATH, bookingHref } from "../data/site";
 
@@ -13,7 +14,7 @@ const hasCv = fs.existsSync(`${process.cwd()}/public${CV_PATH}`);
 
 <Base
   title="Regi Voda (Qwertic): AI Lead, Full Stack"
-  description="Regi Voda (Qwertic) is an AI lead across the full stack: knowing what to build with AI, how, and when not to. Memory, MCP, retrieval, guardrails and evaluation, from the database to the model. Remote from Italy."
+  description="Regi Voda (Qwertic), AI lead across the full stack: knowing what to build with AI, how, and when not to. MCP, RAG, guardrails, evaluation. Remote, Italy."
 >
   <a class="skip" href="#main">Skip to content</a>
   <header class="top">
@@ -50,6 +51,7 @@ const hasCv = fs.existsSync(`${process.cwd()}/public${CV_PATH}`);
     <Decisions />
     <Work />
     <Story />
+    <Questions />
 
     <section class="contact col ruled" id="contact" aria-labelledby="contact-h">
       <h2 id="contact-h">Contact</h2>

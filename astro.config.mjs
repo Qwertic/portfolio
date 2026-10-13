@@ -3,7 +3,7 @@ import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   site: "https://qwertic.xyz",
-  integrations: [sitemap()],
+  integrations: [sitemap({ lastmod: new Date() })],
   vite: {
     build: {
       // Lightning CSS folds animation-timeline into the animation shorthand, which browsers reject,

@@ -1,0 +1,46 @@
+---
+import { faq } from "../data/faq";
+import { protect } from "../lib/notranslate";
+---
+
+<section class="questions col ruled" id="questions" aria-labelledby="questions-h">
+  <h2 id="questions-h">Questions</h2>
+  <dl class="qa">
+    {faq.map((f) => (
+      <div>
+        <dt set:html={protect(f.q)} />
+        <dd set:html={protect(f.a)} />
+      </div>
+    ))}
+  </dl>
+</section>
+
+<style>
+  .questions {
+    padding-block: var(--s-6);
+  }
+
+  h2 {
+    font-size: var(--fs-4);
+    font-weight: 500;
+    line-height: 1.25;
+  }
+
+  .qa {
+    margin-top: var(--s-4);
+    display: grid;
+    gap: var(--s-3);
+  }
+
+  .qa dt {
+    font-size: var(--fs-3);
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .qa dd {
+    margin-top: var(--s-1);
+    max-width: var(--measure);
+    color: var(--ink-2);
+  }
+</style>

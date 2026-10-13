@@ -5,6 +5,7 @@ import "@fontsource/alegreya-sans/500.css";
 import "@fontsource/alegreya-sans/700.css";
 import "@fontsource/alegreya-sans-sc/500.css";
 import "../styles/global.css";
+import { faq } from "../data/faq";
 
 interface Props {
   title: string;
@@ -15,41 +16,104 @@ const { title, description } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL("/og.png", Astro.site);
 
+// One linked graph: the site, this profile page, the person, the work it cites, and the visible Questions.
+// Every value repeats something shown on the page or in its data files.
+const site = Astro.site!.href;
+const person = `${site}#person`;
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "ProfilePage",
-  url: canonical.href,
-  name: title,
-  mainEntity: {
-    "@type": "Person",
-    "@id": `${Astro.site}#person`,
-    name: "Regi Voda",
-    alternateName: "Qwertic",
-    jobTitle: "AI Lead, Full Stack",
-    description,
-    url: Astro.site?.href,
-    image: ogImage.href,
-    email: "mailto:0xQwertic@proton.me",
-    address: { "@type": "PostalAddress", addressCountry: "IT" },
-    knowsLanguage: ["it", "sq", "el", "en"],
-    knowsAbout: [
-      "AI engineering",
-      "Large language models",
-      "Model Context Protocol (MCP)",
-      "Retrieval and data ingestion",
-      "LLM guardrails and evaluation",
-      "Context engineering",
-      "Retrieval-augmented generation",
-      "AI agents",
-      "Full-stack development",
-      "TypeScript",
-      "React",
-      "Next.js",
-      "Ruby on Rails",
-      "PostgreSQL",
-    ],
-    sameAs: ["https://github.com/Qwertic", "https://www.linkedin.com/in/regi-voda"],
-  },
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${site}#website`,
+      url: site,
+      name: "Qwertic",
+      inLanguage: "en",
+      publisher: { "@id": person },
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${canonical.href}#profile`,
+      url: canonical.href,
+      name: title,
+      description,
+      inLanguage: "en",
+      isPartOf: { "@id": `${site}#website` },
+      dateModified: new Date().toISOString().slice(0, 10),
+      primaryImageOfPage: ogImage.href,
+      mainEntity: { "@id": person },
+    },
+    {
+      "@type": "Person",
+      "@id": person,
+      name: "Regi Voda",
+      alternateName: "Qwertic",
+      jobTitle: "AI Lead, Full Stack",
+      hasOccupation: {
+        "@type": "Occupation",
+        name: "AI Lead",
+        description: "Knowing what to build with AI, how, and when not to, and taking it to production across the full stack.",
+        skills: "LLM features in production, MCP tool design, RAG and hybrid retrieval, document ingestion, guardrails, evaluation, human-in-the-loop review, TypeScript, React, Next.js, Ruby on Rails, PostgreSQL",
+      },
+      description,
+      url: site,
+      image: ogImage.href,
+      email: "mailto:0xQwertic@proton.me",
+      address: { "@type": "PostalAddress", addressCountry: "IT" },
+      knowsLanguage: ["it", "sq", "el", "en"],
+      alumniOf: { "@type": "EducationalOrganization", name: "Le Wagon" },
+      knowsAbout: [
+        "AI engineering",
+        "Large language models",
+        "When not to use AI",
+        "Model Context Protocol (MCP)",
+        "Retrieval-augmented generation",
+        "Document ingestion pipelines",
+        "LLM guardrails",
+        "LLM evaluation",
+        "Context engineering",
+        "AI agents",
+        "Agent memory",
+        "Full-stack development",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Ruby on Rails",
+        "PostgreSQL",
+      ],
+      sameAs: ["https://github.com/Qwertic", "https://www.linkedin.com/in/regi-voda"],
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": `${site}#cairn`,
+      name: "Cairn",
+      description: "Persistent, shared memory for coding agents, served over MCP. A person reviews what agents write before other agents can recall it.",
+      applicationCategory: "DeveloperApplication",
+      creativeWorkStatus: "In progress",
+      url: "https://github.com/Qwertic/cairn-releases",
+      author: { "@id": person },
+    },
+    ...[
+      { name: "cursorrules", description: "Curated rule configs for AI-assisted coding.", url: "https://github.com/Qwertic/cursorrules" },
+      { name: "crrl", description: "A CLI for managing cursorrules rule files.", url: "https://github.com/Qwertic/crrl" },
+    ].map((r) => ({
+      "@type": "SoftwareSourceCode",
+      "@id": `${site}#${r.name}`,
+      ...r,
+      codeRepository: r.url,
+      author: { "@id": person },
+    })),
+    {
+      "@type": "FAQPage",
+      "@id": `${canonical.href}#questions`,
+      isPartOf: { "@id": `${canonical.href}#profile` },
+      mainEntity: faq.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    },
+  ],
 };
 ---
 
@@ -66,6 +130,8 @@ const jsonLd = {
     <meta name="theme-color" content="#1C1B19" media="(prefers-color-scheme: dark)" />
     <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt" />
     <meta name="author" content="Regi Voda" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <link rel="alternate" type="text/plain" href="/llms-full.txt" title="llms-full.txt" />
     <meta property="og:type" content="profile" />
     <meta property="og:site_name" content="Qwertic" />
     <meta property="og:locale" content="en_GB" />
@@ -74,12 +140,16 @@ const jsonLd = {
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:alt" content="Qwertic: AI lead across the full stack. Regi Voda." />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="Qwertic: AI lead across the full stack. Regi Voda." />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <script is:inline>
       // The palette follows the visitor's season (northern hemisphere); the theme follows the OS
