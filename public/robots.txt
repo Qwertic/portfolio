@@ -1,18 +1,15 @@
-# Search engines and AI assistants are welcome to read and cite this site.
+# Search engines and AI answer engines are welcome to read and cite this site.
+# Training crawlers are governed by the Cloudflare-managed rules served above this file (ai-train=no).
 User-agent: *
 Allow: /
 
-# Named explicitly so no default policy of an AI crawler reads this site as opted out.
-User-agent: GPTBot
+# AI search and answer crawlers, named so they read this site as open for citation.
 User-agent: OAI-SearchBot
 User-agent: ChatGPT-User
-User-agent: ClaudeBot
 User-agent: Claude-SearchBot
 User-agent: Claude-User
 User-agent: PerplexityBot
 User-agent: Perplexity-User
-User-agent: Google-Extended
-User-agent: Applebot-Extended
 Allow: /
 
 Sitemap: https://qwertic.xyz/sitemap-index.xml
