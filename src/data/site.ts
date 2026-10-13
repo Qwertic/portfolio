@@ -71,7 +71,7 @@ export const work: Work[] = [
     when: "2020 - 2024",
     status: "shipped",
     layers: ["LLM", "UI", "API", "DB"],
-    summary: "Four years across the stack of a customer-messaging platform, including its early LLM features.",
+    summary: "Three years across the stack of a customer-messaging platform, including its early LLM features.",
     facts: [],
     parts: [
       {
