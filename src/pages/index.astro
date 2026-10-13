@@ -18,7 +18,7 @@ const hasCv = fs.existsSync(`${process.cwd()}/public${CV_PATH}`);
   <a class="skip" href="#main">Skip to content</a>
   <header class="top">
     <div class="top__in col">
-    <a class="top__name" href="#main">Qwertic</a>
+    <a class="top__name" href="#main" translate="no">Qwertic</a>
     <nav aria-label="Sections">
       <ul>
         <li><a href="#explorer">Should this use AI?</a></li>
@@ -34,7 +34,7 @@ const hasCv = fs.existsSync(`${process.cwd()}/public${CV_PATH}`);
 
   <main id="main">
     <section class="intro col" aria-labelledby="intro-h">
-      <p class="intro__who">Regi Voda, known as Qwertic. Italy, remote.</p>
+      <p class="intro__who"><span translate="no">Regi Voda</span>, known as <span translate="no">Qwertic</span>. Italy, remote.</p>
       <h1 id="intro-h">AI lead across the full stack.</h1>
       <p class="intro__lede">
         Knowing what to build with AI, how, and when not to. I take AI features from first experiment to production,
@@ -42,7 +42,7 @@ const hasCv = fs.existsSync(`${process.cwd()}/public${CV_PATH}`);
       </p>
       <p class="actions">
         <a class="btn" href={bookingHref}>Book a call</a>
-        <a class="link" href={`mailto:${EMAIL}`}>{EMAIL}</a>
+        <a class="link" href={`mailto:${EMAIL}`} translate="no">{EMAIL}</a>
       </p>
     </section>
 
@@ -77,7 +77,7 @@ const hasCv = fs.existsSync(`${process.cwd()}/public${CV_PATH}`);
 
   <footer class="foot col">
     <p>Palette follows the season<span data-season-now></span>.</p>
-    <p>Qwertic, Regi Voda</p>
+    <p translate="no">Qwertic, Regi Voda</p>
   </footer>
 </Base>
 

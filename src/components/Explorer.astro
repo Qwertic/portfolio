@@ -1,6 +1,7 @@
 ---
 import { START, questions, outcomes } from "../data/explorer";
 import { bookingHref } from "../data/site";
+import { protect } from "../lib/notranslate";
 
 const LAYERS = ["LLM", "UI", "API", "DB"] as const;
 const data = JSON.stringify({ start: START, questions, outcomes });
@@ -18,7 +19,7 @@ const data = JSON.stringify({ start: START, questions, outcomes });
   <noscript>
     <ul class="fallback">
       {outcomes.map((o) => (
-        <li><span class="sc">{o.verdict}</span> {o.title} {o.why}</li>
+        <li><span class="sc">{o.verdict}</span> <Fragment set:html={protect(`${o.title} ${o.why}`)} /></li>
       ))}
     </ul>
   </noscript>
@@ -49,6 +50,8 @@ const data = JSON.stringify({ start: START, questions, outcomes });
 </section>
 
 <script>
+  import { protect } from "../lib/notranslate";
+
   type Q = { id: string; ask: string; choices: { label: string; next: string }[] };
   type O = {
     id: string;
@@ -101,7 +104,7 @@ const data = JSON.stringify({ start: START, questions, outcomes });
       ask.className = "step__ask";
       ask.id = `ask-${q.id}`;
       ask.tabIndex = -1;
-      ask.textContent = q.ask;
+      ask.innerHTML = protect(q.ask);
       const group = document.createElement("div");
       group.className = "step__choices";
       group.setAttribute("role", "group");
@@ -110,7 +113,7 @@ const data = JSON.stringify({ start: START, questions, outcomes });
         const b = document.createElement("button");
         b.type = "button";
         b.className = "choice";
-        b.textContent = c.label;
+        b.innerHTML = protect(c.label);
         b.setAttribute("aria-pressed", "false");
         b.addEventListener("click", async () => {
           if (b.getAttribute("aria-pressed") === "true") return;
@@ -134,13 +137,13 @@ const data = JSON.stringify({ start: START, questions, outcomes });
     const renderOutcome = (o: O) => {
       const li = tpl.content.firstElementChild!.cloneNode(true) as HTMLLIElement;
       li.querySelector(".outcome__verdict")!.textContent = o.verdict;
-      li.querySelector(".outcome__title")!.textContent = o.title;
-      li.querySelector(".outcome__why")!.textContent = o.why;
+      li.querySelector(".outcome__title")!.innerHTML = protect(o.title);
+      li.querySelector(".outcome__why")!.innerHTML = protect(o.why);
       (["build", "guardrails", "evaluate"] as const).forEach((k) => {
         const ul = li.querySelector(`[data-list="${k}"]`)!;
         o[k].forEach((t) => {
           const item = document.createElement("li");
-          item.textContent = t;
+          item.innerHTML = protect(t);
           ul.append(item);
         });
       });

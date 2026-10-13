@@ -1,5 +1,6 @@
 ---
 import { experience, extras } from "../data/site";
+import { protect } from "../lib/notranslate";
 
 const rows = [...experience, ...extras];
 ---
@@ -13,13 +14,13 @@ const rows = [...experience, ...extras];
       pressure.
     </p>
     <p>
-      In 2019 I did the Le Wagon bootcamp, took my first client projects in Milan, then built an EU Horizon-funded MVP in
-      Paris as its sole developer. Four years at Callbell followed: chat, CRM, the public API, a frontend rebuild and the
-      first LLM features.
+      In 2019 I did the <span translate="no">Le Wagon</span> bootcamp, took my first client projects in Milan, then built
+      an EU Horizon-funded MVP in Paris as its sole developer. Four years at <span translate="no">Callbell</span> followed:
+      chat, CRM, the public API, a frontend rebuild and the first LLM features.
     </p>
     <p>
-      Since 2024 I work freelance, and AI has moved from one part of the job to the centre of it: Dokimazo, Cairn, and the
-      tools I use every day.
+      Since 2024 I work freelance, and AI has moved from one part of the job to the centre of it: <span translate="no">Dokimazo</span>,
+      <span translate="no">Cairn</span>, and the tools I use every day.
     </p>
     <p class="story__close">I'm a generalist by nature: four languages, two careers, every layer of the stack.</p>
   </div>
@@ -27,8 +28,8 @@ const rows = [...experience, ...extras];
   <dl class="timeline">
     {rows.map((r) => (
       <div class="row">
-        <dt><span class="row__when">{r.when}</span> {r.where}</dt>
-        <dd>{r.what}</dd>
+        <dt><span class="row__when">{r.when}</span> <Fragment set:html={protect(r.where)} /></dt>
+        <dd set:html={protect(r.what)} />
       </div>
     ))}
   </dl>

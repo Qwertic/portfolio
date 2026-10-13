@@ -1,6 +1,7 @@
 ---
 import { work, statusLabel, tools } from "../data/site";
 import CairnFlow from "./CairnFlow.astro";
+import { protect } from "../lib/notranslate";
 
 const LAYERS = ["LLM", "UI", "API", "DB"] as const;
 const repos = tools.filter((t) => t.href && t.name !== "Cairn");
@@ -16,21 +17,21 @@ const repos = tools.filter((t) => t.href && t.name !== "Cairn");
           {LAYERS.map((l) => <span class={`core__band${w.layers.includes(l) ? " is-on" : ""}`} data-layer={l}></span>)}
         </span>
         <div class="work__body">
-          <h3>{w.title}</h3>
+          <h3 translate="no">{w.title}</h3>
           <p class="meta sc">
             <span class={`status status--${w.status}`}>{statusLabel[w.status]}</span>
             <span>{w.context}</span>
             <span>{w.when}</span>
             <span class="layers-text">{w.layers.join(", ")}</span>
           </p>
-          <p class="work__sum">{w.summary}</p>
-          {w.facts.length > 0 && <ul class="facts">{w.facts.map((f) => <li>{f}</li>)}</ul>}
+          <p class="work__sum" set:html={protect(w.summary)} />
+          {w.facts.length > 0 && <ul class="facts">{w.facts.map((f) => <li set:html={protect(f)} />)}</ul>}
           {w.parts && (
             <dl class="parts">
               {w.parts.map((p) => (
                 <div>
                   <dt>{p.title}</dt>
-                  <dd>{p.text}</dd>
+                  <dd set:html={protect(p.text)} />
                 </div>
               ))}
             </dl>
@@ -38,7 +39,7 @@ const repos = tools.filter((t) => t.href && t.name !== "Cairn");
           {w.explainer && <CairnFlow />}
           {w.href && (
             <p class="work__link">
-              <a class="link" href={w.href} rel="noopener">{w.explainer ? "Release binaries on GitHub" : w.href.replace("https://", "")}</a>
+              <a class="link" href={w.href} rel="noopener" translate={w.explainer ? undefined : "no"}>{w.explainer ? "Release binaries on GitHub" : w.href.replace("https://", "")}</a>
             </p>
           )}
         </div>
@@ -50,10 +51,10 @@ const repos = tools.filter((t) => t.href && t.name !== "Cairn");
     <span class="sc">Open source</span>
     {repos.map((t) => (
       <Fragment>
-        <a class="link" href={t.href} rel="noopener">{t.name}</a>, {t.what.charAt(0).toLowerCase() + t.what.slice(1, -1)} ({t.meta}).{" "}
+        <a class="link" href={t.href} rel="noopener" translate="no">{t.name}</a>, {t.what.charAt(0).toLowerCase() + t.what.slice(1, -1)} ({t.meta}).{" "}
       </Fragment>
     ))}
-    And the Claude Code skills I work with every day.
+    And the <span translate="no">Claude Code</span> skills I work with every day.
   </p>
 </section>
 

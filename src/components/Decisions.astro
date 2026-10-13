@@ -1,5 +1,6 @@
 ---
 import { across, layers, sourceLabel } from "../data/decisions";
+import { protect } from "../lib/notranslate";
 ---
 
 <section class="decisions col ruled" id="decisions" aria-labelledby="decisions-h">
@@ -13,7 +14,7 @@ import { across, layers, sourceLabel } from "../data/decisions";
     <p class="sc across__label">Across the system</p>
     <ul class="rules">
       {across.map((d) => (
-        <li><p>{d.rule}</p>{d.source !== "both" && <p class="source sc">{sourceLabel[d.source]}</p>}</li>
+        <li><p set:html={protect(d.rule)} />{d.source !== "both" && <p class="source sc" set:html={protect(sourceLabel[d.source])} />}</li>
       ))}
     </ul>
   </div>
@@ -28,7 +29,7 @@ import { across, layers, sourceLabel } from "../data/decisions";
         </button>
         <ul class="rules">
           {l.decisions.map((d) => (
-            <li><p>{d.rule}</p>{d.source !== "both" && <p class="source sc">{sourceLabel[d.source]}</p>}</li>
+            <li><p set:html={protect(d.rule)} />{d.source !== "both" && <p class="source sc" set:html={protect(sourceLabel[d.source])} />}</li>
           ))}
         </ul>
       </li>

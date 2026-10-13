@@ -23,10 +23,11 @@ const steps = [
   },
 ];
 const nodes = ["Agent", "Person", "Memory"];
+import { protect } from "../lib/notranslate";
 ---
 
 <figure class="flow" data-flow aria-labelledby="flow-cap">
-  <figcaption id="flow-cap" class="sc flow__cap">How Cairn works</figcaption>
+  <figcaption id="flow-cap" class="sc flow__cap">How <span translate="no">Cairn</span> works</figcaption>
 
   <div class="flow__steps" role="group" aria-label="Steps">
     {steps.map((s, i) => (
@@ -45,7 +46,7 @@ const nodes = ["Agent", "Person", "Memory"];
     <span class="note"></span>
   </div>
 
-  <p class="flow__text" id="flow-text" aria-live="polite">{steps[0].text}</p>
+  <p class="flow__text" id="flow-text" aria-live="polite" set:html={protect(steps[0].text)} />
   <p class="flow__nav">
     <button class="link flow__next" type="button" data-next>Next step</button>
   </p>
@@ -54,6 +55,8 @@ const nodes = ["Agent", "Person", "Memory"];
 </figure>
 
 <script>
+  import { protect } from "../lib/notranslate";
+
   document.querySelectorAll<HTMLElement>("[data-flow]").forEach((flow) => {
     const steps = JSON.parse(flow.querySelector("[data-steps]")!.textContent!) as { name: string; at: number; text: string }[];
     const buttons = flow.querySelectorAll<HTMLButtonElement>("[data-step]");
@@ -66,7 +69,7 @@ const nodes = ["Agent", "Person", "Memory"];
       buttons.forEach((b, j) => b.setAttribute("aria-pressed", String(j === i)));
       map.dataset.at = String(steps[i].at);
       map.dataset.step = String(i);
-      text.textContent = steps[i].text;
+      text.innerHTML = protect(steps[i].text);
       next.textContent = i === steps.length - 1 ? "Back to the start" : "Next step";
     };
     buttons.forEach((b, i) => b.addEventListener("click", () => show(i)));
