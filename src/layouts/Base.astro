@@ -125,7 +125,10 @@ const jsonLd = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!-- New file name on purpose: browsers cache favicons per URL, and /favicon.svg used to be the risograph mark. -->
+    <link rel="icon" href="/icon-strata.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#E9EAE6" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1C1B19" media="(prefers-color-scheme: dark)" />
     <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt" />
