@@ -4,7 +4,7 @@
 
 ## Now
 
-- Cairn (own project, in progress): persistent, shared memory for coding agents, served over MCP. Context engineering, knowledge ingestion into a vector database, data integrity (a person reviews what agents write), discoverability. Releases: https://github.com/Qwertic/cairn-releases
+- Cairn (own project, open source, v0.7): persistent, shared memory for coding agents, served over MCP. Context engineering, knowledge ingestion (vector database in progress), data integrity (a person reviews what agents write), discoverability. Site: https://cairn-kb.dev, source: https://github.com/cairn-kb/cairn
 - Dokimazo (https://dokimazo.io, client, 2026 - present): skills-and-credentials platform. Shapes the core product and its AI assistant integration, across frontend, backend, internal tools and MCP.
 
 ## Experience

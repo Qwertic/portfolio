@@ -39,7 +39,7 @@ const repos = tools.filter((t) => t.href && t.name !== "Cairn");
           {w.explainer && <CairnFlow />}
           {w.href && (
             <p class="work__link">
-              <a class="link" href={w.href} rel="noopener" translate={w.explainer ? undefined : "no"}>{w.explainer ? "Release binaries on GitHub" : w.href.replace("https://", "")}</a>
+              <a class="link" href={w.href} rel="noopener" translate={w.explainer ? undefined : "no"}>{w.href.replace("https://", "")}</a>
             </p>
           )}
         </div>

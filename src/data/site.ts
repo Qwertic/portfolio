@@ -5,7 +5,7 @@ export const BOOKING_URL = "https://cal.com/qwertic/20min";
 export const LINKEDIN = "https://www.linkedin.com/in/regi-voda";
 export const GITHUB = "https://github.com/Qwertic";
 // Drop a PDF at public/Regi_Voda_CV.pdf and the CV link appears.
-export const CAIRN = "https://github.com/Qwertic/cairn-releases";
+export const CAIRN = "https://cairn-kb.dev";
 export const CV_PATH = "/Regi_Voda_CV.pdf";
 
 export const bookingHref =
@@ -38,16 +38,16 @@ export const work: Work[] = [
     title: "Cairn",
     context: "Own project",
     when: "Ongoing",
-    status: "progress",
+    status: "live",
     layers: ["LLM", "UI", "API", "DB"],
-    summary: "Persistent, shared memory for coding agents, served over MCP.",
+    summary: "Persistent, shared memory for coding agents, served over MCP. Open source (Apache-2.0), v0.7.",
     facts: [
       "Context engineering for agentic workflows",
-      "Knowledge ingestion into a vector database",
+      "Knowledge ingestion, with a vector database on the way",
       "Data integrity: a person reviews what agents write",
       "Discoverability: agents find what the team already knows",
     ],
-    href: "https://github.com/Qwertic/cairn-releases",
+    href: "https://cairn-kb.dev",
     explainer: true,
   },
   {
@@ -111,5 +111,5 @@ export const tools = [
   { name: "cursorrules", what: "Curated rule configs for AI-assisted coding.", meta: "26 stars, 6 forks", href: "https://github.com/Qwertic/cursorrules" },
   { name: "crrl", what: "A CLI for managing those rule files.", meta: "17 stars, 2 forks", href: "https://github.com/Qwertic/crrl" },
   { name: "Claude Code skills", what: "Reusable agent workflows for my own engineering practice.", meta: "Daily use", href: "" },
-  { name: "Cairn", what: "Shared memory for coding agents, with human review.", meta: "In progress", href: "https://github.com/Qwertic/cairn-releases" },
+  { name: "Cairn", what: "Shared memory for coding agents, with human review.", meta: "Open source, v0.7", href: "https://github.com/cairn-kb/cairn" },
 ];

@@ -11,7 +11,7 @@ export const faq: { q: string; a: string }[] = [
   },
   {
     q: "What is Cairn?",
-    a: "Cairn is my own project, in progress: persistent, shared memory for coding agents, served over MCP. A person reviews what agents write before other agents can recall it, so agents find what the team already knows.",
+    a: "Cairn is my own open-source project (Apache-2.0, v0.7): persistent, shared memory for coding agents, served over MCP. A person reviews what agents write before other agents can recall it, so agents find what the team already knows. It lives at cairn-kb.dev.",
   },
   {
     q: "Is Regi Voda available?",
